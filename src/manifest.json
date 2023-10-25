@@ -1,0 +1,38 @@
+{
+  "name": "LearnIT++",
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": [
+        "*://learnit.itu.dk/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "content.ts"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://learnit.itu.dk/*"
+      ],
+      "js": [
+        "beforeLoad.ts"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "public/*" ],
+      "matches": [ "*://learnit.itu.dk/*" ]
+    }
+  ],
+  "permissions": [
+    "cookies"
+  ],
+  "action": {}
+}

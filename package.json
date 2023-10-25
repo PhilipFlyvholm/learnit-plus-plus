@@ -1,0 +1,37 @@
+{
+  "name": "learnit-plus-plus",
+  "version": "1.0.1",
+  "description": "Improved design and functionality of the LearnIT page for IT-University Of Copenhagen",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "release": "cross-env NODE_ENV=production rollup -c",
+    "start": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhilipFlyvholm/learnit-plus-plus.git"
+  },
+  "author": "https://github.com/PhilipFlyvholm/learnit-plus-plus/graphs/contributors",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhilipFlyvholm/learnit-plus-plus/issues"
+  },
+  "homepage": "https://github.com/PhilipFlyvholm/learnit-plus-plus#readme",
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.0.1",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "cross-env": "^7.0.3",
+    "rollup": "^4.1.4",
+    "rollup-plugin-chrome-extension": "^3.6.12",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-zip": "^1.0.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@types/chrome": "^0.0.248"
+  }
+}
