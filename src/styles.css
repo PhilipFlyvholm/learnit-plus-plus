@@ -92,6 +92,19 @@ html .lightModeOnly {
   margin: auto;
 }
 
+/* Reverse course/studyline order */
+.course-info-container > div > div {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+
+.course-info-container [data-region="favourite-icon"]{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 /**
 *
 * EVERYTHING BELOW SHOULD ONLY BE VARIABLE CHANGES

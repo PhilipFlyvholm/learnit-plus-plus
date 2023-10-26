@@ -26,7 +26,7 @@
     "cross-env": "^7.0.3",
     "rollup": "^4.1.4",
     "rollup-plugin-chrome-extension": "^3.6.12",
-    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-copy2": "^0.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-zip": "^1.0.3",
     "typescript": "^5.2.2"

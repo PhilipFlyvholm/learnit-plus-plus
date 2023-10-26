@@ -10,7 +10,7 @@ import {
 } from "rollup-plugin-chrome-extension";
 import typescript from "@rollup/plugin-typescript";
 import zip from "rollup-plugin-zip";
-import copy from "rollup-plugin-copy";
+import copy from "rollup-plugin-copy2";
 const isProduction = process.env.NODE_ENV === "production";
 
 export default {
@@ -30,9 +30,7 @@ export default {
     commonjs(),
     typescript(),
     copy({
-      targets: [
-        { src: "src/assets/images/**/*", dest: "dist/public/images" },
-      ],
+      assets: ["public/images/**/*"]
     }),
     isProduction && zip({ dir: "releases" }),
   ],
