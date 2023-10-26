@@ -1,5 +1,5 @@
 # LearnIT++
-<img src="src/assets/images/logo.png" alt="LearnIT++ logo" width="200"/>
+<img src="public/images/logo.png" alt="LearnIT++ logo" width="200"/>
 
 Welcome to LearnIt++ Extension!
 
