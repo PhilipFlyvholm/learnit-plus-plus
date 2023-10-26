@@ -1,14 +1,18 @@
 # LearnIT++
 <img src="public/images/logo.png" alt="LearnIT++ logo" width="200"/>
 
-Welcome to LearnIt++ Extension!
+**Welcome to LearnIt++ Extension!**
+<div class="flex">
+  <img width="500"  src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0595f49f-e573-4c90-ad06-ecb1dfc4ca83](https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0595f49f-e573-4c90-ad06-ecb1dfc4ca83"/>
+  <img width="500" src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0f8b8a6c-fe26-40a3-aabc-650f127cd275"/>
+</div>
 
 ## Description
 
 Improved design and functionality of the LearnIT page for IT-University Of Copenhagen
 
 ## Installation
-Currently there is no web store download but it is pretty easy to add local extensions.
+There is currently no web store download, but adding local extensions is pretty easy.
 
 **Chrome/chromium guide:**
 
