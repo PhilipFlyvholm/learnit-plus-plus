@@ -34,6 +34,11 @@ We encourage pull requests!
 
 To preview changes run the `npm run start` command to get auto reloading the extension. Use of Typescript is preferred over JavaScript.
 
+## How to build
+1. Run `npm i` if it is the first time building
+2. Run `npm run release` to generate a zip in the `releases` folder or `npm run build` to only build the files in the `dist` folder
+3. Done
+
 ## Support
 
 If you have any questions or issues, please use the issues page on github to report issues and discussions for questions and ideas.

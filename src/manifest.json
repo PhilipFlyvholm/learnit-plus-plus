@@ -1,6 +1,6 @@
 {
   "name": "LearnIT++",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 3,
   "content_scripts": [
     {
@@ -25,6 +25,12 @@
       "run_at": "document_start"
     }
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "learnitplusplus@philipflyvholm.github.com",
+      "strict_min_version": "109.0"
+    }
+  },  
   "web_accessible_resources": [
     {
       "resources": [ "public/*" ],
