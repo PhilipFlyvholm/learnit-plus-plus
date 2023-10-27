@@ -65,8 +65,8 @@ jobs:
     - name: Upload & release
       uses: mnao305/chrome-extension-upload@v4.0.1
       with:
-        file-path: dist/file.zip
-        extension-id: hogefuga(extension id)
+        file-path: chrome-extension-${{ github.ref }}.zip
+        extension-id: learnit-plus-plus
         client-id: ${{ secrets.CLIENT_ID }}
         client-secret: ${{ secrets.CLIENT_SECRET }}
         refresh-token: ${{ secrets.REFRESH_TOKEN }}
