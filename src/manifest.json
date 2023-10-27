@@ -30,7 +30,14 @@
       "id": "learnitplusplus@philipflyvholm.github.com",
       "strict_min_version": "109.0"
     }
-  },  
+  },
+  "action": {
+    "default_icon": {
+      "128": "images/logo-128.png"
+    },
+    "default_popup": "pages/popup.html",
+    "default_title": "LearnIT++"
+  },
   "web_accessible_resources": [
     {
       "resources": [ "public/*" ],
@@ -39,7 +46,5 @@
   ],
   "permissions": [
     "cookies"
-  ],
-  "action": {}
-  
+  ]  
 }

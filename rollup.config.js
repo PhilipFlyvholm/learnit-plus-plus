@@ -15,8 +15,6 @@ const isProduction = process.env.NODE_ENV === "production";
 const isChrome = process.env.BROWSER === "chrome";
 const outputFile = process.env.OUTPUT;
 
-log(isChrome, outputFile)
-
 export default {
   input: "src/manifest.json",
   output: {
