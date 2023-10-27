@@ -11,7 +11,12 @@ import {
 import typescript from "@rollup/plugin-typescript";
 import zip from "rollup-plugin-zip";
 import copy from "rollup-plugin-copy2";
+import { log } from "console";
 const isProduction = process.env.NODE_ENV === "production";
+const isChrome = process.env.BROWSER === "chrome";
+const outputFile = process.env.OUTPUT;
+
+log(isChrome, outputFile)
 
 export default {
   input: "src/manifest.json",
@@ -32,6 +37,6 @@ export default {
     copy({
       assets: ["public/images/**/*"]
     }),
-    isProduction && zip({ dir: "releases" }),
+    isProduction && zip( isChrome && outputFile ? { file: outputFile } : { dir: "releases" }),
   ],
 };
