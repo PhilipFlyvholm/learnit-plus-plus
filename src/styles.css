@@ -105,6 +105,38 @@ html .lightModeOnly {
   right: 0;
 }
 
+
+/* Btn-link style */
+/* Looks like a `a` tag. I know this is kinda bad practice but then it continues in the design style of LearnIT*/
+.btn-link{
+  cursor: pointer;
+  color: var(--button-noticed-bg-color);
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-link:hover {
+  color: #094478;
+  text-decoration: underline;
+}
+
+/* Course collapse/expand */
+#collapseAllContainer .btn-link{
+  display: none;
+}
+
+#collapseAllContainer.collapsed .openAllButton{
+  display: block;
+}
+#collapseAllContainer:not(.collapsed) .collapseAllButton{
+  display: block;
+}
+
+.visibility-hidden{
+  visibility: hidden !important;
+}
+
 /**
 *
 * EVERYTHING BELOW SHOULD ONLY BE VARIABLE CHANGES

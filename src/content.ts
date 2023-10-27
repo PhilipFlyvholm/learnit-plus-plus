@@ -1,9 +1,12 @@
 import { setCookie } from "./cookies";
 import svgIcons from "./svgIcons";
+import { addCollapseAllButton, removeChervonIfNoChildren } from "./collapseAll";
 (function () {
   console.log("ReLearnIT enabled");
   replaceLogo();
   addDarkModeToggle();
+    addCollapseAllButton();
+    removeChervonIfNoChildren();
 })();
 
 function addDarkModeToggle() {
