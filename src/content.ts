@@ -1,13 +1,20 @@
 import { setCookie } from "./cookies";
 import svgIcons from "./svgIcons";
 import { addCollapseAllButton, removeChervonIfNoChildren } from "./collapseAll";
+import { addIFrameToTimeEdit } from "./TimeEdit";
+import { injectAnalog } from "./analog/inject";
 (function () {
   console.log("ReLearnIT enabled");
   replaceLogo();
   addDarkModeToggle();
     addCollapseAllButton();
     removeChervonIfNoChildren();
+    addIFrameToTimeEdit();
+    injectAnalog();
 })();
+
+
+
 
 function addDarkModeToggle() {
   const userMenu = document.querySelector("#usernavigation");

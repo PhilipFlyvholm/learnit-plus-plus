@@ -36,11 +36,17 @@ aside#block-region-content section.block_starredcourses {
 aside#block-region-content section.block_calendar_upcoming {
   order: 4;
 }
+/* TimeEdit */
+aside#block-region-content section.block_timeedit {
+  order: 5;
+}
 
 /* Study tools card */
 aside#block-region-content section.block_cohortspecifichtml {
-  order: 5;
+  order: 6;
 }
+
+
 /* Logo replace */
 html nav.navbar.fixed-top .navbar-brand:before,
 html nav.navbar.fixed-top .navbar-brand:hover:before {

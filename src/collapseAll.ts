@@ -24,7 +24,6 @@ export function removeChervonIfNoChildren(){
     const courseIndex = document.getElementById("courseindex")
     if(courseIndex == null) return;
     const chevrons = courseIndex.querySelectorAll(".courseindex-chevron");
-    console.log(chevrons);
     
     chevrons.forEach((item: Element) => {
         const grandParent = item.parentElement?.parentElement;
