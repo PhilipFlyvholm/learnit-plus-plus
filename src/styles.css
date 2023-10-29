@@ -41,9 +41,14 @@ aside#block-region-content section.block_timeedit {
   order: 5;
 }
 
+/* Student councile events */
+aside#block-region-content section.block_sc {
+  order: 6;
+}
+
 /* Study tools card */
 aside#block-region-content section.block_cohortspecifichtml {
-  order: 6;
+  order: 7;
 }
 
 

@@ -3,18 +3,17 @@ import svgIcons from "./svgIcons";
 import { addCollapseAllButton, removeChervonIfNoChildren } from "./collapseAll";
 import { addIFrameToTimeEdit } from "./TimeEdit";
 import { injectAnalog } from "./analog/inject";
+import { addStudentConcileEvents } from "./studentcouncil/eventSection";
 (function () {
   console.log("ReLearnIT enabled");
   replaceLogo();
   addDarkModeToggle();
-    addCollapseAllButton();
-    removeChervonIfNoChildren();
-    addIFrameToTimeEdit();
-    injectAnalog();
+  addCollapseAllButton();
+  removeChervonIfNoChildren();
+  addIFrameToTimeEdit();
+  injectAnalog();
+  addStudentConcileEvents()
 })();
-
-
-
 
 function addDarkModeToggle() {
   const userMenu = document.querySelector("#usernavigation");
@@ -65,7 +64,6 @@ function addDarkModeToggle() {
     }
   });
 }
-
 
 function replaceLogo() {
   const img = chrome.runtime.getURL("./public/images/logo.png");

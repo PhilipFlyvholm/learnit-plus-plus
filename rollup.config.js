@@ -2,7 +2,6 @@
 import path from "path";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-
 import del from "rollup-plugin-delete";
 import {
   chromeExtension,
@@ -30,10 +29,12 @@ export default {
     del({ targets: "dist/*" }),
     chromeExtension(),
     simpleReloader(),
-    // the plugins below are optional
-    resolve(),
-    commonjs(),
     typescript(),
+    resolve({
+      browser: true
+    }
+    ),
+    commonjs(),
     copy({
       assets: ["public/images/**/*"]
     }),

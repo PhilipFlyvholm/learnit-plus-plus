@@ -32,6 +32,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@types/chrome": "^0.0.248"
+    "@types/chrome": "^0.0.248",
+    "ical.js": "^1.5.0"
   }
 }
