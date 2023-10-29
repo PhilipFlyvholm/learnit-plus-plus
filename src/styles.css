@@ -104,7 +104,7 @@ html .lightModeOnly {
 }
 
 /* Reverse course/studyline order */
-.course-info-container %3E div %3E div {
+.course-info-container > div > div {
   display: flex;
   flex-direction: column-reverse;
   position: relative;
