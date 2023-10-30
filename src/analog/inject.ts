@@ -8,7 +8,7 @@ export function injectAnalog() {
   analogContainer.className = "nav-link text-truncate";
   const openingHours = getTodaysOpeningHours();
   analogContainer.textContent = openingHours
-    ? `Open ${openingHours.from}:00-${openingHours.to}:00`
+    ? `Open ${openingHours.from}:00-${openingHours.to_h}:${openingHours.to_m}`
     : "Closed";
   analogContainer.prepend(getAnalogLogo());
   userMenu.prepend(analogContainer);
