@@ -1,5 +1,3 @@
-import { getCookieValue, setCookie } from "./cookies";
-
 export function addIFrameToTimeEdit() {
   const block_content = document.getElementById("block-region-content");
   if (!block_content) return;
@@ -46,7 +44,7 @@ export function addIFrameToTimeEdit() {
 
   section.appendChild(div);
   block_content.appendChild(section);
-  if(input.value.includes("timeedit")){
+  if (input.value.includes("timeedit")) {
     iframe.classList.remove("hidden");
     iframe.src = input.value;
     notSetupP.classList.add("hidden");
@@ -62,10 +60,10 @@ function urlInput() {
   input.className = "form-control withclear rounded";
   input.placeholder = "Enter a valid timeedit url";
   input.name = "timeeditURL";
-  //Get cookie if it exists
-  const cookie = getCookieValue("lpp/timeeditURL");
-  if (cookie != "") {
-    input.value = cookie;
+  //Get local storage if it exists
+  const timeeditStorage = localStorage.getItem("lpp/timeeditURL");
+  if (timeeditStorage && timeeditStorage != "") {
+    input.value = timeeditStorage;
   } else {
     input.value = "";
   }
@@ -73,7 +71,7 @@ function urlInput() {
   input.style.maxWidth = "500px";
   input.style.width = "100%";
   input.addEventListener("change", (e) => {
-    //Set cookie with content if url contains timeedit
+    //Set local storage with content if url contains timeedit
     const target = e.target as HTMLInputElement;
     if (!target) return;
     const url = target.value;
@@ -83,15 +81,14 @@ function urlInput() {
     if (!timeEditFrame) return;
     if (!notSetupP) return;
     if (url.includes("timeedit")) {
-      setCookie("lpp/timeeditURL", url);
+      localStorage.setItem("lpp/timeeditURL", url);
       timeEditFrame.src = url;
       timeEditFrame.classList.remove("hidden");
       notSetupP.classList.add("hidden");
     } else {
-        if(url.trim() == ""){
-
-          setCookie("lpp/timeeditURL", "");
-        }
+      if (url.trim() == "") {
+        localStorage.setItem("lpp/timeeditURL", "");
+      }
       notSetupP.classList.remove("hidden");
       timeEditFrame.classList.add("hidden");
     }
