@@ -10,10 +10,17 @@ import { addStudentConcileEvents } from "./studentcouncil/eventSection";
   addDarkModeToggle();
   addCollapseAllButton();
   removeChervonIfNoChildren();
-  addIFrameToTimeEdit();
   injectAnalog();
-  addStudentConcileEvents()
+  if (isFrontPage()) {
+    addIFrameToTimeEdit();
+    addStudentConcileEvents();
+  }
 })();
+
+function isFrontPage() {
+  const url = window.location.href;
+  return url.endsWith("/my/");
+}
 
 function addDarkModeToggle() {
   const userMenu = document.querySelector("#usernavigation");
