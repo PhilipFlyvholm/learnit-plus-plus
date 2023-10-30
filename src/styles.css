@@ -95,6 +95,12 @@ html body .drawer.drawer-right .drawertoggle {
   border-radius: 0;
 }
 
+/* fix my courses page due to grid layout */
+.block_myoverview {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
 html .drawerheader {
   height: auto;
 }
