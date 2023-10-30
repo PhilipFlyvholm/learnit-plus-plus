@@ -22,8 +22,6 @@ export async function addStudentConcileEvents() {
 
   const events = await getEvents();
   for (const event of events) {
-    console.log(event);
-
     cardTextDiv.appendChild(getEventDom(event));
   }
 

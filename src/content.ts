@@ -1,4 +1,3 @@
-import { setCookie } from "./cookies";
 import svgIcons from "./svgIcons";
 import { addCollapseAllButton, removeChervonIfNoChildren } from "./collapseAll";
 import { addIFrameToTimeEdit } from "./TimeEdit";
@@ -64,10 +63,10 @@ function addDarkModeToggle() {
     const root = document.documentElement;
     if (darkMode) {
       root.classList.add("dark");
-      setCookie("lpp/darkMode", "true");
+      localStorage.setItem("lpp/darkMode", "true");
     } else {
       root.classList.remove("dark");
-      setCookie("lpp/darkMode", "false");
+      localStorage.setItem("lpp/darkMode", "false");
     }
   });
 }
