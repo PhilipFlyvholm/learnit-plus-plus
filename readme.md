@@ -20,7 +20,7 @@ There is currently no web store download, but adding local extensions is pretty 
 
 To install LearnIt++, follow these simple steps:
 
-1. Download the latest zip from the [https://github.com/PhilipFlyvholm/learnit-plus-plus/releases](releases) on GitHub.
+1. Download the latest zip from the [releases](https://github.com/PhilipFlyvholm/learnit-plus-plus/releases) on GitHub.
 2. Unpack the zip
 3. Go to [chrome://extensions/](chrome://extensions/)
 4. Enable developer mode in the top right
