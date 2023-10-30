@@ -12,6 +12,20 @@ body.limitedwidth #page.drawers .main-inner {
 }
 
 /* reorder dashboard cards */
+#block-region-content {
+  display: grid !important;
+  gap: 12px;
+  grid-template: "courses   courses   timeline" 1fr
+                 "timeedit  timeedit  timeline" auto
+                 "sc        sc        events" auto
+                 "recent    recent    tools" / 6fr 6fr 4fr;
+}
+
+#block-region-content>span {
+  display: none;
+}
+
+/* reorder dashboard cards */
 aside#block-region-content {
   display: flex;
   flex-flow: column;
@@ -19,36 +33,36 @@ aside#block-region-content {
 
 /* Timeline card */
 aside#block-region-content section.block_timeline {
-  order: 2;
+  grid-area: timeline;
 }
 
 /* Recently accessed items card */
 aside#block-region-content section.block_recentlyaccesseditems {
-  order: 3;
+  grid-area: recent;
 }
 
 /* Starred courses card */
 aside#block-region-content section.block_starredcourses {
-  order: 1;
+  grid-area: courses;
 }
 
 /* Upcoming events card */
 aside#block-region-content section.block_calendar_upcoming {
-  order: 4;
+  grid-area: events;
 }
 /* TimeEdit */
 aside#block-region-content section.block_timeedit {
-  order: 5;
+  grid-area: timeedit;
 }
 
 /* Student councile events */
 aside#block-region-content section.block_sc {
-  order: 6;
+  grid-area: sc;
 }
 
 /* Study tools card */
 aside#block-region-content section.block_cohortspecifichtml {
-  order: 7;
+  grid-area: tools;
 }
 
 
