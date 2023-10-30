@@ -1,4 +1,4 @@
-type Timeslot = { from: number; to: number } | null;
+type Timeslot = { from: number; to_h: number; to_m: number } | null;
 enum Weekdays {
   MONDAY = 0,
   TUESDAY = 1,
@@ -9,8 +9,9 @@ enum Weekdays {
   SUNDAY = 6,
 }
 function getOpeningHours(): Map<number, Timeslot> {
-  const normalOperation: Timeslot = { from: 8, to: 16 };
-  const shortDayOperation: Timeslot = { from: 8, to: 14 };
+  // from 8 to 15:30
+  const normalOperation: Timeslot = { from: 8, to_h: 15, to_m: 30 };
+  const shortDayOperation: Timeslot = { from: 8, to_h: 13, to_m: 30 };
   const closed: Timeslot = null;
   return new Map([
     [Weekdays.MONDAY, normalOperation],
