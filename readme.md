@@ -4,7 +4,7 @@
 
 **Welcome to LearnIt++ Extension!**
 <div class="flex">
-  <img width="500"  src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0595f49f-e573-4c90-ad06-ecb1dfc4ca83](https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0595f49f-e573-4c90-ad06-ecb1dfc4ca83"/>
+  <img width="500"  src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0595f49f-e573-4c90-ad06-ecb1dfc4ca83"/>
   <img width="500" src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0f8b8a6c-fe26-40a3-aabc-650f127cd275"/>
 </div>
 
@@ -35,12 +35,12 @@ Todo
 
 We encourage pull requests!
 
-To preview changes run the `npm run start` command to get auto reloading the extension. Use of Typescript is preferred over JavaScript.
+To preview changes run the `npm run dev` command to get auto reloading the extension. Use of Typescript is preferred over JavaScript.
 
 ## How to build
 
 1. Run `npm i` if it is the first time building
-2. Run `npm run release` to generate a zip in the `releases` folder or `npm run build` to only build the files in the `dist` folder
+2. Run `npm run build` to generate a zip in the `releases` folder
 3. Done
 
 ## Support
