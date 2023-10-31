@@ -17,4 +17,11 @@ export default defineConfig({
         isChrome && outputFile ? {outFileName: outputFile, outDir: "releases"} : {outFileName: `learnit-plus-plus-${process.env.npm_package_version}.zip`,outDir: "releases"}
     )
   ],
+  server: {
+      strictPort: true,
+      port: 5173,
+      hmr: {
+          clientPort: 5173
+      }
+  },
 });

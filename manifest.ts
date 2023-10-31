@@ -1,7 +1,7 @@
 import { defineManifest } from "@crxjs/vite-plugin";
 const learnITUrl = "*://learnit.itu.dk/*";
 // @ts-ignore
-import packageJson from "./package.json" assert { type: 'json' };
+import packageJson from "./package.json" assert { type: "json" };
 const { version } = packageJson;
 
 // Convert from Semver (example: 0.1.0-beta6)
@@ -26,6 +26,7 @@ const manifest = defineManifest({
       js: ["src/beforeload.ts"],
       run_at: "document_start",
     },
+    { js: ["src/popup/app.tsx"], matches: ["https://*/*"] },
   ],
   action: {
     default_popup: "index.html",
@@ -47,6 +48,7 @@ const manifest = defineManifest({
       strict_min_version: "109.0",
     },
   },
+  permissions: ["storage", "activeTab"],
 });
 
 export default manifest;
