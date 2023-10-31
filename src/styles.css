@@ -6,6 +6,7 @@ body.limitedwidth #page.drawers .main-inner {
 #page.drawers .main-inner {
   padding: 0.5rem 0.5rem !important;
 }
+
 /* enable four items to be in the starred card */
 .dashboard-card-deck:not(.fixed-width-cards) .dashboard-card {
   width: calc(25% - 0.5rem) !important;
@@ -50,6 +51,7 @@ aside#block-region-content section.block_starredcourses {
 aside#block-region-content section.block_calendar_upcoming {
   grid-area: events;
 }
+
 /* TimeEdit */
 aside#block-region-content section.block_timeedit {
   grid-area: timeedit;
@@ -71,6 +73,7 @@ html nav.navbar.fixed-top .navbar-brand:before,
 html nav.navbar.fixed-top .navbar-brand:hover:before {
   content: "";
 }
+
 .site-name.navbar-brand {
   visibility: hidden;
 }
@@ -84,6 +87,7 @@ html .dashboard-card-deck.one-row {
   flex-flow: row wrap;
   overflow-x: auto;
 }
+
 /* Better close buttons in drawers */
 html body .drawer.drawer-left .drawertoggle,
 html body .drawer.drawer-right .drawertoggle {
@@ -111,13 +115,16 @@ html .darkModeOnly,
 html.dark .lightModeOnly {
   display: none;
 }
+
 html.dark .darkModeOnly,
 html .lightModeOnly {
   display: block;
 }
+
 #dark-mode-toggle {
   display: none;
 }
+
 #dark-mode-label {
   cursor: pointer;
   margin: auto;
@@ -130,7 +137,7 @@ html .lightModeOnly {
   position: relative;
 }
 
-.course-info-container [data-region="favourite-icon"]{
+.course-info-container [data-region="favourite-icon"] {
   position: absolute;
   top: 0;
   right: 0;
@@ -139,7 +146,7 @@ html .lightModeOnly {
 
 /* Btn-link style */
 /* Looks like a `a` tag. I know this is kinda bad practice but then it continues in the design style of LearnIT*/
-.btn-link{
+.btn-link {
   cursor: pointer;
   color: var(--button-noticed-bg-color);
   text-decoration: none;
@@ -153,24 +160,25 @@ html .lightModeOnly {
 }
 
 /* Course collapse/expand */
-#collapseAllContainer .btn-link{
+#collapseAllContainer .btn-link {
   display: none;
 }
 
-#collapseAllContainer.collapsed .openAllButton{
-  display: block;
-}
-#collapseAllContainer:not(.collapsed) .collapseAllButton{
+#collapseAllContainer.collapsed .openAllButton {
   display: block;
 }
 
-.visibility-hidden{
+#collapseAllContainer:not(.collapsed) .collapseAllButton {
+  display: block;
+}
+
+.visibility-hidden {
   visibility: hidden !important;
 }
 
 
 /* Show target=_blank */
-a[target="_blank"]:after{
+a[target="_blank"]:after {
   fill: #000;
   content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height=".5rem" style="fill: rgb(1,152,240);" viewBox="0 0 512 512"%3E%3C!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/%3E%3C/svg%3E');
   margin: 0 3px 0 0px;
@@ -184,6 +192,7 @@ html body .texrender {
   margin: 0 3px;
   border-radius: 0.2rem;
 }
+
 /**
 *
 * EVERYTHING BELOW SHOULD ONLY BE VARIABLE CHANGES
@@ -339,6 +348,7 @@ html.dark {
   --drawer-block-hover-fg-color: #000;
   --drawer-block-dimmed-fg-color: #6a737b;
   --drawer-block-active-fg-color: #fff;
+  --card-blend: normal !important;
 }
 
 html.dark .text-muted {
@@ -352,9 +362,11 @@ html.dark .block_recentlyaccesseditems a.dashboard-card small {
 html.dark .activityiconcontainer {
   background-color: #161616;
 }
+
 html.dark #usernavigation #searchform-navbar i {
   color: white;
 }
+
 html.dark .form-control:focus {
   color: rgb(226, 226, 226);
 }
@@ -371,6 +383,7 @@ html.dark .path-mod-assign td.submissionnotgraded,
 .path-mod-assign div.submissionnotgraded {
   color: #dadada;
 }
+
 html.dark .generaltable {
   background-color: #161616;
 }
@@ -379,15 +392,18 @@ html.dark .fileuploadsubmission img {
   filter: invert(1);
 }
 
-html.dark #theme_boost-drawers-blocks{
+html.dark #theme_boost-drawers-blocks {
   background-color: var(--drawer-menu-bg-color);
 }
-html.dark .secondary-navigation{
+
+html.dark .secondary-navigation {
   background: none;
 }
+
 html.dark ::-webkit-scrollbar-track {
   background: #161616 !important;
 }
+
 html.dark ::-webkit-scrollbar-thumb {
   background: #d4d4d4 !important;
   border: 3px solid #1b1b1b !important;
