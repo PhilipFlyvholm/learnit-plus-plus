@@ -77,7 +77,7 @@ function getEventDom(event: EventData) {
   } else {
     description.textContent = event.description.substring(0, 100) + "...";
     const readMoreButton = document.createElement("button");
-    readMoreButton.className = "btn btn-dark";
+    readMoreButton.className = "btn btn-custom";
     readMoreButton.textContent = "Read more";
     readMoreButton.addEventListener("click", () => {
       if (expandedText.classList.contains("hide-content")) {

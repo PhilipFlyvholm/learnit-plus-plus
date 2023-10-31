@@ -19,7 +19,6 @@ const manifest = defineManifest({
     {
       matches: [learnITUrl],
       js: ["src/content.ts"],
-      css: ["src/styles.css"],
       run_at: "document_idle",
     },
     {
@@ -37,7 +36,7 @@ const manifest = defineManifest({
   },
   web_accessible_resources: [
     {
-      resources: ["public/**/*", "src/**/*.css", "src/**/*.html"],
+      resources: ["public/**/*"],
       matches: [learnITUrl],
     },
   ],
