@@ -50,8 +50,15 @@ const manifest = (browser: "chrome" | "firefox") => {
         matches: [learnITUrl],
       },
     ],
-    permissions: ["storage"],
+    permissions: ["storage", "scripting"],
     host_permissions: [learnITUrl],
+    background: {
+      service_worker: "src/service-worker/background.ts",
+      type: "module"
+    },
+    content_security_policy: {
+      extension_pages: "default-src 'self'"
+    },
   };
   return defineManifest({
     ...crossplatform,
