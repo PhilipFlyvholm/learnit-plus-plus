@@ -35,7 +35,7 @@ const manifest = (browser: "chrome" | "firefox") => {
         js: ["src/beforeLoad.ts"],
         run_at: "document_start",
       },
-      { js: ["src/popup/app.tsx"], matches: ["https://*/*"] },
+      { js: ["src/popup/App.tsx"], matches: ["https://*/*"] },
     ],
     action: {
       default_popup: "index.html",
