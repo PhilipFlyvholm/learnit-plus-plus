@@ -20,6 +20,8 @@ html.dark {
     --field-bg-color-alt: black;
     --field-border-color: #090b0c;
     --field-group-border-color: #090b0c;
+    --pagination-bg-color: var(--card-bg-color);
+    --pagination-border-color: var(--card-border-color);
     --popupmenu-bg-color: #1d2125;
     --popupmenu-fg-color: #fff;
     --popupmenu-shadow: #14171a;
