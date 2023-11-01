@@ -5,6 +5,9 @@ on:
     tags:
       - v*.*.*
 
+permissions:
+  contents: write
+
 jobs:
   build-chrome-extension: 
     # maybe use a matrix to build for multiple browsers
@@ -57,7 +60,6 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: chrome-extension-${{ github.ref_name }}
-        path: chrome-extension-${{ github.ref_name }}.zip
 
     - name: Create GitHub release
       uses: softprops/action-gh-release@v0.1.15
@@ -76,7 +78,6 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: chrome-extension-${{ github.ref_name }}
-        path: chrome-extension-${{ github.ref_name }}.zip
 
     - name: Upload & release
       uses: mnao305/chrome-extension-upload@v4.0.1

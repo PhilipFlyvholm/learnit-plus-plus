@@ -1,5 +1,5 @@
 import { defineManifest, type ManifestV3Export } from "@crxjs/vite-plugin";
-const learnITUrl = "*://learnit.itu.dk/*";
+const learnITUrl = "https://learnit.itu.dk/*";
 // @ts-ignore
 import packageJson from "./package.json" assert { type: "json" };
 const { version } = packageJson;
@@ -35,7 +35,7 @@ const manifest = (browser: "chrome" | "firefox") => {
         js: ["src/beforeLoad.ts"],
         run_at: "document_start",
       },
-      { js: ["src/popup/App.tsx"], matches: ["https://*/*"] },
+      { js: ["src/popup/App.tsx"], matches: [learnITUrl] },
     ],
     action: {
       default_popup: "index.html",
@@ -57,7 +57,7 @@ const manifest = (browser: "chrome" | "firefox") => {
       type: "module"
     },
     content_security_policy: {
-      extension_pages: "default-src 'self'"
+      extension_pages: "default-src 'self'; img-src 'self' data:"
     },
   };
   return defineManifest({
