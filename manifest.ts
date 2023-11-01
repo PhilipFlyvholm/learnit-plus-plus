@@ -32,7 +32,7 @@ const manifest = (browser: "chrome" | "firefox") => {
       },
       {
         matches: [learnITUrl],
-        js: ["src/beforeload.ts"],
+        js: ["src/beforeLoad.ts"],
         run_at: "document_start",
       },
       { js: ["src/popup/app.tsx"], matches: ["https://*/*"] },
