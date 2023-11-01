@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
+    "build:chrome": "BROWSER=chrome npm run build",
+    "build:firefox": "BROWSER=firefox npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "start": "npm run dev",
     "dev": "vite",

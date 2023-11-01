@@ -37,9 +37,8 @@ jobs:
     - name: Build
       run: |
         npm install
-        npm run build
+        npm run build:chrome
       env:
-        BROWSER: chrome
         OUTPUT:  chrome-extension-${{ github.ref }}.zip
 
     - name: Archive chrome-extension artifact

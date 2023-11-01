@@ -1,4 +1,4 @@
-import { defineManifest } from "@crxjs/vite-plugin";
+import { defineManifest, type ManifestV3Export } from "@crxjs/vite-plugin";
 const learnITUrl = "*://learnit.itu.dk/*";
 // @ts-ignore
 import packageJson from "./package.json" assert { type: "json" };
@@ -10,46 +10,53 @@ const [major, minor, patch, label = "0"] = version
   .replace(/[^\d.-]+/g, "")
   // split into version parts
   .split(/[.-]/);
-const manifest = defineManifest({
-  manifest_version: 3,
-  name: "LearnIT++",
-  version: `${major}.${minor}.${patch}.${label}`,
-  version_name: version,
-  content_scripts: [
-    {
-      matches: [learnITUrl],
-      js: ["src/content.ts"],
-      run_at: "document_idle",
+const manifest = (browser: "chrome" | "firefox") => {
+  const firefoxOnly = {
+    browser_specific_settings: {
+      gecko: {
+        id: "learnitplusplus@philipflyvholm.github.com",
+        strict_min_version: "109.0",
+      },
     },
-    {
-      matches: [learnITUrl],
-      js: ["src/beforeload.ts"],
-      run_at: "document_start",
+  };
+  const crossplatform: ManifestV3Export = {
+    manifest_version: 3,
+    name: "LearnIT++",
+    version: `${major}.${minor}.${patch}.${label}`,
+    version_name: version,
+    content_scripts: [
+      {
+        matches: [learnITUrl],
+        js: ["src/content.ts"],
+        run_at: "document_idle",
+      },
+      {
+        matches: [learnITUrl],
+        js: ["src/beforeload.ts"],
+        run_at: "document_start",
+      },
+      { js: ["src/popup/app.tsx"], matches: ["https://*/*"] },
+    ],
+    action: {
+      default_popup: "index.html",
+      default_title: "LearnIT++",
+      default_icon: {
+        128: "public/images/logo-128.png",
+      },
     },
-    { js: ["src/popup/app.tsx"], matches: ["https://*/*"] },
-  ],
-  action: {
-    default_popup: "index.html",
-    default_title: "LearnIT++",
-    default_icon: {
-      128: "public/images/logo-128.png",
-    },
-  },
-  web_accessible_resources: [
-    {
-      resources: ["public/**/*"],
-      matches: [learnITUrl],
-    },
-  ],
-  // @ts-ignore - Firefox needs this
-  browser_specific_settings: {
-    gecko: {
-      id: "learnitplusplus@philipflyvholm.github.com",
-      strict_min_version: "109.0",
-    },
-  },
-  permissions: ["storage"],
-  host_permissions: [learnITUrl],
-});
+    web_accessible_resources: [
+      {
+        resources: ["public/**/*"],
+        matches: [learnITUrl],
+      },
+    ],
+    permissions: ["storage"],
+    host_permissions: [learnITUrl],
+  };
+  return defineManifest({
+    ...crossplatform,
+    ...(browser === "firefox" ? firefoxOnly : {}),
+  });
+};
 
 export default manifest;
