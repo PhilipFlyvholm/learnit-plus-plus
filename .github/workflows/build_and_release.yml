@@ -32,20 +32,20 @@ jobs:
           echo "Tag version and package.json version match!"
         fi
       env:
-        TAG_VERSION: ${{ github.ref }}
+        TAG_VERSION: ${{ github.ref_name }}
 
     - name: Build
       run: |
         npm install
         npm run build:chrome
       env:
-        OUTPUT:  chrome-extension-${{ github.ref }}.zip
+        OUTPUT:  chrome-extension-${{ github.ref_name }}.zip
 
     - name: Archive chrome-extension artifact
       uses: actions/upload-artifact@v3
       with:
-        name: chrome-extension-${{ github.ref }}
-        path: releases/chrome-extension-${{ github.ref }}.zip
+        name: chrome-extension-${{ github.ref_name }}
+        path: releases/chrome-extension-${{ github.ref_name }}.zip
   
   github-release:
     name: Create GitHub release
@@ -56,13 +56,13 @@ jobs:
     - name: Download chrome-extension artifact
       uses: actions/download-artifact@v2
       with:
-        name: chrome-extension-${{ github.ref }}
-        path: chrome-extension-${{ github.ref }}.zip
+        name: chrome-extension-${{ github.ref_name }}
+        path: chrome-extension-${{ github.ref_name }}.zip
 
     - name: Create GitHub release
       uses: softprops/action-gh-release@v0.1.15
       with:
-        files: chrome-extension-${{ github.ref }}.zip
+        files: chrome-extension-${{ github.ref_name }}.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -75,13 +75,13 @@ jobs:
     - name: Download chrome-extension artifact
       uses: actions/download-artifact@v2
       with:
-        name: chrome-extension-${{ github.ref }}
-        path: chrome-extension-${{ github.ref }}.zip
+        name: chrome-extension-${{ github.ref_name }}
+        path: chrome-extension-${{ github.ref_name }}.zip
 
     - name: Upload & release
       uses: mnao305/chrome-extension-upload@v4.0.1
       with:
-        file-path: chrome-extension-${{ github.ref }}.zip
+        file-path: chrome-extension-${{ github.ref_name }}.zip
         extension-id: learnit-plus-plus
         client-id: ${{ secrets.CLIENT_ID }}
         client-secret: ${{ secrets.CLIENT_SECRET }}
