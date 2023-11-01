@@ -1,0 +1,36 @@
+.nice-form-group {
+  /* Nice Forms customization */
+  --nf-input-size: 1rem;
+  --nf-input-font-size: calc(var(--nf-input-size) * 0.875);
+  --nf-small-font-size: calc(var(--nf-input-size) * 0.875);
+  --nf-input-font-family: inherit;
+  --nf-label-font-family: inherit;
+  --nf-input-color: #f0f0f0;
+  --nf-input-border-radius: 0.25rem;
+  --nf-input-placeholder-color: #979cae;
+  --nf-input-border-color: #181818;
+  --nf-input-border-width: 1px;
+  --nf-input-border-style: solid;
+  --nf-input-border-bottom-width: 2px;
+  --nf-input-focus-border-color: #2636c2;
+  --nf-input-background-color: rgb(12, 12, 12);
+  --nf-invalid-input-border-color: var(--nf-input-border-color);
+  --nf-invalid-input-background-color: var(--nf-input-background-color);
+  --nf-invalid-input-color: var(--nf-input-color);
+  --nf-valid-input-border-color: var(--nf-input-border-color);
+  --nf-valid-input-background-color: var(--nf-input-background-color);
+  --nf-valid-input-color: inherit;
+  --nf-invalid-input-border-bottom-color: red;
+  --nf-valid-input-border-bottom-color: green;
+  --nf-label-font-size: var(--nf-small-font-size);
+  --nf-label-color: #f0f0f0;
+  --nf-label-font-weight: 500;
+  --nf-slider-track-background: #dfdfdf;
+  --nf-slider-track-height: 0.25rem;
+  --nf-slider-thumb-size: calc(var(--nf-slider-track-height) * 4);
+  --nf-slider-track-border-radius: var(--nf-slider-track-height);
+  --nf-slider-thumb-border-width: 2px;
+  --nf-slider-thumb-border-focus-width: 1px;
+  --nf-slider-thumb-border-color: #ffffff;
+  --nf-slider-thumb-background: var(--nf-input-focus-border-color);
+}

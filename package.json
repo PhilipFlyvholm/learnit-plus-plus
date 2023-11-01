@@ -1,10 +1,12 @@
 {
   "name": "learnit-plus-plus",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Improved design and functionality of the LearnIT page for IT-University Of Copenhagen",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "build:chrome": "cross-env BROWSER=chrome && npm run build",
+    "build:firefox": "cross-env BROWSER=firefox npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "start": "npm run dev",
     "dev": "vite",

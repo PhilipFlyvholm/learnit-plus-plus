@@ -1,0 +1,218 @@
+/*Credit: lucasfth/custom-css-learnit */
+body.limitedwidth #page.drawers .main-inner {
+  max-width: 100% !important;
+}
+
+#page.drawers .main-inner {
+  padding: 0.5rem 0.5rem !important;
+}
+
+/* enable four items to be in the starred card */
+.dashboard-card-deck:not(.fixed-width-cards) .dashboard-card {
+  width: calc(25% - 0.5rem) !important;
+}
+
+/* reorder dashboard cards */
+#block-region-content {
+  display: grid !important;
+  gap: 12px;
+  grid-template:
+    "courses   courses   timeline" 1fr
+    "timeedit  timeedit  timeline" auto
+    "sc        sc        events" auto
+    "recent    recent    tools" / 6fr 6fr 4fr;
+}
+
+#block-region-content > span {
+  display: none;
+}
+
+/* reorder dashboard cards */
+aside#block-region-content {
+  display: flex;
+  flex-flow: column;
+}
+
+/* Timeline card */
+aside#block-region-content section.block_timeline {
+  grid-area: timeline;
+}
+
+/* Recently accessed items card */
+aside#block-region-content section.block_recentlyaccesseditems {
+  grid-area: recent;
+}
+
+/* Starred courses card */
+aside#block-region-content section.block_starredcourses {
+  grid-area: courses;
+}
+
+/* Upcoming events card */
+aside#block-region-content section.block_calendar_upcoming {
+  grid-area: events;
+}
+
+/* TimeEdit */
+aside#block-region-content section.block_timeedit {
+  grid-area: timeedit;
+}
+
+/* Student councile events */
+aside#block-region-content section.block_sc {
+  grid-area: sc;
+}
+
+/* Study tools card */
+aside#block-region-content section.block_cohortspecifichtml {
+  grid-area: tools;
+}
+
+/* Logo replace */
+html nav.navbar.fixed-top .navbar-brand:before,
+html nav.navbar.fixed-top .navbar-brand:hover:before {
+  content: "";
+}
+
+.site-name.navbar-brand {
+  visibility: hidden;
+}
+
+.site-name.navbar-brand.show {
+  visibility: visible;
+}
+
+/* Flex of starred courses */
+html .dashboard-card-deck.one-row {
+  flex-flow: row wrap;
+  overflow-x: auto;
+}
+
+/* Better close buttons in drawers */
+html body .drawer.drawer-left .drawertoggle,
+html body .drawer.drawer-right .drawertoggle {
+  justify-self: end;
+  display: block !important;
+  margin: 0;
+  width: 100%;
+  transition: 0.5s;
+  border-radius: 0;
+}
+
+/* fix my courses page due to grid layout */
+.block_myoverview {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+html .drawerheader {
+  height: auto;
+}
+
+/* Handle darkmode button */
+
+html .darkModeOnly,
+html.dark .lightModeOnly {
+  display: none;
+}
+
+html.dark .darkModeOnly,
+html .lightModeOnly {
+  display: block;
+}
+
+#dark-mode-toggle {
+  display: none;
+}
+
+#dark-mode-label {
+  cursor: pointer;
+  margin: auto;
+}
+
+/* Reverse course/studyline order */
+.course-info-container > div > div {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+
+.course-info-container [data-region="favourite-icon"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Btn-link style */
+/* Looks like a `a` tag. I know this is kinda bad practice but then it continues in the design style of LearnIT*/
+.btn-link {
+  cursor: pointer;
+  color: var(--button-noticed-bg-color);
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-link:hover {
+  color: #094478;
+  text-decoration: underline;
+}
+
+/* Course collapse/expand */
+#collapseAllContainer .btn-link {
+  display: none;
+}
+
+#collapseAllContainer.collapsed .openAllButton {
+  display: block;
+}
+
+#collapseAllContainer:not(.collapsed) .collapseAllButton {
+  display: block;
+}
+
+.btn.btn-custom {
+  background-color: var(--button-noticed-bg-color);
+  color: var(--button-noticed-fg-color);
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  margin: 0.2rem 0.2rem;
+  cursor: pointer;
+}
+
+.btn-custom:hover {
+  background-color: var(--button-noticed-hover-bg-color);
+}
+
+.visibility-hidden {
+  visibility: hidden !important;
+}
+
+/* Show target=_blank */
+a[target="_blank"]:after {
+  fill: #000;
+  content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height=".5rem" style="fill: rgb(1,152,240);" viewBox="0 0 512 512"%3E%3C!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/%3E%3C/svg%3E');
+  margin: 0 3px 0 0px;
+}
+
+/* TeX fix */
+
+html body .texrender {
+  background: #f3f3f3;
+  padding: 0.2rem 0.8rem;
+  margin: 0 3px;
+  border-radius: 0.2rem;
+}
+
+html #darkModeToggle{
+  display: none;
+}
+
+html.has-dark-mode #darkModeToggle{
+  display: flex;
+}
+
+html .navbar.fixed-top .navbar-brand, html .navbar.fixed-top .navbar-brand:hover{
+  background: none;
+}

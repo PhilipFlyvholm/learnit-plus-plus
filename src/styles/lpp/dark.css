@@ -1,0 +1,113 @@
+
+html.dark {
+    --backdrop-bg-color: black !important;
+    --page-border-color: #161616 !important;
+    --page-bg-color: #222222 !important;
+    --page-fg-color: #fff !important;
+    --card-header-bg-color: #1f1f1f !important;
+    --card-header-bg-color-alt: #000000 !important;
+    --card-bg-color: #1f1f1f !important;
+    --card-bg-color-alt: #000 !important;
+    --card-border-color: #333 !important;
+    --card-blend: multiply !important;
+    --card-sub-bg-color: #427bab0d !important;
+    --card-sub-border-color: #ddd !important;
+    --button-noticed-bg-color: #0198f0 !important;
+    --button-unnoticed-fg-color: #dfe5eb;
+    --button-unnoticed-bg-color: #090b0c;
+    --button-unnoticed-hover-bg-color: #b8c1ca;
+    --field-bg-color: #090b0c;
+    --field-bg-color-alt: black;
+    --field-border-color: #090b0c;
+    --field-group-border-color: #090b0c;
+    --pagination-bg-color: var(--card-bg-color);
+    --pagination-border-color: var(--card-border-color);
+    --popupmenu-bg-color: #1d2125;
+    --popupmenu-fg-color: #fff;
+    --popupmenu-shadow: #14171a;
+    --popupmenu-hover-fg-color: #fff;
+    --popupmenu-hover-bg-color: #0198f0;
+    --popupmenu-active-fg-color: #373f46;
+    --popupmenu-active-bg-color: #eee;
+    --page-fg-color-alt: rgba(255, 255, 255, 0.8);
+    --drawer-btn-bg-color: #111111;
+    --drawer-btn-fg-color: #fff;
+    --drawer-menu-bg-color: #161616;
+    --drawer-menu-card-bg-color: #fff;
+    --drawer-menu-card-bg-color-alt: #ddd;
+    --drawer-menu-card-fg-color: #495057;
+    --drawer-block-bg-color: #161616;
+    --drawer-block-fg-color: #fff;
+    --drawer-block-hover-fg-color: #000;
+    --drawer-block-dimmed-fg-color: #6a737b;
+    --drawer-block-active-fg-color: #fff;
+    --card-blend: normal !important;
+  }
+  
+  html.dark .text-muted {
+    color: #ebebeb !important;
+  }
+  
+  html.dark .block_recentlyaccesseditems a.dashboard-card small {
+    color: #ebebeb !important;
+  }
+  
+  html.dark .activityiconcontainer {
+    background-color: #161616;
+  }
+  
+  html.dark #usernavigation #searchform-navbar i {
+    color: white;
+  }
+  
+  html.dark .form-control:focus {
+    color: rgb(226, 226, 226);
+  }
+  
+  html.dark .content-item-container {
+    border-color: #333 !important;
+  }
+  
+  html.dark .notification-image img {
+    filter: invert(1);
+  }
+  
+  html.dark .path-mod-assign td.submissionnotgraded,
+  .path-mod-assign div.submissionnotgraded {
+    color: #dadada;
+  }
+  
+  html.dark .generaltable {
+    background-color: #161616;
+  }
+  
+  html.dark .fileuploadsubmission img {
+    filter: invert(1);
+  }
+  
+  html.dark #theme_boost-drawers-blocks {
+    background-color: var(--drawer-menu-bg-color);
+  }
+  
+  html.dark .secondary-navigation {
+    background: none;
+  }
+  
+  html.dark ::-webkit-scrollbar-track {
+    background: #161616 !important;
+  }
+  
+  html.dark ::-webkit-scrollbar-thumb {
+    background: #d4d4d4 !important;
+    border: 3px solid #1b1b1b !important;
+  }
+  
+  /* Handle on hover */
+  html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #292929 !important;
+  }
+  
+  /* Calender hover fix */
+  html.dark .maincalendar .calendarmonth .clickable:hover{
+    background-color: #292929;
+  }
