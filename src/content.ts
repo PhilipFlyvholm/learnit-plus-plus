@@ -63,10 +63,10 @@ function addDarkModeToggle() {
     const root = document.documentElement;
     if (darkMode) {
       root.classList.add("dark");
-      chrome.storage.local.set({ "darkMode": "true" });
+      chrome.storage.local.set({ "darkMode": true });
     } else {
       root.classList.remove("dark");
-      chrome.storage.local.set({ "darkMode": "false" });
+      chrome.storage.local.set({ "darkMode": false });
     }
   });
 }
