@@ -7,7 +7,7 @@ export const themes: { [key: string]: { css: string; hasDarkMode: boolean } } =
     "LearnIT++": { css: learnitpp, hasDarkMode: true },
   };
 
-const defaultTheme = "LearnIT++";
+export const defaultTheme = "LearnIT++";
 
 export const getTheme = (
   theme: string | null

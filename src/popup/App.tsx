@@ -2,12 +2,12 @@
 import "./App.css";
 import "./nice-forms/nice-forms.css";
 import "./nice-forms/nice-forms-theme.css";
-import { themes } from "../styles/main";
+import { themes, defaultTheme } from "../styles/main";
 import { useState, useEffect } from "react";
 function App() {
   //@ts-ignore
   const [settings, setSettings] = useState({
-    theme: "default",
+    theme: defaultTheme,
     darkMode: false,
   });
   useEffect(() => {
