@@ -1,46 +1,48 @@
 //This script is loaded before page load (DOM may not be ready yet)
-loadDarkMode();
 
-import { getTheme } from './styles/main';
+import { getTheme } from "./styles/main";
 /* Add styles to page */
-const styleUpdateHandler = function () {
+const styleUpdateHandler = async function () {
   let style = document.getElementById("lpp-styles");
   if (!style) {
     style = document.createElement("style");
     style.id = "lpp-styles";
     document.head.appendChild(style);
   }
-  const theme = getTheme(window.localStorage.getItem("lpp/theme"))
+  const localTheme = await chrome.storage.local
+    .get("theme")
+    .then((res) => res.theme)
+    .catch(() => null);
+
+  const theme = getTheme(localTheme);
   style.textContent = theme.css;
-  if(theme.hasDarkMode){
+  if (theme.hasDarkMode) {
     document.documentElement.classList.add("has-dark-mode");
-  }else{
+  } else {
     document.documentElement.classList.remove("has-dark-mode");
   }
-
 };
-styleUpdateHandler();
 
-function loadDarkMode() {
-  const darkModeValue = localStorage.getItem("lpp/darkMode");
-  if (!darkModeValue) return;
-  const darkMode = darkModeValue === "true";
+async function loadDarkMode() {
+  const darkModeValue = await chrome.storage.local
+    .get("darkMode")
+    .then((res) => res.darkMode)
+    .catch(() => false);
   const root = document.documentElement;
-  if (darkMode) {
+  if (!!darkModeValue) {
     root.classList.add("dark");
   } else {
     root.classList.remove("dark");
   }
 }
 
-const localStore = localStorage.setItem;
-
-localStorage.setItem = function (key, value) {
-  if (key === "lpp/theme") {
-    const event = new StorageEvent("themeUpdated");
-    document.dispatchEvent(event);
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  if (namespace === "local" && changes.theme) {
+    styleUpdateHandler();
   }
-  localStore.apply(this, [key, value]);
-};
-
-document.addEventListener("themeUpdated", styleUpdateHandler, false);
+  if (namespace === "local" && changes.darkMode) {
+    loadDarkMode();
+  }
+});
+styleUpdateHandler();
+loadDarkMode();

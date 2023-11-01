@@ -11,9 +11,17 @@ function App() {
     darkMode: false,
   });
   useEffect(() => {
-    console.log(chrome.storage);
-    
-  });
+    chrome.storage.local.get(["theme", "darkMode"], (result) => {
+      setSettings({...settings,...result});
+    });
+  }, []);
+
+  function update(key:string, value:string|boolean){
+    chrome.storage.local.set({[key]: value}, () => {
+      setSettings({...settings,[key]: value});
+    });
+  }
+
   return (
     <>
       <div className="flex" style={{ justifyContent: "space-between" }}>
@@ -23,14 +31,14 @@ function App() {
 
       <div className="nice-form-group">
         <label htmlFor="themes">Theme:</label>
-        <select name="themes" id="themes">
+        <select name="themes" id="themes" value={settings.theme} onChange={(e) => update("theme", e.currentTarget.value)}>
           {Object.keys(themes).map((theme) => (
             <option key={theme} value={theme}>{theme}</option>
           ))}
         </select>
       </div>
       <div className="nice-form-group">
-        <input type="checkbox" id="darkMode" className="switch" />
+        <input type="checkbox" id="darkMode" className="switch" checked={settings.darkMode} onChange={(e) => update("darkMode", e.currentTarget.checked)}/>
         <label htmlFor="darkMode">
           Enable dark mode
           <small>Only works if the selected theme supports it</small>

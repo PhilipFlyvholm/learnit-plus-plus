@@ -59,14 +59,14 @@ function addDarkModeToggle() {
   darkModeCheckbox.addEventListener("change", (e) => {
     const target = e.target as HTMLInputElement;
     if (!target) return;
-    const darkMode = target.checked;
+    const darkMode = !!target.checked;
     const root = document.documentElement;
     if (darkMode) {
       root.classList.add("dark");
-      localStorage.setItem("lpp/darkMode", "true");
+      chrome.storage.local.set({ "darkMode": "true" });
     } else {
       root.classList.remove("dark");
-      localStorage.setItem("lpp/darkMode", "false");
+      chrome.storage.local.set({ "darkMode": "false" });
     }
   });
 }

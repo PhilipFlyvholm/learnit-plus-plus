@@ -48,7 +48,8 @@ const manifest = defineManifest({
       strict_min_version: "109.0",
     },
   },
-  permissions: ["storage", "activeTab"],
+  permissions: ["storage"],
+  host_permissions: [learnITUrl],
 });
 
 export default manifest;
