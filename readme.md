@@ -18,6 +18,9 @@ There is currently no web store download, but adding local extensions is pretty 
 
 **Chrome/chromium guide:**
 
+Install via [Chrome Web Store](https://chrome.google.com/webstore/detail/learnit%2B%2B/dgljcacndcbaedcglhlibdhohipphojk/)
+
+_Manual install:_
 To install LearnIt++, follow these simple steps:
 
 1. Download the latest zip from the [releases](https://github.com/PhilipFlyvholm/learnit-plus-plus/releases) on GitHub.
@@ -29,7 +32,7 @@ To install LearnIt++, follow these simple steps:
 
 **Firefox/Safari guide:**
 
-Todo
+Currently not production-ready but close to be ready.
 
 ## Contributing
 
