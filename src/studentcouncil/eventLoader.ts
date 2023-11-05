@@ -6,6 +6,7 @@ export type EventData = {
   dtend: string;
   location: string;
   description: string;
+  url: string;
 };
 console.log("Studentcouncil enabled");
 export async function getEvents() {
@@ -18,6 +19,7 @@ export async function getEvents() {
   cal.getAllSubcomponents("vevent").forEach((event) => {
     const eventData: EventData = {
       summary: event.getFirstPropertyValue("summary"),
+      url: event.getFirstPropertyValue("url"),
       dtstart: event.getFirstPropertyValue("dtstart"),
       dtend: event.getFirstPropertyValue("dtend"),
       location: event.getFirstPropertyValue("location"),
@@ -28,8 +30,8 @@ export async function getEvents() {
     events.push(eventData);
   });
   //Sort by date
-    events.sort((a, b) => {
-        return new Date(a.dtstart).getTime() - new Date(b.dtstart).getTime();
-    });
+  events.sort((a, b) => {
+    return new Date(a.dtstart).getTime() - new Date(b.dtstart).getTime();
+  });
   return events;
 }
