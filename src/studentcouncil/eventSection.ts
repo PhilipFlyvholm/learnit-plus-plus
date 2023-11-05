@@ -49,9 +49,14 @@ function getEventDom(event: EventData) {
   const divTextTruncate = document.createElement("div");
   divTextTruncate.className = "w-100";
 
-  const header = document.createElement("h5");
-  header.className = "coursename mr-2";
-  header.textContent = event.summary;
+  const header = document.createElement("a");
+  const url = new URL(event.url.includes("http") ? event.url : "https://" + event.url);
+  header.setAttribute("href", url.href);
+  header.setAttribute("target", "_blank");
+  const headerText = document.createElement("h5");
+  headerText.className = "coursename mr-2";
+  headerText.textContent = event.summary;
+  header.appendChild(headerText);
 
   const divMuted = document.createElement("div");
   divMuted.className = "text-muted muted d-flex mb-1 justify-content-between";
@@ -68,7 +73,7 @@ function getEventDom(event: EventData) {
   expandedText.className = "expandedText hide-content";
   const description = document.createElement("p");
   description.style.fontSize = "0.8rem";
-  if(event.description.endsWith("Read more")){
+  if (event.description.endsWith("Read more")) {
     event.description = event.description.substring(0, event.description.length - 9);
   }
   if (event.description.length < 100) {
