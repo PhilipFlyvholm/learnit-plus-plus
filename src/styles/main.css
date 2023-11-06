@@ -7,9 +7,17 @@ body.limitedwidth #page.drawers .main-inner {
   padding: 0.5rem 0.5rem !important;
 }
 
+/* Flex of starred courses */
+html .dashboard-card-deck.one-row {
+  flex-flow: row wrap;
+  overflow-x: auto;
+  justify-content: space-around;
+}
+
 /* enable four items to be in the starred card */
 .dashboard-card-deck:not(.fixed-width-cards) .dashboard-card {
   width: calc(25% - 0.5rem) !important;
+  min-width: 250px;
 }
 
 /* reorder dashboard cards */
@@ -69,11 +77,11 @@ aside#block-region-content section.block_cohortspecifichtml {
 }
 
 /* Timeline sidebar fixes */
-html .block_timeline .timeline-action-button{
+html .block_timeline .timeline-action-button {
   margin-left: unset;
-  margin: .5rem auto;
+  margin: 0.5rem auto;
 }
-html .block_timeline .timeline-action-button .event-action{
+html .block_timeline .timeline-action-button .event-action {
   padding-left: unset;
 }
 
@@ -91,11 +99,6 @@ html nav.navbar.fixed-top .navbar-brand:hover:before {
   visibility: visible;
 }
 
-/* Flex of starred courses */
-html .dashboard-card-deck.one-row {
-  flex-flow: row wrap;
-  overflow-x: auto;
-}
 
 /* Better close buttons in drawers */
 html body .drawer.drawer-left .drawertoggle,
@@ -205,14 +208,15 @@ a[target="_blank"]:after {
   margin: 0 3px 0 2px;
 }
 
-a[target="_blank"][href^="https://studentcouncil.dk"] {
+a[target="_blank"][href^="https://studentcouncil.dk"]
+{
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 }
 
 a[target="_blank"] > h5 {
-  margin-right: 0px!important;
+  margin-right: 0px !important;
 }
 
 /* TeX fix */
@@ -224,14 +228,15 @@ html body .texrender {
   border-radius: 0.2rem;
 }
 
-html #darkModeToggle{
+html #darkModeToggle {
   display: none;
 }
 
-html.has-dark-mode #darkModeToggle{
+html.has-dark-mode #darkModeToggle {
   display: flex;
 }
 
-html .navbar.fixed-top .navbar-brand, html .navbar.fixed-top .navbar-brand:hover{
+html .navbar.fixed-top .navbar-brand,
+html .navbar.fixed-top .navbar-brand:hover {
   background: none;
 }
