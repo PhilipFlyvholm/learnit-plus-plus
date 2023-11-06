@@ -68,6 +68,15 @@ aside#block-region-content section.block_cohortspecifichtml {
   grid-area: tools;
 }
 
+/* Timeline sidebar fixes */
+html .block_timeline .timeline-action-button{
+  margin-left: unset;
+  margin: .5rem auto;
+}
+html .block_timeline .timeline-action-button .event-action{
+  padding-left: unset;
+}
+
 /* Logo replace */
 html nav.navbar.fixed-top .navbar-brand:before,
 html nav.navbar.fixed-top .navbar-brand:hover:before {
