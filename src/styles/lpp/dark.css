@@ -1,5 +1,5 @@
-
 html.dark {
+  --backdrop-bg-color: black !important;
   --page-border-color: #161616 !important;
   --page-bg-color: #222222 !important;
   --page-fg-color: #fff !important;
@@ -108,3 +108,47 @@ html.dark .maincalendar .calendarmonth .clickable:hover {
   background-color: #292929;
 }
 
+/* Grading page */
+html.dark .path-mod-assign [data-region="grade-panel"] {
+  background-color: var(--page-bg-color);
+}
+
+html.dark .path-mod-assign [data-region="grading-navigation-panel"] {
+  border-color: var(--page-bg-color);
+}
+
+/* Grading page text area */
+html.dark .path-mod-assign [data-region="grade-panel"] .fitem.has-popout {
+  background-color: var(--card-bg-color-alt);
+  --field-border-color: var(--card-border-color);
+}
+
+html.dark .atto_info[role="alert"] {
+  background-color: var(--card-bg-color);
+}
+
+html.dark .dropdown-menu {
+  background-color: var(--card-bg-color);
+}
+
+html.dark .atto_h5p_button {
+  filter: invert(60%);
+}
+
+/* Info box */
+html.dark .moodle-dialogue-base .moodle-dialogue-wrap .moodle-dialogue-hd {
+  color: inherit;
+}
+
+html.dark .moodle-dialogue-base .closebutton::after {
+  filter: invert(60%);
+}
+
+/* All submissions view */
+html.dark .path-mod-assign .gradingtable tr.unselectedrow td {
+  background-color: inherit;
+}
+
+html.dark .secondary-navigation {
+  background-color: inherit;
+}
