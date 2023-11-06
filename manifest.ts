@@ -11,19 +11,10 @@ const [major, minor, patch, label = "0"] = version
   // split into version parts
   .split(/[.-]/);
 const manifest = (browser: "chrome" | "firefox") => {
-  const firefoxOnly = {
-    browser_specific_settings: {
-      gecko: {
-        id: "learnitplusplus@philipflyvholm.github.com",
-        strict_min_version: "109.0",
-      },
-    },
-  };
   const crossplatform: ManifestV3Export = {
     manifest_version: 3,
     name: "LearnIT++",
     version: `${major}.${minor}.${patch}.${label}`,
-    version_name: version,
     content_scripts: [
       {
         matches: [learnITUrl],
@@ -36,6 +27,7 @@ const manifest = (browser: "chrome" | "firefox") => {
         run_at: "document_start",
       },
       { js: ["src/popup/App.tsx"], matches: [learnITUrl] },
+      { js: ["src/service-worker/background.ts"], matches: [learnITUrl] },
     ],
     action: {
       default_popup: "index.html",
@@ -52,18 +44,35 @@ const manifest = (browser: "chrome" | "firefox") => {
     ],
     permissions: ["storage", "scripting"],
     host_permissions: [learnITUrl],
-    background: {
-      service_worker: "src/service-worker/background.ts",
-      type: "module"
-    },
+
     content_security_policy: {
-      extension_pages: "default-src 'self'; img-src 'self' data:"
+      extension_pages: "default-src 'self'; img-src 'self' data:",
     },
   };
-  return defineManifest({
-    ...crossplatform,
-    ...(browser === "firefox" ? firefoxOnly : {}),
-  });
+  if (browser === "firefox") {
+    return defineManifest({
+      ...crossplatform,
+      // @ts-ignore - We need this for firefox
+      browser_specific_settings: {
+        gecko: {
+          id: "learnitplusplus@philipflyvholm.github.com",
+          strict_min_version: "112.0",
+        },
+      },
+      background: {
+        scripts: ["src/service-worker/background.ts"],
+        type: "module",
+      },
+    });
+  } else {
+    return defineManifest({
+      ...crossplatform,
+      background: {
+        service_worker: "src/service-worker/background.ts",
+        type: "module",
+      },
+    });
+  }
 };
 
 export default manifest;

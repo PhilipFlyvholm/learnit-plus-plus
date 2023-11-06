@@ -2,62 +2,60 @@
 
 import { getTheme } from "../styles/main";
 let injectedThemes: chrome.scripting.CSSInjection[] = [];
-async function injectCurrentTheme() {
-  const tabIds = await chrome.tabs.query({ url: "*://learnit.itu.dk/*" });
-  if (tabIds.length === 0) return;
+
+function injectCurrentTheme(tabs: chrome.tabs.Tab[]) {
+
+  if (tabs.length === 0) return;
   if (injectedThemes.length > 0) {
     for (const injectedTheme of injectedThemes) {
+      if (
+        tabs.filter((tab) => tab.id === injectedTheme.target.tabId).length !==
+        0
+      )
+        continue; //Only remove if tab is newly closed
       chrome.scripting.removeCSS(injectedTheme);
     }
   }
-  const localTheme = await chrome.storage.local
-    .get("theme")
-    .then((res) => res.theme)
-    .catch(() => null);
-
-  const theme = getTheme(localTheme);
-  for (const tab of tabIds) {
-    if (tab.id === undefined) continue;
-    const injectedTheme: chrome.scripting.CSSInjection = {
-      target: { tabId: tab.id },
-      css: theme.css,
-    };
-    chrome.scripting.insertCSS(injectedTheme);
-    injectedThemes.push(injectedTheme);
-  }
+  chrome.storage.local.get("theme").then((res) => {
+    const localTheme = res.theme;
+    const theme = getTheme(localTheme);
+    for (const tab of tabs) {
+      if (tab.id === undefined) continue;
+      const injectedTheme: chrome.scripting.CSSInjection = {
+        target: { tabId: tab.id },
+        css: theme.css,
+      };
+      chrome.scripting.insertCSS(injectedTheme);
+      injectedThemes.push(injectedTheme);
+    }
+  });
 }
 
-chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-  if (
-    tab.url &&
-    tab.url.includes("learnit") &&
-    changeInfo.status &&
-    changeInfo.status == "loading"
-  ) {
+chrome.tabs.onUpdated.addListener(function (tabId, _changeInfo, tab) {
+  if (tab.url && tab.url.includes("learnit")) {
     chrome.scripting.executeScript({
       target: { tabId: tabId },
       injectImmediately: true,
-
-      func: async () => {
-        const darkModeValue = await chrome.storage.local
-          .get("darkMode")
-          .then((res) => res.darkMode)
-          .catch(() => false);
-
-        const root = document.documentElement;
-        if (!!darkModeValue) {
-          root.classList.add("dark");
-        } else {
-          root.classList.remove("dark");
-        }
+      func: () => {
+        chrome.storage.local.get("darkMode").then((res) => {
+          const darkModeValue = res.darkMode || false;
+          const root = document.documentElement;
+          if (!!darkModeValue) {
+            root.classList.add("dark");
+          } else {
+            root.classList.remove("dark");
+          }
+        });
       },
     });
-    injectCurrentTheme();
+    injectCurrentTheme([tab]);
   }
 });
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace === "local" && changes.theme) {
-    injectCurrentTheme();
+    chrome.tabs.query({ url: "https://learnit.itu.dk/*" }).then((tabs) => {
+      injectCurrentTheme(tabs);
+    });
   }
 });
