@@ -90,7 +90,10 @@ html nav.navbar.fixed-top .navbar-brand:before,
 html nav.navbar.fixed-top .navbar-brand:hover:before {
   content: "";
 }
-
+/*Remove background*/
+html .navbar.fixed-top .navbar-brand, html .navbar.fixed-top .navbar-brand:hover{
+  background: none !important;
+}
 .site-name.navbar-brand {
   visibility: hidden;
 }
@@ -234,9 +237,4 @@ html #darkModeToggle {
 
 html.has-dark-mode #darkModeToggle {
   display: flex;
-}
-
-html .navbar.fixed-top .navbar-brand,
-html .navbar.fixed-top .navbar-brand:hover {
-  background: none;
 }
