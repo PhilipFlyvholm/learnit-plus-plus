@@ -117,16 +117,17 @@ html.dark .path-mod-assign [data-region="grading-navigation-panel"] {
   border-color: var(--page-bg-color);
 }
 
+html.dark .mform fieldset {
+  border-color: var(--card-border-color);
+}
+
 /* Grading page text area */
 html.dark .path-mod-assign [data-region="grade-panel"] .fitem.has-popout {
   background-color: var(--card-bg-color-alt);
   --field-border-color: var(--card-border-color);
 }
 
-html.dark .atto_info[role="alert"] {
-  background-color: var(--card-bg-color);
-}
-
+html.dark .atto_info[role="alert"],
 html.dark .dropdown-menu {
   background-color: var(--card-bg-color);
 }
@@ -145,10 +146,8 @@ html.dark .moodle-dialogue-base .closebutton::after {
 }
 
 /* All submissions view */
-html.dark .path-mod-assign .gradingtable tr.unselectedrow td {
-  background-color: inherit;
-}
-
+html.dark .path-mod-assign .gradingtable tr.unselectedrow td,
+html.dark .table-striped tbody tr:nth-of-type(2n+1),
 html.dark .secondary-navigation {
   background-color: inherit;
 }
