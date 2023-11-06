@@ -30,9 +30,22 @@ To install LearnIt++, follow these simple steps:
 5. Press `Load unpacked` and select the unpacked zip
 6. Enjoy!
 
-**Firefox/Safari guide:**
+**Firefox guide:**
 
-Currently not production-ready but close to be ready.
+Only manual install since Firefox does not allow add-ons on the store for internal sites such as LearnIT
+
+1. Download the latest `xpi` file from the [releases](https://github.com/PhilipFlyvholm/learnit-plus-plus/releases) on GitHub.
+2. Go to `about:addons` in your browser
+3. Pres the gear icon on the other side of "Customize Firefox"
+4. Press `Install add-on from file...`
+5. Select the downloaded `xpi` file
+6. A popup may show up asking if you want to install the add-on, accept this popup.
+7. Enjoy!
+
+
+**Safari:**
+
+There is currently no plan for safari support, since you need a Apple dev license for this.
 
 ## Contributing
 
