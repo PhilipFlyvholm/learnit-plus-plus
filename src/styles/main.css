@@ -238,3 +238,7 @@ html #darkModeToggle {
 html.has-dark-mode #darkModeToggle {
   display: flex;
 }
+
+html .secondary-navigation {
+  background: none;
+}

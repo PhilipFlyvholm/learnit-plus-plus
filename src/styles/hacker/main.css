@@ -1,0 +1,56 @@
+
+:root:root {
+  /* Using double selector to get priority (Alternative to !important on everything) */
+  --hacker-dark: #121212;
+  --hacker-darkest: #000;
+  --hacker-green: #149414;
+  --hacker-green-darker: #0e6b0e;
+  --hacker-green-flat: #9ccc9c;
+  --hacker-green-flat-darker: #649568;
+  --hacker-green-flat-darkest: #2b5329;
+  --hacker-white: #fff;
+
+  --topnav-bg-color: #121212;
+  --topnav-fg-color: var(--hacker-green-flat);
+  --topnav-hover-bg-color: var(--hacker-green-flat-darkest);
+  --topnav-hover-fg-color: var(--hacker-white);
+  --popupmenu-bg-color: var(--hacker-white);
+  --popupmenu-hover-fg-color: var(--hacker-white);
+  --pagination-bg-color: var(--hacker-white);
+  --pagination-active-fg-color: var(--hacker-white);
+  --backdrop-bg-color: var(--hacker-darkest) 000;
+  --page-bg-color: #0a0a0a;
+  --page-fg-color: var(--hacker-green);
+  --page-fg-color-alt: rgba(0, 0, 0, 0.8);
+  --page-border-color: #152b14;
+  --button-unnoticed-fg-color: var(--hacker-green);
+  --button-good-fg-color: var(--hacker-white);
+  --button-good-bg-color: #357a32;
+  --button-good-hover-bg-color: #295f27;
+  --button-bad-fg-color: var(--hacker-white);
+  --table-color: var(--hacker-darkest);
+  --brand-noticed-bg-color: var(--hacker-green);
+  --drawer-btn-fg-color: var(--hacker-white);
+  --drawer-menu-bg-color: var(--hacker-white);
+  --drawer-menu-card-bg-color: var(--hacker-white);
+  --drawer-block-hover-fg-color: var(--hacker-darkest);
+  --drawer-block-active-fg-color: var(--hacker-white);
+  --field-bg-color: var(--hacker-white);
+  --card-title-bg-color: #357a32;
+  --card-title-fg-color: var(--hacker-white);
+  --card-header-bg-color: #c6d7e6;
+  --card-header-bg-color-alt: #f2f4f7;
+  --card-bg-color: var(--hacker-darkest);
+  --card-bg-color-alt: #6b6b6b;
+  --card-border-color: #357a32;
+  --card-blend: multiply;
+  --card-sub-bg-color: #427bab0d;
+  --card-sub-border-color: #ddd;
+
+  --field-bg-color: var(--hacker-dark);
+}
+
+
+html body{
+    font-family: 'Cascadia Mono',"Open Sans",sans-serif !important;
+}

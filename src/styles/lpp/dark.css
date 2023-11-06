@@ -89,9 +89,6 @@ html.dark {
     background-color: var(--drawer-menu-bg-color);
   }
   
-  html.dark .secondary-navigation {
-    background: none;
-  }
   
   html.dark ::-webkit-scrollbar-track {
     background: #161616 !important;
