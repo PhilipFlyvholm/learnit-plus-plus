@@ -14,6 +14,7 @@ import { addStudentConcileEvents } from "./studentcouncil/eventSection";
     addIFrameToTimeEdit();
     addStudentConcileEvents();
   }
+  fixMessageCtrl();
 })();
 
 function isFrontPage() {
@@ -85,4 +86,17 @@ function replaceLogo() {
     logoInNav.appendChild(imgElement);
     logoInNav.classList.add("show");
   }
+}
+
+function fixMessageCtrl(){
+  const textArea:HTMLTextAreaElement | null = document.querySelector('.form-control[data-region="send-message-txt"]');
+  if(!textArea) return;
+  textArea.placeholder = "Write a message... Hint: Use Ctrl+Enter to send message";
+  textArea.addEventListener('keydown', (e) => {
+    
+    if (e.key === 'Enter' && e.ctrlKey) {
+      const button:HTMLButtonElement|null = document.querySelector('button[data-action="send-message"]');
+      button?.click();
+    }
+  });
 }
