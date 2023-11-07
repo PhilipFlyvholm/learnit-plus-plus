@@ -11,13 +11,13 @@ const outputFile = process.env.OUTPUT;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
+  build: browser == "firefox" ? {
     rollupOptions: {
       input: {
         background: "./src/service-worker/background.ts",
       },
     },
-  },
+  } : {},
   plugins: [
     react(),
     crx({ manifest: manifest(browser), browser }),

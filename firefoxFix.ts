@@ -35,7 +35,7 @@ function getFileName({ type, id }) {
       );
   }
 }
-export default function firefoxFix(browser:string) {
+export default function firefoxFix(browser: string) {
   return {
     name: "transform-file",
     writeBundle() {
@@ -52,10 +52,10 @@ export default function firefoxFix(browser:string) {
         let scripts: string[] = [];
         while ((match = importRegex.exec(serviceWorkerLoader)) !== null) {
           const path = match[0];
-          const file = path.substring(
-            path.lastIndexOf("/") + 1,
-            path.length - 1
-          );
+          let file = path.substring(path.lastIndexOf("/") + 1, path.length - 1);
+          if (file.endsWith(".ts")) {
+            file = file.substring(0, file.length - 3);
+          }
           //Find file in assets folder that starts with the same name
           const assets = fs.readdirSync("./dist/assets");
           const asset = assets.find((a) => a.startsWith(file));
@@ -70,11 +70,12 @@ export default function firefoxFix(browser:string) {
         );
         manifest.background.scripts = scripts;
         manifest.background.type = "module";
-      //  manifest.permissions.push("tabs");
+        //  manifest.permissions.push("tabs");
         //Remove from content scripts
         manifest.content_scripts = manifest.content_scripts.filter(
-          (script: { js: string[]; }) => 
-            script.js.filter((s: string) => s.includes("background.ts")).length === 0
+          (script: { js: string[] }) =>
+            script.js.filter((s: string) => s.includes("background")).length ===
+            0
         );
         fs.writeFileSync("./dist/manifest.json", JSON.stringify(manifest));
         console.log("Firefox fix applied");

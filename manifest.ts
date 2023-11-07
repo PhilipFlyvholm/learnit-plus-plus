@@ -27,7 +27,6 @@ const manifest = (browser: "chrome" | "firefox") => {
         run_at: "document_start",
       },
       { js: ["src/popup/App.tsx"], matches: [learnITUrl] },
-      { js: ["src/service-worker/background.ts"], matches: [learnITUrl] },
     ],
     action: {
       default_popup: "index.html",

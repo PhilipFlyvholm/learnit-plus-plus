@@ -8,11 +8,6 @@ function injectCurrentTheme(tabs: chrome.tabs.Tab[]) {
   if (tabs.length === 0) return;
   if (injectedThemes.length > 0) {
     for (const injectedTheme of injectedThemes) {
-      if (
-        tabs.filter((tab) => tab.id === injectedTheme.target.tabId).length !==
-        0
-      )
-        continue; //Only remove if tab is newly closed
       chrome.scripting.removeCSS(injectedTheme);
     }
   }
