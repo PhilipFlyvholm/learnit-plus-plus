@@ -1,0 +1,12 @@
+:root:root{
+    --main-black: #242424;
+    --main-white: #fff;
+    --topnav-bg-color: var(--main-black);
+    --brand-info-bg-color: #d1a54b;
+    --brand-info-bg-color-alt: var(--main-black);
+    --brand-info-fg-color: var(--main-white);
+    --card-title-bg-color: var(--main-white);
+    --card-title-fg-color: var(--main-black);
+    --drawer-block-bg-color: var(--main-white);
+    --drawer-block-active-bg-color: var(--main-black);
+}
