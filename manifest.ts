@@ -42,7 +42,7 @@ const manifest = (browser: "chrome" | "firefox") => {
         matches: [learnITUrl],
       },
     ],
-    permissions: ["storage", "scripting"],
+    permissions: ["storage", "scripting", "webNavigation"],
     host_permissions: [learnITUrl],
 
     content_security_policy: {

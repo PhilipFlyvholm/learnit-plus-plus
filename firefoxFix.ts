@@ -70,7 +70,6 @@ export default function firefoxFix(browser: string) {
         );
         manifest.background.scripts = scripts;
         manifest.background.type = "module";
-        //  manifest.permissions.push("tabs");
         //Remove from content scripts
         manifest.content_scripts = manifest.content_scripts.filter(
           (script: { js: string[] }) =>
