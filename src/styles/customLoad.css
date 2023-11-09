@@ -1,15 +1,15 @@
 /* This file is only used before javascript load */
 
-html:not(.loaded) {
+html:not(.loaded).dark {
     background:black !important;
 }
 
 body{
     opacity: 0;
-    transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 html.loaded{
-    transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
     background: var(--backdrop-bg-color) !important;
 }
 

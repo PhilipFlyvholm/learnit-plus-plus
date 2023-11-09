@@ -1,7 +1,10 @@
 //This script is loaded before page load (DOM may not be ready yet)
 
 import { getTheme } from "./styles/main";
-
+setTimeout(async () => {
+  //Ensure that if something fails the page is still useable
+  document.documentElement.classList.add("loaded");
+}, 1000);
 async function loadDarkMode() {
   const darkModeValue = await chrome.storage.local
     .get("darkMode")
