@@ -191,3 +191,11 @@ html.dark .list-group-item-action:hover, html.dark .list-group-item-action:focus
   color: var(--message-fg);
   background-color: var(--message-bg);
 }
+
+html.dark .hsuforum-thread {
+  background-color: var(--message-bg);
+}
+
+html.dark .hsuforum-textarea {
+  background-color: black;
+}
