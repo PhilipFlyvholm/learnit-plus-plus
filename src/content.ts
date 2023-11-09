@@ -15,6 +15,7 @@ import { addStudentConcileEvents } from "./studentcouncil/eventSection";
     addStudentConcileEvents();
   }
   fixMessageCtrl();
+  document.documentElement.classList.add("loaded");
 })();
 
 function isFrontPage() {

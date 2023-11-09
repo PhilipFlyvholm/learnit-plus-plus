@@ -24,6 +24,7 @@ const manifest = (browser: "chrome" | "firefox") => {
       {
         matches: [learnITUrl],
         js: ["src/beforeLoad.ts"],
+        css: ["src/styles/customLoad.css"],
         run_at: "document_start",
       },
       { js: ["src/popup/App.tsx"], matches: [learnITUrl] },
@@ -37,7 +38,7 @@ const manifest = (browser: "chrome" | "firefox") => {
     },
     web_accessible_resources: [
       {
-        resources: ["public/**/*"],
+        resources: ["public/**/*", "src/styles/customLoad.css"],
         matches: [learnITUrl],
       },
     ],

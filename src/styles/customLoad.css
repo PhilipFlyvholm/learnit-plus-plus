@@ -1,0 +1,18 @@
+/* This file is only used before javascript load */
+
+html:not(.loaded) {
+    background:black !important;
+}
+
+body{
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+html.loaded{
+    transition: background-color 0.1s ease-in-out;
+    background: var(--backdrop-bg-color) !important;
+}
+
+html.loaded body{
+    opacity: 1;
+}
