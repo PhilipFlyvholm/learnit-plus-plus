@@ -9,6 +9,7 @@ body.limitedwidth #page.drawers .main-inner {
 
 /* Flex of starred courses */
 html .dashboard-card-deck.one-row {
+  display: flex;
   flex-flow: row wrap;
   overflow-x: auto;
   justify-content: space-around;
@@ -17,7 +18,8 @@ html .dashboard-card-deck.one-row {
 /* enable four items to be in the starred card */
 .dashboard-card-deck:not(.fixed-width-cards) .dashboard-card {
   width: calc(25% - 0.5rem) !important;
-  min-width: 250px;
+  min-width: 150px;
+  flex: 1;
 }
 
 /* reorder dashboard cards */
