@@ -75,9 +75,12 @@ chrome.webNavigation.onCommitted.addListener((details) => {
 */
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace !== "local") return;
-  updateSettings();
   if (changes.theme) {
+    settings.theme = getTheme(changes.theme.newValue);
     injectCurrentTheme(injectedThemes.map((theme) => theme.target.tabId));
+  }
+  if(changes.darkMode){
+    settings.darkMode = changes.darkMode.newValue;
   }
 });
 
