@@ -45,18 +45,18 @@ Only manual install since Firefox does not allow add-ons on the store for intern
 
 **Safari:**
 
-There is currently no plan for safari support, since you need a Apple dev license for this.
+There is currently no plan for safari support since you need an Apple dev license for this.
 
 ## Contributing
 
 We encourage pull requests!
 
-To preview changes run the `npm run dev` command to get auto reloading the extension. Use of Typescript is preferred over JavaScript.
+To preview changes run the `npm run dev` command to get auto-reloading the extension. The use of Typescript is preferred over JavaScript.
 
 ## How to build
 
 1. Run `npm i` if it is the first time building
-2. Run `npm run build` to generate a zip in the `releases` folder
+2. Run `npm run package` to generate a zip in the `build` folder for chrome (Use `npm run package:firefox` for firefox)
 3. Done
 
 ## Support
