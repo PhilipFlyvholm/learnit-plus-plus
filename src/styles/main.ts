@@ -1,7 +1,7 @@
-import base from "./main.css?inline";
+import base from "data-text:./main.css";
 import learnitpp from "./lpp/styles";
-import hacker from "./hacker/main.css?inline";
-import retro from "./retro/main.css?inline";
+import hacker from "data-text:./hacker/main.css";
+import retro from "data-text:./retro/main.css";
 export type theme = { css: string; hasDarkMode: boolean };
 export const themes: { [key: string]: theme } = {
   "Features only": { css: "", hasDarkMode: false },
@@ -13,8 +13,10 @@ export const themes: { [key: string]: theme } = {
 export const defaultTheme = "LearnIT++";
 
 export const getTheme = (
-  theme: string | null
+  theme: string | null = null
 ): theme => {
+  console.log("Getting theme", theme);
+  
   if (!theme) theme = defaultTheme;
   return {
     css: base + themes[theme].css,

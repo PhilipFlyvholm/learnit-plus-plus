@@ -1,4 +1,4 @@
-import css from "./styles.css?inline";
-import darkCss from "./dark.css?inline";
+import css from "data-text:./styles.css";
+import darkCss from "data-text:./dark.css";
 
 export default (css + darkCss);

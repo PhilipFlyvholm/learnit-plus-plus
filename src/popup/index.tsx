@@ -1,10 +1,10 @@
-/*global chrome*/
-import "./App.css";
+import "./index.css";
 import "./nice-forms/nice-forms.css";
 import "./nice-forms/nice-forms-theme.css";
-import { themes, defaultTheme } from "../styles/main";
+import { themes, defaultTheme } from "~/styles/main";
 import { useState, useEffect } from "react";
-function App() {
+
+function IndexPopup() {
   //@ts-ignore
   const [settings, setSettings] = useState({
     theme: defaultTheme,
@@ -23,9 +23,9 @@ function App() {
   }
 
   return (
-    <>
+    <div id="root">
       <div className="flex" style={{ justifyContent: "space-between" }}>
-        <img src={"/images/logo-128.png"} width={50} height={50} />
+        <img src={"/assets/images/logo-128.png"} width={50} height={50} />
         <h2>Options</h2>
       </div>
       <div className="nice-form-group">
@@ -58,8 +58,8 @@ function App() {
           </label>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
-export default App;
+export default IndexPopup

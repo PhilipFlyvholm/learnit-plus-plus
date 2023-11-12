@@ -15,7 +15,7 @@ export function injectAnalog() {
 }
 
 function getAnalogLogo() {
-  const img = chrome.runtime.getURL("./public/images/analog.png");
+  const img = chrome.runtime.getURL("/assets/images/analog.png");
   const imgElement = document.createElement("img");
   imgElement.src = img;
   imgElement.alt = "Analog logo";

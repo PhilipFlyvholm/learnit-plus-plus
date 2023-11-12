@@ -1,10 +1,16 @@
-import svgIcons from "./svgIcons";
-import { addCollapseAllButton, removeChervonIfNoChildren } from "./collapseAll";
-import { addIFrameToTimeEdit } from "./TimeEdit";
-import { injectAnalog } from "./analog/inject";
-import { addStudentConcileEvents } from "./studentcouncil/eventSection";
+export const config: PlasmoCSConfig = {
+    matches: ["https://learnit.itu.dk/*"]
+}
+
+import svgIcons from "~/utils/svgIcons";
+import { addCollapseAllButton, removeChervonIfNoChildren } from "~/features/collapseAll";
+import { addIFrameToTimeEdit } from "~/timeedit/TimeEdit";
+import { injectAnalog } from "~/analog/inject";
+import { addStudentConcileEvents } from "~/studentcouncil/eventSection";
+import type { PlasmoCSConfig } from "plasmo";
+
 (function () {
-  console.log("ReLearnIT enabled");
+  console.log("LearnIT++ enabled");
   replaceLogo();
   addDarkModeToggle();
   addCollapseAllButton();
@@ -74,7 +80,7 @@ function addDarkModeToggle() {
 }
 
 function replaceLogo() {
-  const img = chrome.runtime.getURL("./public/images/logo.png");
+  const img = chrome.runtime.getURL("/assets/images/logo-128.png");
   const logoInNav = document.querySelector(".site-name.navbar-brand");
   if (logoInNav) {
     //Clear all children
