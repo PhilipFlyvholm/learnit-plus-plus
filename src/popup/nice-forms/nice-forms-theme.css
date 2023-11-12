@@ -1,4 +1,4 @@
-.nice-form-group {
+.nice-form-group.nice-form-group {
   /* Nice Forms customization */
   --nf-input-size: 1rem;
   --nf-input-font-size: calc(var(--nf-input-size) * 0.875);

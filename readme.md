@@ -1,6 +1,6 @@
 # LearnIT++
 
-<img src="public/images/logo.png" alt="LearnIT++ logo" width="200"/>
+<img src="assets/icon.png" alt="LearnIT++ logo" width="200"/>
 
 **Welcome to LearnIt++ Extension!**
 <div class="flex">

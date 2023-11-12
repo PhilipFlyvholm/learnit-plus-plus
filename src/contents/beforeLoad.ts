@@ -1,6 +1,12 @@
+export const config: PlasmoCSConfig = {
+    matches: ["https://learnit.itu.dk/*"],
+    run_at: "document_start",
+  }
+import type { PlasmoCSConfig } from "plasmo";
 //This script is loaded before page load (DOM may not be ready yet)
+import { getTheme } from "~/styles/main";
 
-import { getTheme } from "./styles/main";
+
 setTimeout(async () => {
   //Ensure that if something fails the page is still useable
   document.documentElement.classList.add("loaded");

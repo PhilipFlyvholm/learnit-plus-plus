@@ -1,53 +1,63 @@
 {
   "name": "learnit-plus-plus",
-  "version": "1.1.0",
+  "displayName": "LearnIT++",
+  "version": "1.2.0",
   "description": "Improved design and functionality of the LearnIT page for IT-University Of Copenhagen",
-  "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "build:chrome": "cross-env BROWSER=chrome && npm run build",
-    "build:firefox": "cross-env BROWSER=firefox npm run build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "start": "npm run dev",
-    "dev": "vite",
-    "preview": "vite preview"
-  },
+  "author": "https://github.com/PhilipFlyvholm/learnit-plus-plus/graphs/contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PhilipFlyvholm/learnit-plus-plus.git"
   },
-  "author": "https://github.com/PhilipFlyvholm/learnit-plus-plus/graphs/contributors",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/PhilipFlyvholm/learnit-plus-plus/issues"
   },
-  "homepage": "https://github.com/PhilipFlyvholm/learnit-plus-plus#readme",
-  "devDependencies": {
-    "@crxjs/vite-plugin": "^2.0.0-beta.19",
-    "@rollup/plugin-alias": "^5.0.1",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@types/chrome": "^0.0.248",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "rollup": "^4.1.4",
-    "rollup-plugin-copy2": "^0.4.0",
-    "rollup-plugin-delete": "^2.0.0",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.5",
-    "vite-plugin-zip-pack": "^1.0.6"
+  "homepage": "https://github.com/PhilipFlyvholm/learnit-plus-plus",
+  "scripts": {
+    "dev": "plasmo dev",
+    "dev:verbose": "plasmo dev --verbose",
+    "build": "plasmo build",
+    "build:chrome": "plasmo build --target=chrome-mv3",
+    "build:firefox": "plasmo build --target=firefox-mv3",
+    "package:chrome": "plasmo build --zip --target=chrome-mv3",
+    "package:firefox": "plasmo build --zip --target=firefox-mv3",
+    "test": "plasmo test"
   },
   "dependencies": {
+    "plasmo": "0.84.0",
     "ical.js": "^1.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.251",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "prettier": "3.0.3",
+    "typescript": "5.2.2"
+  },
+  "manifest": {
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "$FIREFOX_EXT_ID"
+      }
+    },
+    "host_permissions": ["https://learnit.itu.dk/*"],
+    "permissions": ["storage", "scripting", "webNavigation"],
+    "web_accessible_resources": [
+      {
+        "resources": ["assets/**/*", "~/styles/customLoad.css"],
+        "matches": ["https://learnit.itu.dk/*"]
+      }
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://learnit.itu.dk/*"],
+        "css": ["~/src/styles/customLoad.css"],
+        "run_at": "document_start"
+      }
+    ]
   }
 }
