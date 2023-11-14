@@ -26,12 +26,15 @@ function injectCurrentTheme(tabs: number[]) {
   if (tabs.length === 0) return;
   if (injectedThemes.length > 0) {
     for (const injectedTheme of injectedThemes) {
+      const id = injectedTheme.target.tabId;
       chrome.scripting.removeCSS(injectedTheme);
+      if(!tabs.includes(id)) tabs.push(id);
     }
   }
+  injectedThemes = [];
   const theme = settings.theme;
-  
   if(!theme) return;
+
   for (const tab of tabs) {
     const injectedTheme: chrome.scripting.CSSInjection = {
       target: { tabId: tab },
