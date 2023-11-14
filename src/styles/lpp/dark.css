@@ -172,22 +172,28 @@ html.dark .activityinstance > a:focus {
   box-shadow: none;
 }
 
-html.dark .message-app .message.send, html.dark .message-app .message.received {
+html.dark .message-app .message.send,
+html.dark .message-app .message.received {
   background-color: var(--message-bg);
   color: var(--message-fg);
 }
 
-html.dark .message-app .message.send .time, html.dark .message-app .message.received .time{
-  color: var(--message-fg);
-}
-html.dark .message-app .message.send .tail , html.dark .message-app .message.received .tail{
-  border-bottom-color: var(--message-bg);
-}
-html.dark .message-app .day{
+html.dark .message-app .message.send .time,
+html.dark .message-app .message.received .time {
   color: var(--message-fg);
 }
 
-html.dark .list-group-item-action:hover, html.dark .list-group-item-action:focus {
+html.dark .message-app .message.send .tail,
+html.dark .message-app .message.received .tail {
+  border-bottom-color: var(--message-bg);
+}
+
+html.dark .message-app .day {
+  color: var(--message-fg);
+}
+
+html.dark .list-group-item-action:hover,
+html.dark .list-group-item-action:focus {
   color: var(--message-fg);
   background-color: var(--message-bg);
 }
@@ -198,4 +204,15 @@ html.dark .hsuforum-thread {
 
 html.dark .hsuforum-textarea {
   background-color: black;
+}
+
+/* Login screen */
+html.dark .login-container {
+  background-color: var(--page-bg-color);
+}
+
+html.dark body.pagelayout-login.loginbackgroundimage1 {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://learnit.itu.dk/pluginfile.php/1/theme_boost_union/loginbackgroundimage/0/itu-bygning-blue-compressed%281%29.jpg)
 }

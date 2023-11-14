@@ -10,15 +10,14 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 - [I Have a Question](#i-have-a-question)
 - [I Want To Contribute](#i-want-to-contribute)
-  - [Legal Notice](#legal-notice)
   - [Reporting Bugs](#reporting-bugs)
   - [Suggesting Enhancements](#suggesting-enhancements)
-- [Your First Code Contribution](#your-first-code-contribution)
-- [Improving The Documentation](#improving-the-documentation)
+  - [Your First Code Contribution](#your-first-code-contribution)
+- [Getting Started](#getting-started)
+- [Fork the Repository](#fork-the-repository)
+- [Setting Up the Development Environment](#setting-up-the-development-environment)
+- [Making Changes](#making-changes)
 - [Styleguides](#styleguides)
-  - [Commit Messages](#commit-messages)
-- [Join The Project Team](#join-the-project-team)
-- [Attribution](#attribution)
 
 ## I Have a Question
 
@@ -35,6 +34,7 @@ We will then take care of the issue as soon as possible.
 ## I Want To Contribute
 
 > ### Legal Notice <!-- omit in toc -->
+>
 > When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content, and that the content you contribute may be provided under the project license.
 
 ### Reporting Bugs
@@ -56,7 +56,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 <!-- omit in toc -->
 #### How Do I Submit a Good Bug Report?
 
-> You must never report security-related issues, vulnerabilities, or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to philipflyvholm@gmail.com.
+> You must never report security-related issues, vulnerabilities, or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <philipflyvholm@gmail.com>.
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
@@ -99,6 +99,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Philip
 ## Getting Started
 
 Before you start contributing, make sure you have the necessary tools and dependencies installed:
+
 - [Node.js](https://nodejs.org/)
 
 ## Fork the Repository
@@ -134,6 +135,7 @@ npm run dev
 5. This command will enable auto-reloading for the extension.
 
 ## Making Changes
+
 Create a new branch for your changes:
 
 ```bash
@@ -166,6 +168,7 @@ npm run package
 ```
 
 For Firefox, use:
+
 ```bash
 npm run package:firefox
 ```
@@ -173,8 +176,10 @@ npm run package:firefox
 This will generate a zip file in the build folder.
 
 ## Styleguides
+
 We use prettier to ensure the styleguide
 
 <!-- omit in toc -->
 ## Attribution
+
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
