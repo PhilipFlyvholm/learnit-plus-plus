@@ -8,6 +8,7 @@ import { addIFrameToTimeEdit } from "~/timeedit/TimeEdit";
 import { injectAnalog } from "~/analog/inject";
 import { addStudentConcileEvents } from "~/studentcouncil/eventSection";
 import type { PlasmoCSConfig } from "plasmo";
+import injectThemeSelection from "~features/themeSwitchInSettings";
 
 (function () {
   console.log("LearnIT++ enabled");
@@ -21,6 +22,7 @@ import type { PlasmoCSConfig } from "plasmo";
     addStudentConcileEvents();
   }
   fixMessageCtrl();
+  injectThemeSelection();
   document.documentElement.classList.add("loaded");
 })();
 
