@@ -1,6 +1,8 @@
 export function addCollapseAllButton(){
+    const drawerHeader = document.querySelector("#theme_boost-drawers-courseindex.drawer.drawer-left .drawerheader");
     const courseIndex = document.getElementById("courseindex")
-    if(courseIndex == null) return;
+    
+    if(courseIndex == null || drawerHeader == null) return;
     let collapseAllContainer = document.createElement("div");
     collapseAllContainer.id = "collapseAllContainer";
     collapseAllContainer.className = "collapsed";
@@ -17,7 +19,7 @@ export function addCollapseAllButton(){
     openAllButton.onclick = openAll;
     openAllButton.className = "openAllButton btn-link";
     collapseAllContainer.appendChild(openAllButton);
-    courseIndex.prepend(collapseAllContainer);
+    drawerHeader.append(collapseAllContainer);
 }
 
 export function removeChervonIfNoChildren(){

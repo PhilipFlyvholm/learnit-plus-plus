@@ -111,7 +111,8 @@ html body .drawer.drawer-right .drawertoggle {
   justify-self: end;
   display: block !important;
   margin: 0;
-  width: 100%;
+  color: unset;
+  background: unset;
   transition: 0.5s;
   border-radius: 0;
 }
