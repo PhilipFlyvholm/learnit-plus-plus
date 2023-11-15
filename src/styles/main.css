@@ -207,6 +207,11 @@ html .lightModeOnly {
   visibility: hidden !important;
 }
 
+/* remove star sign on starred courses */
+.text-primary {
+  visibility: hidden;
+}
+
 /* Show target=_blank */
 a[target="_blank"]:after {
   fill: #000;
