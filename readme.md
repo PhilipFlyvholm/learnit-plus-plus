@@ -50,9 +50,7 @@ There is currently no plan for safari support since you need an Apple dev licens
 
 ## Contributing
 
-We encourage pull requests!
-
-To preview changes run the `npm run dev` command to get auto-reloading the extension. The use of Typescript is preferred over JavaScript.
+For contributing please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## How to build
 
