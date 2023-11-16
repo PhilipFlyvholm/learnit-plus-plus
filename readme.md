@@ -3,10 +3,11 @@
 <img src="assets/icon.png" alt="LearnIT++ logo" width="200"/>
 
 **Welcome to LearnIt++ Extension!**
-<div class="flex">
-  <img width="500"  src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0595f49f-e573-4c90-ad06-ecb1dfc4ca83"/>
-  <img width="500" src="https://github.com/PhilipFlyvholm/learnit-plus-plus/assets/36300927/0f8b8a6c-fe26-40a3-aabc-650f127cd275"/>
-</div>
+
+| ![learnit++ lightmode](./preview-images/plus-light.png) | ![learnit++ darkmode](./preview-images/plus-dark.png) |
+| --- | --- |
+| ![hacker mode](./preview-images/hacker.png) | ![retro lightmode](./preview-images/retro-light.png)
+
 
 ## Description
 
