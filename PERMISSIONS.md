@@ -26,5 +26,9 @@ This is used in the following ways:
 
 ### webNavigation
 WebNavigation is used to be the first code to know that you are about to enter LearnIT. This sounds a bit weird, however, this is needed to ensure that the page does not flash white when loading in dark mode.
-Some browsers may say that we access your browser history because of this. This is only since we inject the scripts at the moment between page switching and we could in theory use this to get access to your browser history.
+Some browsers may say that we access your browser history because of this. We do in theory have access to URLs on history change, however, we do not use this. We only inject scripts at the moment between page switching and we could in theory use this to get access to your browser history.
 **We do not do this!** We only use the permission we need to use and only use the parts of the permissions we need. See [src/background.ts](src/background.ts) for the only usage of this permission to verify our usage.
+Even if we tried to share the data about your browser history, we would not be allowed to because of our content security policy which blocks most outside network traffic from our extension.
+
+### Content security policy
+We use the default Content security policy: https://developer.chrome.com/docs/extensions/mv3/manifest/content_security_policy/#default-policy
