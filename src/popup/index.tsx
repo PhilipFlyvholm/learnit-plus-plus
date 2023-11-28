@@ -1,7 +1,7 @@
 import "./index.css";
 import "./nice-forms/nice-forms.css";
 import "./nice-forms/nice-forms-theme.css";
-import { themes, defaultTheme } from "~/styles/main";
+import { themes, defaultTheme, DarkModeState } from "~/styles/main";
 import { useState, useEffect } from "react";
 
 function IndexPopup() {
@@ -43,7 +43,7 @@ function IndexPopup() {
           ))}
         </select>
       </div>
-      {themes[settings.theme].hasDarkMode && (
+      {themes[settings.theme].darkModeState === DarkModeState.OPTIONAL && (
         <div className="nice-form-group">
           <input
             type="checkbox"
