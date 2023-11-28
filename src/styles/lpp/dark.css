@@ -1,17 +1,17 @@
 html.dark {
-  --backdrop-bg-color: black !important;
-  --page-border-color: #161616 !important;
-  --page-bg-color: #222222 !important;
-  --page-fg-color: #fff !important;
-  --card-header-bg-color: #1f1f1f !important;
-  --card-header-bg-color-alt: #000000 !important;
-  --card-bg-color: #1f1f1f !important;
-  --card-bg-color-alt: #000 !important;
-  --card-border-color: #333 !important;
-  --card-blend: multiply !important;
-  --card-sub-bg-color: #427bab0d !important;
-  --card-sub-border-color: #ddd !important;
-  --button-noticed-bg-color: #0198f0 !important;
+  --backdrop-bg-color: black;
+  --page-border-color: #161616;
+  --page-bg-color: #222222;
+  --page-fg-color: #fff;
+  --card-header-bg-color: #1f1f1f;
+  --card-header-bg-color-alt: #000000;
+  --card-bg-color: #1f1f1f;
+  --card-bg-color-alt: #000;
+  --card-border-color: #333;
+  --card-blend: multiply;
+  --card-sub-bg-color: #427bab0d;
+  --card-sub-border-color: #ddd;
+  --button-noticed-bg-color: #0198f0;
   --button-unnoticed-fg-color: #dfe5eb;
   --button-unnoticed-bg-color: #090b0c;
   --button-unnoticed-hover-bg-color: #b8c1ca;
@@ -26,8 +26,8 @@ html.dark {
   --popupmenu-shadow: #14171a;
   --popupmenu-hover-fg-color: #fff;
   --popupmenu-hover-bg-color: #0198f0;
-  --popupmenu-active-fg-color: #373f46;
-  --popupmenu-active-bg-color: #eee;
+  --popupmenu-active-bg-color: #373f46;
+  --popupmenu-active-fg-color: #eee;
   --page-fg-color-alt: rgba(255, 255, 255, 0.8);
   --drawer-btn-bg-color: #111111;
   --drawer-btn-fg-color: #fff;
@@ -40,7 +40,7 @@ html.dark {
   --drawer-block-hover-fg-color: #000;
   --drawer-block-dimmed-fg-color: #6a737b;
   --drawer-block-active-fg-color: #fff;
-  --card-blend: normal !important;
+  --card-blend: normal;
   --message-bg: #1d2125;
   --message-fg: #dee2e6;
   --link-focus-color: #1954ff;
@@ -212,7 +212,52 @@ html.dark .login-container {
 }
 
 html.dark body.pagelayout-login.loginbackgroundimage1 {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(https://learnit.itu.dk/pluginfile.php/1/theme_boost_union/loginbackgroundimage/0/itu-bygning-blue-compressed%281%29.jpg)
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://learnit.itu.dk/pluginfile.php/1/theme_boost_union/loginbackgroundimage/0/itu-bygning-blue-compressed%281%29.jpg);
+}
+
+html.dark .path-grade-report-user .user-report-container,
+html.dark .grade-report-user .user-report-container {
+  background-color: var(--field-bg-color);
+}
+
+html.dark
+  .path-grade-report-user
+  .user-grade
+  th.column-itemname:not(.header, .category, .baggt, .baggb),
+html.dark
+  .grade-report-user
+  .user-grade
+  th.column-itemname:not(.header, .category, .baggt, .baggb) {
+    background-color: var(--card-bg-color-alt);
+    border-color: var(--card-border-color);
+}
+
+html.dark .path-grade-report-user .user-grade td.item,
+html.dark .grade-report-user .user-grade td.item {
+  background-color: var(--card-bg-color);
+  border-color: var(--card-border-color);
+}
+
+html.dark .path-grade-report-user .user-grade td,
+html.dark .grade-report-user .user-grade td {
+  background-color: var(--card-bg-color-alt);
+}
+
+html.dark .path-grade-report-user .user-grade th.category,
+html.dark .grade-report-user .user-grade th.category {
+  background-color: var(--card-bg-color-alt);
+  border-color: var(--card-border-color);
+}
+
+html.dark .path-grade-report-user .user-grade thead th,
+html.dark .grade-report-user .user-grade thead th {
+  background: var(--card-bg-color-alt);
+}
+
+html.dark .path-grade-report-user .user-grade .baggt,
+html.dark .path-grade-report-user .user-grade .baggb,
+html.dark .grade-report-user .user-grade .baggt,
+html.dark .grade-report-user .user-grade .baggb {
+  background: var(--card-bg-color-alt);
 }
