@@ -229,8 +229,8 @@ html.dark
   .grade-report-user
   .user-grade
   th.column-itemname:not(.header, .category, .baggt, .baggb) {
-    background-color: var(--card-bg-color-alt);
-    border-color: var(--card-border-color);
+  background-color: var(--popupmenu-bg-color);
+  border-color: var(--card-border-color);
 }
 
 html.dark .path-grade-report-user .user-grade td.item,
@@ -241,7 +241,7 @@ html.dark .grade-report-user .user-grade td.item {
 
 html.dark .path-grade-report-user .user-grade td,
 html.dark .grade-report-user .user-grade td {
-  background-color: var(--card-bg-color-alt);
+  background-color: var(--popupmenu-bg-color);
 }
 
 html.dark .path-grade-report-user .user-grade th.category,
@@ -259,5 +259,10 @@ html.dark .path-grade-report-user .user-grade .baggt,
 html.dark .path-grade-report-user .user-grade .baggb,
 html.dark .grade-report-user .user-grade .baggt,
 html.dark .grade-report-user .user-grade .baggb {
-  background: var(--card-bg-color-alt);
+  background: var(--popupmenu-bg-color);
+}
+
+
+html.dark .path-grade-report-user .user-grade .column-itemname .itemicon, html.dark .grade-report-user .user-grade .column-itemname .itemicon {
+  filter: invert(1);
 }

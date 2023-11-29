@@ -12,3 +12,7 @@
   --drawer-block-active-bg-color: black ;
   --brand-noticed-bg-color: #e7ab05 ;
 }
+
+html .tertiary-navigation .navitem-divider {
+  width: 0;
+}
