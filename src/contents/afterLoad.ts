@@ -9,6 +9,7 @@ import { injectAnalog } from "~/analog/inject";
 import { addStudentConcileEvents } from "~/studentcouncil/eventSection";
 import type { PlasmoCSConfig } from "plasmo";
 import injectThemeSelection from "~features/themeSwitchInSettings";
+import { addDebugButton } from "~features/clearLocalStorage";
 
 (function () {
   console.log("LearnIT++ enabled");
@@ -23,6 +24,7 @@ import injectThemeSelection from "~features/themeSwitchInSettings";
   }
   fixMessageCtrl();
   injectThemeSelection();
+  process.env.NODE_ENV === "development" && addDebugButton();
   document.documentElement.classList.add("loaded");
 })();
 
