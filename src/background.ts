@@ -1,5 +1,5 @@
 /* Add styles to page */
-import { getTheme, type theme } from "~/styles/main"
+import { DarkModeState, getTheme, type theme } from "~/styles/main"
 
 let injectedThemes: chrome.scripting.CSSInjection[] = []
 let settings: {
@@ -51,19 +51,23 @@ function initialInjection(tabId: number) {
       css: "html { background-color: #000 !important; }"
     })
   }
+  const shouldAdd: boolean = settings && (
+    settings.theme.darkModeState === DarkModeState.ALWAYS ||
+    (settings.theme.darkModeState === DarkModeState.OPTIONAL &&
+      settings.darkMode))
   chrome.scripting.executeScript({
     target: { tabId: tabId },
     injectImmediately: true,
-    func: (d: boolean) => {
+    func: (darkMode: boolean) => {
       const root = document.documentElement
-      if (!!d) {
+      if (!!darkMode) {
         root.classList.add("dark")
       } else {
         root.classList.remove("dark")
       }
-      console.log("Injected dark mode", d)
+      console.log("Injected dark mode", darkMode)
     },
-    args: [settings.darkMode || false]
+    args: [shouldAdd]
   })
   injectCurrentTheme([tabId])
 }
