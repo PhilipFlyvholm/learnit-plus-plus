@@ -1,5 +1,5 @@
-
-html, html.dark {
+html,
+html.dark {
   /* Using double selector to get priority (Alternative to !important on everything) */
   --hacker-dark: #121212;
   --hacker-darkest: #000;
@@ -48,7 +48,13 @@ html, html.dark {
   --field-bg-color: var(--hacker-dark);
 }
 
+html body {
+  font-family: "Cascadia Mono", "Open Sans", sans-serif !important;
+}
 
-html body{
-    font-family: 'Cascadia Mono',"Open Sans",sans-serif !important;
+html {
+  cursor: var(--custom-cursor), default;
+}
+a,button:hover {
+  cursor: var(--custom-cursor-pointer), pointer !important;
 }
