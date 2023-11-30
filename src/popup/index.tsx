@@ -3,6 +3,7 @@ import "./nice-forms/nice-forms.css";
 import "./nice-forms/nice-forms-theme.css";
 import { themes, defaultTheme, DarkModeState } from "~/styles/main";
 import { useState, useEffect } from "react";
+import { sendToBackground } from "@plasmohq/messaging"
 
 function IndexPopup() {
   //@ts-ignore
@@ -16,7 +17,16 @@ function IndexPopup() {
     });
   }, []);
 
+
   function update(key: string, value: string | boolean) {
+    sendToBackground({
+      name: "awaiken",
+      body: {
+        input: "Hello from content script"
+      },
+    }).then((response) => {
+      console.log(response)
+    })
     chrome.storage.local.set({ [key]: value }, () => {
       setSettings({ ...settings, [key]: value });
     });

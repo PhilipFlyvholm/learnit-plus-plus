@@ -1,5 +1,6 @@
 /* Add styles to page */
 import { DarkModeState, getTheme, type theme } from "~/styles/main"
+export {}
 
 let injectedThemes: chrome.scripting.CSSInjection[] = []
 let settings: {
@@ -71,6 +72,11 @@ function initialInjection(tabId: number) {
   })
   injectCurrentTheme([tabId])
 }
+
+chrome.webNavigation.onBeforeNavigate.addListener((details) => {
+  if (details.frameId !== 0) return
+  console.log("Before navigate", details)
+})
 
 chrome.webNavigation.onCommitted.addListener((details) => {
   if (details.frameId !== 0) return
