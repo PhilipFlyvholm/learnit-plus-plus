@@ -16,6 +16,7 @@ setTimeout(async () => {
 }, 1000)
 async function loadDarkMode() {
   const state = currentTheme ? currentTheme.darkModeState : DarkModeState.OPTIONAL
+  
   if (state === DarkModeState.ALWAYS) {
     document.documentElement.classList.add("dark")
   } else if (state === DarkModeState.NEVER) {
@@ -26,6 +27,7 @@ async function loadDarkMode() {
       .then((res) => res.darkMode)
       .catch(() => false)
     const root = document.documentElement
+    
     if (!!darkModeValue) {
       root.classList.add("dark")
     } else {
@@ -47,13 +49,14 @@ async function loadCurrentThemeSettings() {
   } else {
     document.documentElement.classList.remove("has-dark-mode")
   }
+  loadDarkMode()
 }
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace === "local" && changes.theme) {
     loadCurrentThemeSettings()
   }
-  if (namespace === "local" && changes.darkMode) {
+  else if (namespace === "local" && changes.darkMode) {
     loadDarkMode()
   }
 })
