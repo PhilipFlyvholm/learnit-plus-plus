@@ -51,10 +51,10 @@ function initialInjection(tabId: number) {
       css: "html { background-color: #000 !important; }"
     })
   }
-  const shouldAdd: boolean =
+  const shouldAdd: boolean = settings && (
     settings.theme.darkModeState === DarkModeState.ALWAYS ||
     (settings.theme.darkModeState === DarkModeState.OPTIONAL &&
-      settings.darkMode)
+      settings.darkMode))
   chrome.scripting.executeScript({
     target: { tabId: tabId },
     injectImmediately: true,
@@ -65,6 +65,7 @@ function initialInjection(tabId: number) {
       } else {
         root.classList.remove("dark")
       }
+      console.log("Injected dark mode", darkMode)
     },
     args: [shouldAdd]
   })
