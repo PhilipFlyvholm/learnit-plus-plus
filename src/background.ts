@@ -2,7 +2,6 @@
 import { DarkModeState, getTheme, type theme } from "~/styles/main"
 export {}
 
-let injectedThemes: chrome.scripting.CSSInjection[] = []
 let settings: {
   darkMode: boolean
   theme: theme | null
@@ -21,16 +20,17 @@ function updateSettings() {
   })
 }
 
-function injectCurrentTheme(tabs: number[]) {
+function injectCurrentTheme(tabs: number[], oldTheme: theme) {
   if (tabs.length === 0) return
-  if (injectedThemes.length > 0) {
-    for (const injectedTheme of injectedThemes) {
-      const id = injectedTheme.target.tabId
-      chrome.scripting.removeCSS(injectedTheme)
-      if (!tabs.includes(id)) tabs.push(id)
+  if (oldTheme) {
+    for (const tab of tabs) {
+      chrome.scripting.removeCSS({
+        target: { tabId: tab },
+        css: oldTheme.css,
+      })
     }
   }
-  injectedThemes = []
+
   const theme = settings.theme
   if (!theme) return
 
@@ -41,7 +41,6 @@ function injectCurrentTheme(tabs: number[]) {
     }
 
     chrome.scripting.insertCSS(injectedTheme)
-    injectedThemes.push(injectedTheme)
   }
 }
 
@@ -70,26 +69,41 @@ function initialInjection(tabId: number) {
     },
     args: [shouldAdd]
   })
-  injectCurrentTheme([tabId])
+  injectCurrentTheme([tabId], settings.theme)
 }
+
+const filter = {
+  url: [
+    {
+      urlMatches: 'https://learnit.itu.dk/*',
+    },
+  ],
+};
 
 chrome.webNavigation.onBeforeNavigate.addListener((details) => {
   if (details.frameId !== 0) return
   console.log("Before navigate", details)
-})
+}, filter)
 
 chrome.webNavigation.onCommitted.addListener((details) => {
   if (details.frameId !== 0) return
   if (details.url && details.url.includes("learnit")) {
     initialInjection(details.tabId)
   }
-})
+}, filter)
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace !== "local") return
   if (changes.theme) {
+    // we get issues if the old theme is null
+    // as we can't remove a null theme
+    // happens when the service worker is restarted
+    const oldTheme = settings.theme
     settings.theme = getTheme(changes.theme.newValue)
-    injectCurrentTheme(injectedThemes.map((theme) => theme.target.tabId))
+
+    chrome.tabs.query({ url: "https://learnit.itu.dk/*" }, (tabs) => {
+      injectCurrentTheme(tabs.map((tab) => tab.id), oldTheme)
+    })
   }
   if (changes.darkMode) {
     settings.darkMode = changes.darkMode.newValue
