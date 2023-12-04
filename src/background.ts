@@ -80,11 +80,6 @@ const filter = {
   ],
 };
 
-chrome.webNavigation.onBeforeNavigate.addListener((details) => {
-  if (details.frameId !== 0) return
-  console.log("Before navigate", details)
-}, filter)
-
 chrome.webNavigation.onCommitted.addListener((details) => {
   if (details.frameId !== 0) return
   if (details.url && details.url.includes("learnit")) {
@@ -95,10 +90,10 @@ chrome.webNavigation.onCommitted.addListener((details) => {
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace !== "local") return
   if (changes.theme) {
-    // we get issues if the old theme is null
-    // as we can't remove a null theme
-    // happens when the service worker is restarted
     const oldTheme = settings.theme
+      ? settings.theme 
+      : getTheme(changes.theme.oldValue)
+    
     settings.theme = getTheme(changes.theme.newValue)
 
     chrome.tabs.query({ url: "https://learnit.itu.dk/*" }, (tabs) => {
