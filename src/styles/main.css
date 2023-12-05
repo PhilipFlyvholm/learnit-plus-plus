@@ -155,10 +155,15 @@ html .lightModeOnly {
   position: relative;
 }
 
+/* Set star to upper left */
 .course-info-container [data-region="favourite-icon"] {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.course-info-container .coursename {
+  margin-right: 17px !important;
 }
 
 /* Btn-link style */
@@ -206,6 +211,7 @@ html .lightModeOnly {
 .visibility-hidden {
   visibility: hidden !important;
 }
+
 
 /* Show target=_blank */
 a[target="_blank"]:after {
