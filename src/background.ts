@@ -44,6 +44,13 @@ function injectCurrentTheme(tabs: number[], oldTheme: theme) {
   }
 }
 
+function shoudAddDarkMode() {
+  if (!settings) return false
+  if (!settings.theme) return false
+  if (settings.theme.darkModeState === DarkModeState.ALWAYS) return true
+  return settings.theme.darkModeState === DarkModeState.OPTIONAL && settings.darkMode
+}
+
 function initialInjection(tabId: number) {
   if (settings.darkMode) {
     chrome.scripting.insertCSS({
@@ -51,10 +58,7 @@ function initialInjection(tabId: number) {
       css: "html { background-color: #000 !important; }"
     })
   }
-  const shouldAdd: boolean = settings && (
-    settings.theme.darkModeState === DarkModeState.ALWAYS ||
-    (settings.theme.darkModeState === DarkModeState.OPTIONAL &&
-      settings.darkMode))
+  const shouldAdd = shoudAddDarkMode()
   chrome.scripting.executeScript({
     target: { tabId: tabId },
     injectImmediately: true,
@@ -79,6 +83,11 @@ const filter = {
     },
   ],
 };
+chrome.webNavigation.onBeforeNavigate.addListener((details) => {
+  if (details.frameId !== 0) return
+  //We need this to start the service worker before web load.
+  console.log("Before navigate", details)
+}, filter)
 
 chrome.webNavigation.onCommitted.addListener((details) => {
   if (details.frameId !== 0) return
