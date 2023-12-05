@@ -1,5 +1,5 @@
-
-:root:root {
+html,
+html.dark {
   /* Using double selector to get priority (Alternative to !important on everything) */
   --hacker-dark: #121212;
   --hacker-darkest: #000;
@@ -14,8 +14,6 @@
   --topnav-fg-color: var(--hacker-green-flat);
   --topnav-hover-bg-color: var(--hacker-green-flat-darkest);
   --topnav-hover-fg-color: var(--hacker-white);
-  --popupmenu-bg-color: var(--hacker-white);
-  --popupmenu-hover-fg-color: var(--hacker-white);
   --pagination-bg-color: var(--hacker-white);
   --pagination-active-fg-color: var(--hacker-white);
   --backdrop-bg-color: var(--hacker-darkest) 000;
@@ -50,7 +48,13 @@
   --field-bg-color: var(--hacker-dark);
 }
 
+html body {
+  font-family: "Cascadia Mono", "Open Sans", sans-serif !important;
+}
 
-html body{
-    font-family: 'Cascadia Mono',"Open Sans",sans-serif !important;
+html {
+  cursor: var(--custom-cursor), default;
+}
+a,button:hover {
+  cursor: var(--custom-cursor-pointer), pointer !important;
 }
