@@ -22,6 +22,13 @@ html .dashboard-card-deck.one-row {
   flex: 1;
 }
 
+/* Grid Recently accessed items */
+div .dashboard-card-deck.one-row:has(a+a) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.3rem;
+}
+
 /* reorder dashboard cards */
 #block-region-content {
   display: grid !important;
@@ -83,6 +90,7 @@ html .block_timeline .timeline-action-button {
   margin-left: unset;
   margin: 0.5rem auto;
 }
+
 html .block_timeline .timeline-action-button .event-action {
   padding-left: unset;
 }
@@ -92,10 +100,12 @@ html nav.navbar.fixed-top .navbar-brand:before,
 html nav.navbar.fixed-top .navbar-brand:hover:before {
   content: "";
 }
+
 /*Remove background*/
 html .navbar.fixed-top .navbar-brand, html .navbar.fixed-top .navbar-brand:hover{
   background: none !important;
 }
+
 .site-name.navbar-brand {
   visibility: hidden;
 }
