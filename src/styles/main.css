@@ -17,9 +17,18 @@ html .dashboard-card-deck.one-row {
 
 /* enable four items to be in the starred card */
 .dashboard-card-deck:not(.fixed-width-cards) .dashboard-card {
-  width: calc(25% - 0.5rem) !important;
+  width: unset !important;
   min-width: 150px;
   flex: 1;
+}
+
+/* remove stared courses padding */
+div .card-body {
+  padding: 0.8rem !important;
+}
+
+span + div.text-truncate {
+  white-space: collapse balance;
 }
 
 /* Grid Recently accessed items */
