@@ -266,3 +266,8 @@ html.dark .grade-report-user .user-grade .baggb {
 html.dark .path-grade-report-user .user-grade .column-itemname .itemicon, html.dark .grade-report-user .user-grade .column-itemname .itemicon {
   filter: invert(1);
 }
+
+/* My courses page */
+html.dark .block_myoverview [data-display="list"] .list-group-item:nth-of-type(odd){
+  background: var(--card-bg-color-alt);
+}

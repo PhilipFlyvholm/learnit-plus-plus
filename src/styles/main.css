@@ -20,6 +20,7 @@ html .dashboard-card-deck.one-row {
   width: unset !important;
   min-width: 150px;
   flex: 1;
+  
 }
 
 /* remove stared courses padding */
