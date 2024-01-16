@@ -20,7 +20,6 @@ html .dashboard-card-deck.one-row {
   width: unset !important;
   min-width: 150px;
   flex: 1;
-  
 }
 
 /* remove stared courses padding */
@@ -145,6 +144,13 @@ html body .drawer.drawer-right .drawertoggle {
 
 html .drawerheader {
   height: auto;
+}
+
+/* Grid My courses */
+.card-deck.dashboard-card-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.1rem;
 }
 
 /* Handle darkmode button */
