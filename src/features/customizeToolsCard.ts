@@ -38,23 +38,59 @@ export async function makeNewToolsCard() {
   }
 
   toolsCard.innerHTML = '';
-  toolsCard.appendChild(newCards);
   toolsCard.style.display = 'grid';
   toolsCard.style.gridTemplateColumns = 'repeat(auto-fit, minmax(127px, 1fr))';
   toolsCard.style.padding = '0';
   toolsCard.style.gap = '0.7rem';
+  
+  if (toolsType.innerText === 'Teacher Tools') { // 'Teacher Tools'
+    console.log('Replacing teacher tools with study tools');
+    toolsType.innerText = 'Study Tools';
+    toolsCard.innerHTML = studyTools;
+    return;
+  }
+
+  toolsCard.appendChild(newCards);
 }
 
-
-/* 
-if i just replace the children, then use this to fix the placement
-tho i do recommend just replacing the whole thing
-
-on the div with class row:
-display: grid;
-grid-template-columns: 1fr 1fr;
-
-remove the padding from .col-md or just remove the class
-
-and/or remove the margin from .container.tool_container
-*/
+const studyTools = `
+<a href="https://cloud.timeedit.net/itu/web/public/" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-calendar" style="padding-right: 0.5rem;"></i>
+  TimeEdit: Find your schedule
+</a>
+<a href="https://learnit.itu.dk/local/coursebase/course_catalogue.php" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-eye" style="padding-right: 0.5rem;"></i>
+  Course catalogue
+</a>
+<a href="https://mit.itu.dk/index.sml" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-eye" style="padding-right: 0.5rem;"></i>
+  My.ITU
+</a>
+<a href="https://minestudieaktiviteter.itu.dk/sbstap/sb/common/velkommen.jsp" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-clipboard" style="padding-right: 0.5rem;"></i>
+  My Study Activities
+</a>
+<a href="https://itustudent.itu.dk/" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-book" style="padding-right: 0.5rem;"></i>
+  ITU student
+</a>
+<a href="https://itustudent.itu.dk/" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-info-circle" style="padding-right: 0.5rem;"></i>
+  Study Career Guidance
+</a>
+<a href="https://inlearning.itu.dk/" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-camera" style="padding-right: 0.5rem;"></i>
+  inLearning online courses
+</a>
+<a href="https://itustudent.itu.dk/Campus-Life/Student-Life/Library" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-search" style="padding-right: 0.5rem;"></i>
+  IT Library
+</a>
+<a href="https://www.ordbogen.com/" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-th-list" style="padding-right: 0.5rem;"></i>
+  Dictionaries
+</a>
+<a href="https://learnit.itu.dk/local/coursebase/archive/www" target="_blank" style="font-size: 1rem;">
+  <i class="fa fa-search" style="padding-right: 0.5rem;"></i>
+  Course Description Archive (1999-2019)
+</a>`
