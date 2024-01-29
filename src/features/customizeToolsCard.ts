@@ -10,6 +10,18 @@ export async function makeNewToolsCard() {
   const toolsCard: HTMLElement = document.getElementsByClassName('tool_container')[0];
   if (!toolsCard) return;
 
+  toolsCard.style.display = 'grid';
+  toolsCard.style.gridTemplateColumns = 'repeat(auto-fit, minmax(127px, 1fr))';
+  toolsCard.style.padding = '0';
+  toolsCard.style.gap = '0.7rem';
+  
+  if (toolsType.innerText === 'Teacher Tools') { // 'Teacher Tools'
+    console.log('Replacing teacher tools with study tools');
+    toolsType.innerText = 'Study Tools';
+    toolsCard.innerHTML = studyTools;
+    return;
+  }
+
   // parse old card
   // extract link, icon and title
   const tools: Tools[] = [];
@@ -38,18 +50,6 @@ export async function makeNewToolsCard() {
   }
 
   toolsCard.innerHTML = '';
-  toolsCard.style.display = 'grid';
-  toolsCard.style.gridTemplateColumns = 'repeat(auto-fit, minmax(127px, 1fr))';
-  toolsCard.style.padding = '0';
-  toolsCard.style.gap = '0.7rem';
-  
-  if (toolsType.innerText === 'Teacher Tools') { // 'Teacher Tools'
-    console.log('Replacing teacher tools with study tools');
-    toolsType.innerText = 'Study Tools';
-    toolsCard.innerHTML = studyTools;
-    return;
-  }
-
   toolsCard.appendChild(newCards);
 }
 
