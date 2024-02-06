@@ -10,6 +10,7 @@ import { addStudentConcileEvents } from "~/studentcouncil/eventSection";
 import type { PlasmoCSConfig } from "plasmo";
 import injectThemeSelection from "~features/themeSwitchInSettings";
 import { addDebugButton } from "~features/clearLocalStorage";
+import { makeNewToolsCard } from "~features/customizeToolsCard";
 
 (function () {
   console.log("LearnIT++ enabled");
@@ -21,6 +22,7 @@ import { addDebugButton } from "~features/clearLocalStorage";
   if (isFrontPage()) {
     addIFrameToTimeEdit();
     addStudentConcileEvents();
+    makeNewToolsCard();
   }
   fixMessageCtrl();
   injectThemeSelection();

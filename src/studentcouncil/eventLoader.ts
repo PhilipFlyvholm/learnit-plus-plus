@@ -11,6 +11,9 @@ export type EventData = {
 console.log("Studentcouncil enabled");
 export async function getEvents() {
   const response = await fetch("https://studentcouncil.dk/subscribe");
+  if (!response.ok) {
+    return [];
+  }
   const text = await response.text();
   const data = ICAL.parse(text);
   console.log(data);
