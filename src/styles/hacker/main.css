@@ -29,7 +29,7 @@ html.dark {
   --table-color: var(--hacker-darkest);
   --brand-noticed-bg-color: var(--hacker-green);
   --drawer-btn-fg-color: var(--hacker-white);
-  --drawer-menu-bg-color: var(--hacker-white);
+  --drawer-menu-bg-color: var(--hacker-dark);
   --drawer-menu-card-bg-color: var(--hacker-white);
   --drawer-block-hover-fg-color: var(--hacker-darkest);
   --drawer-block-active-fg-color: var(--hacker-white);
