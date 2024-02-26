@@ -30,6 +30,8 @@ export async function getEvents() {
     };
     //Only push if the event is in the future
     if (new Date(eventData.dtend) < new Date()) return;
+    //Only push if the event is no more than 2 weeks in the future
+    if (new Date(eventData.dtstart) > new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)) return;
     events.push(eventData);
   });
   //Sort by date
