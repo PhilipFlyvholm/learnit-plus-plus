@@ -36,8 +36,6 @@ html.dark {
   --field-bg-color: var(--hacker-white);
   --card-title-bg-color: #357a32;
   --card-title-fg-color: var(--hacker-white);
-  --card-header-bg-color: #c6d7e6;
-  --card-header-bg-color-alt: #f2f4f7;
   --card-bg-color: var(--hacker-darkest);
   --card-bg-color-alt: #6b6b6b;
   --card-border-color: #357a32;
