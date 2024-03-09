@@ -24,8 +24,8 @@
     "test": "plasmo test"
   },
   "dependencies": {
-    "@plasmohq/messaging": "^0.6.1",
-    "plasmo": "^0.84.1",
+    "@plasmohq/messaging": "^0.6.2",
+    "plasmo": "0.84.1",
     "ical.js": "^1.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"

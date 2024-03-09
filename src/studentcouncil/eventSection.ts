@@ -63,12 +63,14 @@ function getEventDom(event: EventData) {
 
   const p = document.createElement("p");
   p.className = "text-truncate";
-  const date = new Date(event.dtstart).toLocaleString();
-  if (event.location.trim() !== "") {
-    p.textContent = `${date} | ${event.location}`;
-  } else {
-    p.textContent = `${date}`;
-  }
+
+  const date = new Date(event.dtstart);
+  const weekDay = date.toLocaleDateString("en-GB", { weekday: "short" });
+  const month = date.toLocaleDateString("en-GB", { month: "short" });
+  const time = date.toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" });
+  const dateString = `${weekDay}, ${date.getDate()}. ${month}. ${time}`;
+
+  p.textContent = `${dateString} | ${daysLeftString(date)}${event.location.trim() && ` | ${event.location}`}`;
   const expandedText = document.createElement("div");
   expandedText.className = "expandedText hide-content";
   const description = document.createElement("p");
@@ -105,4 +107,16 @@ function getEventDom(event: EventData) {
   divCardBody.appendChild(divTextTruncate);
   divCard.appendChild(divCardBody);
   return divCard;
+}
+
+function daysLeftString(date: Date) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  date.setHours(0, 0, 0, 0);
+  
+  const daysLeft = Math.round((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  if (daysLeft === 0) return "Its TODAY!! 🎉🎉🎉";
+  if (daysLeft === 1) return "Tomorrow 👀";
+
+  return `In ${daysLeft} days`;
 }
