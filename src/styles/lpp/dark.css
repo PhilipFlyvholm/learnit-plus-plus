@@ -271,3 +271,15 @@ html.dark .path-grade-report-user .user-grade .column-itemname .itemicon, html.d
 html.dark .block_myoverview [data-display="list"] .list-group-item:nth-of-type(odd){
   background: var(--card-bg-color-alt);
 }
+
+/* Alert info */
+div .themeboostunioninfobanner.alert.alert-info {
+  background: var(--card-bg-color);
+  border-width: medium;
+  border-color: var(--brand-noticed-bg-color);
+  color: var(--brand-noticed-bg-color);
+}
+
+div .themeboostunioninfobanner.alert.alert-info > a {
+  color: #0198f0;
+}

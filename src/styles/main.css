@@ -275,3 +275,8 @@ html.has-dark-mode #darkModeToggle {
 html .secondary-navigation {
   background: none;
 }
+
+/* Alert banner link underlines */
+.themeboostunioninfobanner > a {
+  text-decoration: underline;
+} 
