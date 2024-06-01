@@ -11,6 +11,7 @@ import type { PlasmoCSConfig } from "plasmo";
 import injectThemeSelection from "~features/themeSwitchInSettings";
 import { addDebugButton } from "~features/clearLocalStorage";
 import { makeNewToolsCard } from "~features/customizeToolsCard";
+import { replaceResourceTags } from "~features/newWindowATags";
 
 (function () {
   console.log("LearnIT++ enabled");
@@ -26,6 +27,7 @@ import { makeNewToolsCard } from "~features/customizeToolsCard";
   }
   fixMessageCtrl();
   injectThemeSelection();
+  replaceResourceTags();
   process.env.NODE_ENV === "development" && addDebugButton();
   document.documentElement.classList.add("loaded");
 })();
