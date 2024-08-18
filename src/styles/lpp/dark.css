@@ -280,6 +280,6 @@ div .themeboostunioninfobanner.alert.alert-info {
   color: var(--brand-noticed-bg-color);
 }
 
-div .themeboostunioninfobanner.alert.alert-info > a {
-  color: #0198f0;
+html.dark .alert-info a {
+  color: var(--button-noticed-bg-color);
 }

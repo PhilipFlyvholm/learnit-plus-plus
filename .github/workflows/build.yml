@@ -10,25 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.7
 
       - name: Cache pnpm modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4.0.2
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
               ${{ runner.os }}-
 
-      - uses: pnpm/action-setup@v2.4.0
+      - uses: pnpm/action-setup@v4.0.0
         with:
           version: latest
           run_install: true
 
-      - name: Use Node.js 21.x
-        uses: actions/setup-node@v4.0.0
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4.0.3
         with:
-          node-version: 21.x
+          node-version: 22.x
           cache: "pnpm"
 
       - name: Build and package the extension into a zip artifact 
