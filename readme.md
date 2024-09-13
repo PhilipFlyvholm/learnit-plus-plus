@@ -54,8 +54,11 @@ For contributing please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## How to build
 
-1. Run `npm i` if it is the first time building
-2. Run `npm run package` to generate a zip in the `build` folder for chrome (Use `npm run package:firefox` for firefox)
+> [!NOTE]
+> We use Bun instead of Node. If you prefer using Node, please avoid committing the package-lock.json file.
+
+1. Run `bun i` if it is the first time building
+2. Run `bun package:chrome` to generate a zip in the `build` folder for chrome (Use `bun package:firefox` for firefox)
 3. Done
 
 ## Support

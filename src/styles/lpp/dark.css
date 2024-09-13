@@ -283,3 +283,19 @@ div .themeboostunioninfobanner.alert.alert-info {
 html.dark .alert-info a {
   color: var(--button-noticed-bg-color);
 }
+
+/* Time slot scheduler */
+
+html.dark #organizer_main_cointainer tr.registered_slot td {
+  background-color: unset !important;
+}
+
+html.dark #organizer_main_cointainer span.countdown_passed,
+html.dark #organizer_main_cointainer span.countdown_critical {
+  background-color: unset;
+  border-color: var(--brand-noticed-bg-color);
+  border-style: solid;
+  color: var(--brand-noticed-bg-color);
+  border-radius: 4px;
+  padding: 0.1rem;
+}
