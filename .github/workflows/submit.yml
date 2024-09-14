@@ -12,6 +12,7 @@ jobs:
 
       - name: Build and package the extension into a zip artifact 
         run: |
+          bun install --frozen-lockfile
           bun package:chrome 
           # bun package:firefox
         # env:
