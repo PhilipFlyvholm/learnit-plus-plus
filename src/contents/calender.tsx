@@ -11,13 +11,15 @@ import type { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from
 import { createRoot } from "react-dom/client"
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://learnit.itu.dk/*"]
+  matches: ["https://learnit.itu.dk/my/"]
 }
 
 // getRootContainer looks for the #block-region-content element and when found creates a new div element which we will use as "root"
 export const getRootContainer = () =>
   new Promise((resolve) => {
     const checkInterval = setInterval(() => {
+        console.log("Checking for root container");
+        
       const rootContainerParent = document.querySelector(
         `#block-region-content`
       )
