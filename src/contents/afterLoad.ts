@@ -12,9 +12,11 @@ import injectThemeSelection from "~features/themeSwitchInSettings";
 import { addDebugButton } from "~features/clearLocalStorage";
 import { makeNewToolsCard } from "~features/customizeToolsCard";
 import { replaceResourceTags } from "~features/newWindowATags";
+import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
 
 (function () {
   console.log("LearnIT++ enabled");
+  autoRedirectLoginPage();
   replaceLogo();
   addDarkModeToggle();
   addCollapseAllButton();
