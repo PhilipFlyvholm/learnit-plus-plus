@@ -1,5 +1,6 @@
 import dayGridPlugin from "@fullcalendar/daygrid"
 import iCalendarPlugin from "@fullcalendar/icalendar"
+
 import FullCalendar from "@fullcalendar/react"
 import type {
   PlasmoCSConfig,
@@ -29,6 +30,18 @@ export const getRootContainer = () =>
     }, 137)
   })
 
+const icalEvents = {
+    url: "https://cloud.timeedit.net/itu/web/public/ri69525055X70YQ25nQ78882ZX56754QQXZ1y455Z.ics",
+    format: "ics"
+  }
+
+const testEvents = [
+    {
+        title: "event 1",
+        start: new Date()
+    },
+    ]
+
 // Use this to optimize unmount lookups
 export const getShadowHostId = () => "plasmo-inline-calender"
 const Calender = () => {
@@ -44,10 +57,7 @@ const Calender = () => {
         <FullCalendar
           plugins={[dayGridPlugin, iCalendarPlugin]}
           initialView="dayGridMonth"
-          events={{
-            url: "https://cloud.timeedit.net/itu/web/public/ri69525055X70YQ25nQ78882ZX56754QQXZ1y455Z.ics",
-            format: "ics"
-          }}
+          events={icalEvents}
           eventContent={renderEventContent}
         />
       </div>
@@ -57,9 +67,10 @@ const Calender = () => {
 
 function renderEventContent(eventInfo: { timeText: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal; event: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal } }) {
     return (
-        <>
-        <b>EVENT</b>
-        </>
+        <div>
+            <b>{eventInfo.event.title}</b>
+            <i>{eventInfo.timeText}</i>
+        </div>
     )
     }
 
