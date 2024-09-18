@@ -28,6 +28,7 @@
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/icalendar": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
     "@plasmohq/messaging": "^0.6.2",
     "ical.js": "1.4.0",
     "plasmo": "0.89.2",
