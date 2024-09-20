@@ -32,7 +32,7 @@ span + div.text-truncate {
 }
 
 /* Grid Recently accessed items */
-div .dashboard-card-deck.one-row:has(a+a) {
+div .dashboard-card-deck.one-row:has(a + a) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 0.3rem;
@@ -111,7 +111,8 @@ html nav.navbar.fixed-top .navbar-brand:hover:before {
 }
 
 /*Remove background*/
-html .navbar.fixed-top .navbar-brand, html .navbar.fixed-top .navbar-brand:hover{
+html .navbar.fixed-top .navbar-brand,
+html .navbar.fixed-top .navbar-brand:hover {
   background: none !important;
 }
 
@@ -122,7 +123,6 @@ html .navbar.fixed-top .navbar-brand, html .navbar.fixed-top .navbar-brand:hover
 .site-name.navbar-brand.show {
   visibility: visible;
 }
-
 
 /* Better close buttons in drawers */
 html body .drawer.drawer-left .drawertoggle,
@@ -188,7 +188,6 @@ html .lightModeOnly {
   right: 0;
 }
 
-
 /* Btn-link style */
 /* Looks like a `a` tag. I know this is kinda bad practice but then it continues in the design style of LearnIT*/
 .btn-link {
@@ -235,7 +234,6 @@ html .lightModeOnly {
   visibility: hidden !important;
 }
 
-
 /* Show target=_blank */
 a[target="_blank"]:not(:has(h5))::after, /* normal target blank link */
 a[target="_blank"] > h5::after /*  */ {
@@ -279,4 +277,38 @@ html .secondary-navigation {
 /* Alert banner link underlines */
 .themeboostunioninfobanner > a {
   text-decoration: underline;
-} 
+}
+
+/*
+  Full-calendar default settings
+  Use :root .fc selector to increase specificity over style tag included by fullcalendar
+*/
+:root .fc{
+  --fc-small-font-size: 0.85em;
+  --fc-page-bg-color: var(--page-bg-color);
+  --fc-neutral-bg-color: hsla(0, 0%, 82%, 0.3);
+  --fc-neutral-text-color: grey;
+  --fc-border-color: #ddd;
+  --fc-button-text-color: var(--button-unnoticed-fg-color);
+  --fc-button-bg-color: var(--button-unnoticed-bg-color);
+  --fc-button-border-color: var(--button-unnoticed-bg-color);
+  --fc-button-hover-bg-color: var(--button-unnoticed-hover-bg-color);
+  --fc-button-hover-border-color: var(--button-unnoticed-hover-bg-color);
+  --fc-button-active-bg-color: rgb(from var(--button-unnoticed-bg-color) h s calc(l + 5%));
+  --fc-button-active-border-color: black; /* rgb(from var(--button-unnoticed-bg-color) h s calc(l + 5%));*/
+  --fc-event-bg-color: #3788d8;
+  --fc-event-border-color: #3788d8;
+  --fc-event-text-color: #fff;
+  --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
+  --fc-more-link-bg-color: #d0d0d0;
+  --fc-more-link-text-color: inherit;
+  --fc-event-resizer-thickness: 8px;
+  --fc-event-resizer-dot-total-width: 8px;
+  --fc-event-resizer-dot-border-width: 1px;
+  --fc-non-business-color: hsla(0, 0%, 84%, 0.3);
+  --fc-bg-event-color: #8fdf82;
+  --fc-bg-event-opacity: 0.3;
+  --fc-highlight-color: rgba(188, 232, 241, 0.3);
+  --fc-today-bg-color: rgba(255, 220, 40, 0.15);
+  --fc-now-indicator-color: red;
+}

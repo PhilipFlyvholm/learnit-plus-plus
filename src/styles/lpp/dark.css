@@ -46,6 +46,11 @@ html.dark {
   --link-focus-color: #1954ff;
 }
 
+html.dark .fc{
+  --fc-border-color: #3f3f3f;
+  --fc-non-business-color: hsla(0, 0%, 18%, 0.3);
+}
+
 html.dark .text-muted {
   color: #ebebeb !important;
 }
