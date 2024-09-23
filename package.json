@@ -30,6 +30,7 @@
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
     "@plasmohq/messaging": "^0.6.2",
+    "@plasmohq/storage": "^1.12.0",
     "ical.js": "1.4.0",
     "plasmo": "0.89.2",
     "react": "18.3.1",
