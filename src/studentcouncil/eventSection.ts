@@ -21,7 +21,7 @@ export async function addStudentConcileEvents() {
   cardTextDiv.style.flexWrap = "wrap";
 
   const events = await getEvents();
-  for (const event of events) {
+  for (const event of events.slice(0, 6)) {
     cardTextDiv.appendChild(getEventDom(event));
   }
 
