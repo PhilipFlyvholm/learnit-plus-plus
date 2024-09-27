@@ -1,4 +1,4 @@
-const RadioInput = ({name, id, label, currentValue}:{name: string, id: string, label: string, currentValue:string}) => {
+const RadioInput = ({name, id, label, currentValue, setCurrentValue}:{name: string, id: string, label: string, currentValue:string, setCurrentValue: any}) => {
   return (
     <div className="form-check">
       <input
@@ -7,6 +7,8 @@ const RadioInput = ({name, id, label, currentValue}:{name: string, id: string, l
         name={name}
         id={id}
         checked={currentValue==id}
+        onChange={() => setCurrentValue(id)}
+        
       />
       <label className="form-check-label" htmlFor={id}>
         {label}

@@ -1,9 +1,9 @@
-import type { EventContentArg, EventSourceInput } from "@fullcalendar/core"
+import type { EventContentArg } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import iCalendarPlugin from "@fullcalendar/icalendar"
 import FullCalendar from "@fullcalendar/react"
 import timeGridPlugin from "@fullcalendar/timegrid"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 import { useCalendarSettings } from "./calendarHooks"
 
@@ -61,13 +61,9 @@ const CalendarView = () => {
     useCalendarSettings()
   const calendarRef = useRef<FullCalendar>(null)
 
-  useEffect(() => {
-    if (calendarRef.current !== null)
-      calendarRef.current.getApi().refetchEvents()
-  }, [settings])
   return (
     <>
-      {!isLoadingSettings && (
+      {!isLoadingSettings && settings && settings.fromLocalStorage && (
         <FullCalendar
           ref={calendarRef}
           slotLabelFormat={{
