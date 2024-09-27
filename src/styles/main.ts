@@ -22,7 +22,11 @@ export const getTheme = (
 ): theme => {
   console.log("Getting theme", theme);
   
-  if (!theme) theme = defaultTheme;
+  if (!theme){ 
+    theme = defaultTheme;
+    console.log("Using default theme");
+    
+  }
   return {
     css: base + themes[theme].css,
     darkModeState: themes[theme].darkModeState,
