@@ -11,7 +11,7 @@ import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://learnit.itu.dk/my/"]
+  matches: ["https://learnit.itu.dk/my*"]
 }
 
 // getRootContainer looks for the #block-region-content element and when found creates a new div element which we will use as "root"

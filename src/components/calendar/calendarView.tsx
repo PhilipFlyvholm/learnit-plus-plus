@@ -9,11 +9,7 @@ import { useCalendarSettings } from "./calendarHooks"
 
 //Credit: https://github.com/Hjaltesorgenfrei/TimeEditEditEdit/blob/master/TimeEditEditEdit/__init__.py
 const nameRegex = /\s*(.*?)\s*:\s*(.*?)\s*(,|$)/g
-const icalEvents = {
-  url: "https://cloud.timeedit.net/itu/web/public/ri69525055X70YQ25nQ78882ZX56754QQXZ1y455Z.ics",
-  format: "ics",
-  id: "timeedit"
-}
+
 const studentCouncilEvents = {
   url: "https://studentcouncil.dk/subscribe",
   format: "ics",
@@ -65,6 +61,9 @@ const CalendarView = () => {
     <>
       {!isLoadingSettings && settings && settings.fromLocalStorage && (
         <FullCalendar
+          slotDuration={settings.slotduration}
+          slotMinTime={settings.slotMinTime}
+          slotMaxTime={settings.slotMaxTime}
           ref={calendarRef}
           slotLabelFormat={{
             hour: "2-digit",
@@ -85,7 +84,7 @@ const CalendarView = () => {
           nowIndicator={true}
           initialView={settings.initialview}
           eventSources={[
-            icalEvents,
+            ...settings.icalSources,
             settings.showStudentCouncil && studentCouncilEvents
           ]}
           eventContent={renderEventContent}
