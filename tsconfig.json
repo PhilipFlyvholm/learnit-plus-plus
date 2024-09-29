@@ -15,6 +15,7 @@
       ],
       "@Components/*": ["./src/components/*"]
     },
-    "baseUrl": "."
+    "baseUrl": ".",
+    "jsx": "react-jsx",
   }
 }
