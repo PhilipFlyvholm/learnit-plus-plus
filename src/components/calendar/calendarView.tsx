@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid"
 import iCalendarPlugin from "@fullcalendar/icalendar"
 import FullCalendar from "@fullcalendar/react"
 import timeGridPlugin from "@fullcalendar/timegrid"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from 'react';
 
 import { useCalendarSettings } from "./calendarHooks"
 
@@ -56,10 +56,23 @@ const CalendarView = () => {
   const [settings, _setSettings, { isLoading: isLoadingSettings }] =
     useCalendarSettings()
   const calendarRef = useRef<FullCalendar>(null)
+  const [settingsLoaded, setSettingsLoaded] = useState(false);
+  useEffect(() => {
+    let tmpSettingsLoaded = !isLoadingSettings;
+    if(settingsLoaded){
+      if(settings){
+        tmpSettingsLoaded &&= settings.fromLocalStorage;
+        tmpSettingsLoaded &&= settings.icalSources.length > 0 || settings.showStudentCouncil;
+      }else{
+        tmpSettingsLoaded = false;
+      }
+    }
+    setSettingsLoaded(tmpSettingsLoaded)
+  },[settings, isLoadingSettings])
 
   return (
     <>
-      {!isLoadingSettings && settings && settings.fromLocalStorage && (
+      {settingsLoaded && (
         <FullCalendar
           slotDuration={settings.slotduration}
           slotMinTime={settings.slotMinTime}

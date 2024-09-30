@@ -26,7 +26,7 @@ const SourceSettings = () => {
       <div className="form-group" style={{ display: "flex", gap: "2rem" }}>
         <TextInput placeholder="Enter a Name" value={source.id} onChange={handleNameChange} />
         <TextInput placeholder="Enter iCal URL" value={source.url} onChange={handleUrlChange} />
-        <button className="btn btn-primary mt-2" onClick={(e) => { {/* TODO: fix allignemnt */}
+        <button className="btn btn-primary" onClick={(e) => { {/* TODO: fix allignemnt */}
           e.preventDefault();
           setSettings({
             ...settings,

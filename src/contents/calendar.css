@@ -1,3 +1,7 @@
 a.fc-event {
     overflow: hidden;
 }
+
+.calendarRoot .form-group{
+    margin: 0;
+}
