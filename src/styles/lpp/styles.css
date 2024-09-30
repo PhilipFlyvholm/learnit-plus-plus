@@ -16,3 +16,7 @@
 html .tertiary-navigation .navitem-divider {
   width: 0;
 }
+
+html .secondary-navigation .dropdownmoremenu .dropdown-item[href*="/local/coursebase/view.php"]{
+  color: var(--card-title-fg-color);
+}
