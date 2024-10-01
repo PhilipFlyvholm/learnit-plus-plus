@@ -2,6 +2,26 @@ a.fc-event {
     overflow: hidden;
 }
 
-.calendarRoot .form-group{
+.calendarRoot .form-group, .calendarRoot p{
     margin: 0;
+}
+
+.calendarRoot .form-container, .calendarRoot .source-container, .calendarRoot .flex{
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.calendarRoot .form-container, .calendarRoot .source-container{
+    flex-direction: row;
+    justify-content: space-between;
+}
+.calendarRoot .form-container{
+    width: 100%;
+}
+
+.calendarRoot ul {
+    margin: 0;
+    list-style: none;
 }

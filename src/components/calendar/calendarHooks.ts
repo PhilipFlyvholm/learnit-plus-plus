@@ -1,13 +1,14 @@
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
+import { useState } from "react"
 
-type EventSource = {
+export type EventSource = {
   id: string
   url: string
   format: "ics" | "json" | null
 }
 
-type Settings = {
+export type Settings = {
   icalSources: EventSource[]
   showStudentCouncil: boolean
   showWeekends: boolean
@@ -41,3 +42,20 @@ export const useCalendarSettings = () =>
     (v) =>
       v == undefined ? (defaultCalendarSettings) : {...v, fromLocalStorage: true}
   )
+
+
+type UseErrorReturn = [errors: Map<string, string>, addError:(key: string, error: string) => void, removeError: (key: string) => void,  setErrors: React.Dispatch<React.SetStateAction<Map<string, string>>>]
+export const useErrors = (): UseErrorReturn => {
+  const [errors, setErrors] = useState<Map<string, string>>(new Map())
+  const addError = (key: string, error: string) => {
+    setErrors(errors.set(key, error))
+  }
+
+  const removeError = (key: string) => {
+    const tmpErrors = errors
+    tmpErrors.delete(key)
+    setErrors(tmpErrors)
+  }
+
+  return [errors, addError, removeError, setErrors]
+}
