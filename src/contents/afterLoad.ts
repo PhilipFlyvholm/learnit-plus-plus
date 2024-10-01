@@ -4,7 +4,6 @@ export const config: PlasmoCSConfig = {
 
 import svgIcons from "~/utils/svgIcons";
 import { addCollapseAllButton, removeChervonIfNoChildren } from "~/features/collapseAll";
-import { addIFrameToTimeEdit } from "~/timeedit/TimeEdit";
 import { injectAnalog } from "~/analog/inject";
 import { addStudentConcileEvents } from "~/studentcouncil/eventSection";
 import type { PlasmoCSConfig } from "plasmo";
@@ -21,7 +20,6 @@ import { replaceResourceTags } from "~features/newWindowATags";
   removeChervonIfNoChildren();
   injectAnalog();
   if (isFrontPage()) {
-    addIFrameToTimeEdit();
     addStudentConcileEvents();
     makeNewToolsCard();
   }
@@ -33,7 +31,7 @@ import { replaceResourceTags } from "~features/newWindowATags";
 })();
 
 function isFrontPage() {
-  const url = window.location.href;
+  const url = window.location.href.split("?")[0];
   return url.endsWith("/my/");
 }
 
