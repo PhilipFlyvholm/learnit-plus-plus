@@ -5,7 +5,9 @@ import { useState } from "react"
 export type EventSource = {
   id: string
   url: string
-  format: "ics" | "json" | null
+  format: "ics" | "json" | null,
+  color: string,
+  textColor?: string
 }
 
 export type Settings = {

@@ -1,11 +1,12 @@
 import { useState, type ChangeEventHandler } from "react"
 
-import { useCalendarSettings, useErrors } from '../calendarHooks';
+import { useCalendarSettings, useErrors } from "../calendarHooks"
 import type {
   Settings as CalendarSettings,
   EventSource
 } from "../calendarHooks"
 import TextInput from "./textInput"
+import ColorInput from "./colorInput"
 
 type ChangeEvent = ChangeEventHandler<HTMLInputElement>
 
@@ -15,13 +16,25 @@ type CurrentSourceProps = {
   settings: CalendarSettings
   setSettings: (settings: CalendarSettings) => Promise<void>
 }
+
+const DEFAULT_COLOR = "#3788d8"
+
 const CurrentSource = ({
-  index,
   source,
   settings,
   setSettings
 }: CurrentSourceProps) => {
   const [isEditing, setEditing] = useState<boolean>(false)
+
+  const handleColorChange: ChangeEvent = (e) => {
+    setSettings({
+      ...settings,
+      icalSources: settings.icalSources.map((s) =>
+        s.id === source.id ? { ...s, color: e.target.value } : s
+      )
+    })
+  }
+
   return (
     <li className="card my-1">
       <div className="card-body source-container">
@@ -35,7 +48,11 @@ const CurrentSource = ({
           />
         ) : (
           <>
-            <p>{source.id}</p>
+            <div className="flex">
+              <ColorInput value={source.color ?? DEFAULT_COLOR} onChange={handleColorChange}/>
+
+              <p>{source.id}</p>
+            </div>
             <div className="flex">
               <button
                 className="btn btn-secondary"
@@ -79,16 +96,19 @@ const CalendarSourceInput = ({
   initialICal = {
     id: "",
     url: "",
-    format: "ics"
+    format: "ics",
+    color: DEFAULT_COLOR
   },
   buttonText,
   onUpdate = () => {}
 }: CalendarSourceInputProps) => {
   const [source, setSource] = useState<EventSource>(initialICal)
-  const [errors, addError, removeError] = useErrors();
+  const [errors, addError, removeError] = useErrors()
 
   const isValid = () => {
-    return errors.size == 0 && source.id.trim() !== "" && source.url.trim() !== ""
+    return (
+      errors.size == 0 && source.id.trim() !== "" && source.url.trim() !== ""
+    )
   }
   const handleNameChange: ChangeEvent = (e) => {
     const name = e.target.value
@@ -161,7 +181,7 @@ const CalendarSourceInput = ({
               ...settings,
               icalSources: sources
             })
-            setSource({ id: "", url: "", format: "ics" })
+            setSource({ id: "", url: "", format: "ics", color: DEFAULT_COLOR })
             onUpdate()
           }}>
           {buttonText}

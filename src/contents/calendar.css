@@ -25,3 +25,19 @@ a.fc-event {
     margin: 0;
     list-style: none;
 }
+
+.calendarRoot .custom-color-input{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    border: none;
+}
+
+.calendarRoot .custom-color-input-label{
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    border-radius: 100%;
+    margin: 0;
+}
