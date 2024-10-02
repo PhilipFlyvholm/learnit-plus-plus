@@ -1,13 +1,17 @@
+import type { EventInput } from "@fullcalendar/core"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 import { useState } from "react"
 
+export type EventDataTransform = ((input: EventInput) => EventInput | false) | undefined
 export type EventSource = {
   id: string
   url: string
   format: "ics" | "json" | null,
   color: string,
-  textColor?: string
+  textColor?: string,
+  eventDataTransform?: EventDataTransform,
+  activitiesOnly?: boolean
 }
 
 export type Settings = {

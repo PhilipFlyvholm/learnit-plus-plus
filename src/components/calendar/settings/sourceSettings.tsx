@@ -1,12 +1,13 @@
-import { useState, type ChangeEventHandler } from "react"
+import { useEffect, useId, useState, type ChangeEventHandler } from "react"
 
 import { useCalendarSettings, useErrors } from "../calendarHooks"
 import type {
   Settings as CalendarSettings,
   EventSource
 } from "../calendarHooks"
-import TextInput from "./textInput"
 import ColorInput from "./colorInput"
+import RadioInput from "./radioInput"
+import TextInput from "./textInput"
 
 type ChangeEvent = ChangeEventHandler<HTMLInputElement>
 
@@ -49,7 +50,10 @@ const CurrentSource = ({
         ) : (
           <>
             <div className="flex">
-              <ColorInput value={source.color ?? DEFAULT_COLOR} onChange={handleColorChange}/>
+              <ColorInput
+                value={source.color ?? DEFAULT_COLOR}
+                onChange={handleColorChange}
+              />
 
               <p>{source.id}</p>
             </div>
@@ -82,6 +86,8 @@ const CurrentSource = ({
     </li>
   )
 }
+const isMoodleUrl = (url: string) =>
+  url.startsWith("https://learnit.itu.dk/calendar/export_execute.php")
 
 type CalendarSourceInputProps = {
   settings: CalendarSettings
@@ -104,7 +110,10 @@ const CalendarSourceInput = ({
 }: CalendarSourceInputProps) => {
   const [source, setSource] = useState<EventSource>(initialICal)
   const [errors, addError, removeError] = useErrors()
-
+  const [filterEventSetting, setFilterEventSetting] = useState<
+    "all" | "activities-only"
+  >(source.activitiesOnly ? "activities-only" : "all")
+  const id = "calendarSourceInput" + useId()
   const isValid = () => {
     return (
       errors.size == 0 && source.id.trim() !== "" && source.url.trim() !== ""
@@ -129,7 +138,12 @@ const CalendarSourceInput = ({
   }
   const handleUrlChange: ChangeEvent = (e) => {
     const url = e.target.value
-    setSource({ ...source, url: url })
+    setSource({
+      ...source,
+      url: url,
+      activitiesOnly:
+        isMoodleUrl(url) && filterEventSetting == "activities-only"
+    })
     if (url.trim() == "") {
       addError("url-empty", "URL-field is empty")
       removeError("invalid-url")
@@ -143,13 +157,23 @@ const CalendarSourceInput = ({
     }
   }
 
+  const handleFilterEventSetting = (val: typeof filterEventSetting) => {
+    setFilterEventSetting(val)
+    const url = source.url
+
+    setSource({
+      ...source,
+      activitiesOnly: isMoodleUrl(url) && val == "activities-only"
+    })
+  }
+
   return (
     <>
       {errors.size > 0 && (
         <p className="my-1 notifyproblem">{errors.values().toArray()[0]}</p>
       )}
       <div className="form-container">
-        <div className="flex">
+        <div className="flex" style={{ flex: 1 }}>
           <TextInput
             placeholder="Enter a Name"
             value={source.id}
@@ -160,6 +184,34 @@ const CalendarSourceInput = ({
             value={source.url}
             onChange={handleUrlChange}
           />
+          {isMoodleUrl(source.url) && (
+            <div style={{ display: "flex", gap: ".5rem" }}>
+              <RadioInput
+                name={id + "-filterEventSetting"}
+                id={id + "-filterEventSetting-all"}
+                label="All events"
+                currentValue={
+                  source.activitiesOnly
+                    ? id + "-filterEventSetting-activities-only"
+                    : id + "-filterEventSetting-all"
+                }
+                setCurrentValue={() => handleFilterEventSetting("all")}
+              />
+              <RadioInput
+                name={id + "-filterEventSetting"}
+                id={id + "-filterEventSetting-activities-only"}
+                label="Activities only"
+                currentValue={
+                  source.activitiesOnly
+                    ? id + "-filterEventSetting-activities-only"
+                    : id + "-filterEventSetting-all"
+                }
+                setCurrentValue={() =>
+                  handleFilterEventSetting("activities-only")
+                }
+              />
+            </div>
+          )}
         </div>
         <button
           className="btn btn-primary"

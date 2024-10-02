@@ -1,14 +1,12 @@
-import type { EventContentArg } from "@fullcalendar/core"
+import type { EventContentArg, EventInput } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import iCalendarPlugin from "@fullcalendar/icalendar"
 import FullCalendar from "@fullcalendar/react"
 import timeGridPlugin from "@fullcalendar/timegrid"
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from "react"
 
 import { useCalendarSettings } from "./calendarHooks"
-
-//Credit: https://github.com/Hjaltesorgenfrei/TimeEditEditEdit/blob/master/TimeEditEditEdit/__init__.py
-const nameRegex = /\s*(.*?)\s*:\s*(.*?)\s*(,|$)/g
+import { formatEvent } from "./EventFormatter"
 
 const studentCouncilEvents = {
   url: "https://studentcouncil.dk/subscribe",
@@ -16,39 +14,16 @@ const studentCouncilEvents = {
   id: "studentcouncil"
 }
 
-function entryToInfo(val: string): Record<number, string> {
-  const result: Record<number, string> = {}
-  let match: RegExpExecArray | null
-
-  while ((match = nameRegex.exec(val)) !== null) {
-    const key = match[1].replace(",", "")
-    const value = match[2]
-
-    if (value === "_NN") {
-      continue
-    }
-
-    result[key] = value
-  }
-
-  return result
-}
-
 function renderEventContent(eventInfo: EventContentArg) {
-  let summary = entryToInfo(eventInfo.event.title)
-  let result: string[] = []
-
-  if (summary["Study Activity"]) {
-    result.push(summary["Study Activity"].replace(/\.\s*[A-Z0-9]*/g, ""))
-  }
-
-  if (result.length == 0) result.push(eventInfo.event.title)
+  const result = formatEvent(eventInfo.event)
   return (
-    <>
-      <b>{result.join(" - ")}</b>
-      <br />
-      <i>{eventInfo.timeText}</i>
-    </>
+    result.length > 0 && (
+      <>
+        <b>{result.join(" - ")}</b>
+        <br />
+        <i>{eventInfo.timeText}</i>
+      </>
+    )
   )
 }
 
@@ -73,19 +48,20 @@ const CalendarView = () => {
   const [settings, _setSettings, { isLoading: isLoadingSettings }] =
     useCalendarSettings()
   const calendarRef = useRef<FullCalendar>(null)
-  const [settingsLoaded, setSettingsLoaded] = useState(false);
+  const [settingsLoaded, setSettingsLoaded] = useState(false)
   useEffect(() => {
-    let tmpSettingsLoaded = !isLoadingSettings;
-    if(settingsLoaded){
-      if(settings){
-        tmpSettingsLoaded &&= settings.fromLocalStorage;
-        tmpSettingsLoaded &&= settings.icalSources.length > 0 || settings.showStudentCouncil;
-      }else{
-        tmpSettingsLoaded = false;
+    let tmpSettingsLoaded = !isLoadingSettings
+    if (settingsLoaded) {
+      if (settings) {
+        tmpSettingsLoaded &&= settings.fromLocalStorage
+        tmpSettingsLoaded &&=
+          settings.icalSources.length > 0 || settings.showStudentCouncil
+      } else {
+        tmpSettingsLoaded = false
       }
     }
     setSettingsLoaded(tmpSettingsLoaded)
-  },[settings, isLoadingSettings])
+  }, [settings, isLoadingSettings])
 
   return (
     <>
@@ -115,8 +91,25 @@ const CalendarView = () => {
           initialView={settings.initialview}
           eventSources={[
             ...settings.icalSources.map((source) => {
-              if(!source.textColor && source.color){
+              if (!source.textColor && source.color) {
                 source.textColor = getConstrastColor(source.color)
+              }
+              if (
+                source.activitiesOnly &&
+                source.url.startsWith(
+                  "https://learnit.itu.dk/calendar/export_execute.php"
+                )
+              ) {
+                source.eventDataTransform = (input: EventInput) => {
+                  if (
+                    input.title.includes("Lecture") ||
+                    input.title.includes("Exercise")||
+                    input.title.includes("Other")
+                  ) {
+                    return false
+                  }
+                  return input
+                }
               }
               return source
             }),
@@ -130,7 +123,6 @@ const CalendarView = () => {
           scrollTime={"08:00:00"}
           eventClick={(info) => {
             info.jsEvent.preventDefault() // don't let the browser navigate
-
             if (info.event.url) {
               const url = info.event.url.startsWith("http")
                 ? info.event.url
