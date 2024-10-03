@@ -304,3 +304,8 @@ html.dark #organizer_main_cointainer span.countdown_critical {
   border-radius: 4px;
   padding: 0.1rem;
 }
+
+/* Dropdown menu */
+html.dark .dropdown-item:not(.active) {
+  color: var(--button-noticed-bg-color);
+}
