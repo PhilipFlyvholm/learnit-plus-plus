@@ -16,8 +16,8 @@ import { replaceResourceTags } from "~features/newWindowATags";
   console.log("LearnIT++ enabled");
   replaceLogo();
   addDarkModeToggle();
-  addGithubLink();
   addCollapseAllButton();
+  addGithubLink();
   removeChervonIfNoChildren();
   injectAnalog();
   if (isFrontPage()) {
@@ -92,10 +92,8 @@ function addGithubLink() {
   githubLink.href = "https://github.com/PhilipFlyvholm/learnit-plus-plus"
   githubLink.className = "nav-link";
   //Add github icon
-  const githubIcon = document.createElement("i");
-  githubIcon.innerHTML = svgIcons.github;
-  githubLink.appendChild(githubIcon);
-  userMenu.appendChild(githubLink);
+  githubLink.innerHTML = svgIcons.github;
+  userMenu.prepend(githubLink);
 }
 
 function replaceLogo() {
