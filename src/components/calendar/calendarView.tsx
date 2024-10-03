@@ -61,7 +61,7 @@ const isDateInputOutsideSlot = (
   return outsideSlot
 }
 
-const CalendarView = () => {
+const CalendarView = ({toggleView}:{toggleView:() => void}) => {
   const [settings, _setSettings, { isLoading: isLoadingSettings }] =
     useCalendarSettings()
   const calendarRef = useRef<FullCalendar>(null)
@@ -82,95 +82,119 @@ const CalendarView = () => {
 
   return (
     <>
-      {settingsLoaded && (
-        <FullCalendar
-          slotDuration={settings.slotduration}
-          slotMinTime={settings.slotMinTime}
-          slotMaxTime={settings.slotMaxTime}
-          ref={calendarRef}
-          slotLabelFormat={{
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false
-          }}
-          eventTimeFormat={{
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false
-          }}
-          dayHeaderFormat={{
-            weekday: "short",
-            day: "2-digit",
-            month: "2-digit"
-          }}
-          locale="en-GB"
-          businessHours={{
-            daysOfWeek: [1, 2, 3, 4, 5],
-            startTime: "08:00",
-            endTime: "18:00"
-          }}
-          plugins={[dayGridPlugin, timeGridPlugin, iCalendarPlugin]}
-          nowIndicator={true}
-          initialView={settings.initialview}
-          eventSources={[
-            ...settings.icalSources.map((source) => {
-              if (!source.textColor && source.color) {
-                source.textColor = getConstrastColor(source.color)
-              }
-              source.eventDataTransform = (input: EventInput) => {
-                if (
-                  isDateInputOutsideSlot(
-                    input.start,
-                    input.end,
-                    settings.slotMinTime,
-                    settings.slotMaxTime
-                  )
-                ) {
-                  input.allDay = true
+      {settingsLoaded &&
+        (settings.icalSources.length == 0 ? (
+          <div className="calendar-missing-setup text-center">
+            <h3>Your calendar is not yet setup</h3>
+            <p>
+              Go the settings view to add calendar subscriptions to your
+              calendar
+            </p>
+            <p>
+              <a
+                href="https://github.com/PhilipFlyvholm/learnit-plus-plus/wiki/The-Calendar-Component"
+                target="_blank">
+                Guide for setup
+              </a>
+            </p>
+            <button className="btn btn-outline-secondary my-2" onClick={toggleView}>
+              Open settings
+            </button>
+          </div>
+        ) : (
+          <FullCalendar
+            slotDuration={settings.slotduration}
+            slotMinTime={settings.slotMinTime}
+            slotMaxTime={settings.slotMaxTime}
+            ref={calendarRef}
+            slotLabelFormat={{
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false
+            }}
+            eventTimeFormat={{
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false
+            }}
+            dayHeaderFormat={{
+              weekday: "short",
+              day: "2-digit",
+              month: "2-digit"
+            }}
+            locale="en-GB"
+            businessHours={{
+              daysOfWeek: [1, 2, 3, 4, 5],
+              startTime: "08:00",
+              endTime: "18:00"
+            }}
+            plugins={[dayGridPlugin, timeGridPlugin, iCalendarPlugin]}
+            nowIndicator={true}
+            initialView={settings.initialview}
+            eventSources={[
+              ...settings.icalSources.map((source) => {
+                if (!source.textColor && source.color) {
+                  source.textColor = getConstrastColor(source.color)
                 }
-                if (
-                  source.activitiesOnly &&
-                  source.url.startsWith(
-                    "https://learnit.itu.dk/calendar/export_execute.php"
-                  )
-                ) {
+                source.eventDataTransform = (input: EventInput) => {
                   if (
-                    input.title.includes("Lecture") ||
-                    input.title.includes("Exercise") ||
-                    input.title.includes("Other")
+                    isDateInputOutsideSlot(
+                      input.start,
+                      input.end,
+                      settings.slotMinTime,
+                      settings.slotMaxTime
+                    )
                   ) {
-                    return false
+                    input.allDay = true
                   }
-                  return input
+                  if (
+                    source.assignmentsOnly &&
+                    source.url.startsWith(
+                      "https://learnit.itu.dk/calendar/export_execute.php"
+                    )
+                  ) {
+                    if (
+                      input.title.includes("Lecture") ||
+                      input.title.includes("Exercise") ||
+                      input.title.includes("Other")
+                    ) {
+                      return false
+                    }
+                    return input
+                  }
                 }
-              }
-              return source
-            }),
-            settings.showStudentCouncil && studentCouncilEvents
-          ]}
-          eventContent={renderEventContent}
-          firstDay={1} // Monday
-          weekNumbers={true}
-          weekends={settings.showWeekends}
-          allDaySlot={settings.slotMinTime === "00:00:00" && settings.slotMaxTime === "23:59:59" ? false : undefined}
-          allDayText=""
-          scrollTime={"08:00:00"}
-          eventClick={(info) => {
-            info.jsEvent.preventDefault() // don't let the browser navigate
-            if (info.event.url) {
-              const url = info.event.url.startsWith("http")
-                ? info.event.url
-                : "https://" + info.event.url
-              window.open(url)
+                return source
+              }),
+              settings.showStudentCouncil && studentCouncilEvents
+            ]}
+            eventContent={renderEventContent}
+            firstDay={1} // Monday
+            weekNumbers={true}
+            weekends={settings.showWeekends}
+            allDaySlot={
+              settings.slotMinTime === "00:00:00" &&
+              settings.slotMaxTime === "23:59:59"
+                ? false
+                : undefined
             }
-          }}
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay"
-          }}
-        />
-      )}
+            allDayText=""
+            scrollTime={"08:00:00"}
+            eventClick={(info) => {
+              info.jsEvent.preventDefault() // don't let the browser navigate
+              if (info.event.url) {
+                const url = info.event.url.startsWith("http")
+                  ? info.event.url
+                  : "https://" + info.event.url
+                window.open(url)
+              }
+            }}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay"
+            }}
+          />
+        ))}
     </>
   )
 }

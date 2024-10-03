@@ -11,7 +11,7 @@ export type EventSource = {
   color: string,
   textColor?: string,
   eventDataTransform?: EventDataTransform,
-  activitiesOnly?: boolean
+  assignmentsOnly?: boolean
 }
 
 export type Settings = {
@@ -30,7 +30,7 @@ const defaultCalendarSettings: Settings = {
   showWeekends: false,
   initialview: "timeGridWeek",
   fromLocalStorage: false,
-  slotduration: '01:00',
+  slotduration: '00:30',
   slotMinTime: '08:00:00',
   slotMaxTime: '20:00:00',
 }

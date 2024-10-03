@@ -118,8 +118,8 @@ const CalendarSourceInput = ({
   const [source, setSource] = useState<EventSource>(initialICal)
   const [errors, addError, removeError] = useErrors()
   const [filterEventSetting, setFilterEventSetting] = useState<
-    "all" | "activities-only"
-  >(source.activitiesOnly ? "activities-only" : "all")
+    "all" | "assignments-only"
+  >(source.assignmentsOnly ? "assignments-only" : "all")
   const id = "calendarSourceInput" + useId()
   const isValid = () => {
     return (
@@ -148,8 +148,8 @@ const CalendarSourceInput = ({
     setSource({
       ...source,
       url: url,
-      activitiesOnly:
-        isMoodleUrl(url) && filterEventSetting == "activities-only"
+      assignmentsOnly:
+        isMoodleUrl(url) && filterEventSetting == "assignments-only"
     })
     if (url.trim() == "") {
       addError("url-empty", "URL-field is empty")
@@ -170,7 +170,7 @@ const CalendarSourceInput = ({
 
     setSource({
       ...source,
-      activitiesOnly: isMoodleUrl(url) && val == "activities-only"
+      assignmentsOnly: isMoodleUrl(url) && val == "assignments-only"
     })
   }
 
@@ -198,23 +198,23 @@ const CalendarSourceInput = ({
                 id={id + "-filterEventSetting-all"}
                 label="All events"
                 currentValue={
-                  source.activitiesOnly
-                    ? id + "-filterEventSetting-activities-only"
+                  source.assignmentsOnly
+                    ? id + "-filterEventSetting-assignments-only"
                     : id + "-filterEventSetting-all"
                 }
                 setCurrentValue={() => handleFilterEventSetting("all")}
               />
               <RadioInput
                 name={id + "-filterEventSetting"}
-                id={id + "-filterEventSetting-activities-only"}
+                id={id + "-filterEventSetting-assignments-only"}
                 label="Activities only"
                 currentValue={
-                  source.activitiesOnly
-                    ? id + "-filterEventSetting-activities-only"
+                  source.assignmentsOnly
+                    ? id + "-filterEventSetting-assignments-only"
                     : id + "-filterEventSetting-all"
                 }
                 setCurrentValue={() =>
-                  handleFilterEventSetting("activities-only")
+                  handleFilterEventSetting("assignments-only")
                 }
               />
             </div>
