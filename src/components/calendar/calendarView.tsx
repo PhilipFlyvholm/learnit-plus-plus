@@ -1,4 +1,5 @@
-import type { EventContentArg, EventInput } from "@fullcalendar/core"
+import type { DateInput, EventContentArg, EventInput } from "@fullcalendar/core"
+import { C } from "@fullcalendar/core/internal-common"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import iCalendarPlugin from "@fullcalendar/icalendar"
 import FullCalendar from "@fullcalendar/react"
@@ -44,6 +45,22 @@ const getConstrastColor = (hex: string) => {
   return yiq >= 128 ? "black" : "white"
 }
 
+const isDateInputOutsideSlot = (
+  start: DateInput,
+  end: DateInput,
+  slotMinTime: string,
+  slotMaxTime: string
+) => {
+  const startDate = new Date(start.toString())
+  const endDate = new Date(end.toString())
+  const slotMin = new Date(startDate.toDateString() + " " + slotMinTime)
+  const slotMax = new Date(startDate.toDateString() + " " + slotMaxTime)
+  const outsideSlot =
+    (startDate < slotMin && endDate < slotMin) ||
+    (startDate > slotMax && endDate > slotMax)
+  return outsideSlot
+}
+
 const CalendarView = () => {
   const [settings, _setSettings, { isLoading: isLoadingSettings }] =
     useCalendarSettings()
@@ -81,6 +98,12 @@ const CalendarView = () => {
             minute: "2-digit",
             hour12: false
           }}
+          dayHeaderFormat={{
+            weekday: "short",
+            day: "2-digit",
+            month: "2-digit"
+          }}
+          locale="en-GB"
           businessHours={{
             daysOfWeek: [1, 2, 3, 4, 5],
             startTime: "08:00",
@@ -94,16 +117,26 @@ const CalendarView = () => {
               if (!source.textColor && source.color) {
                 source.textColor = getConstrastColor(source.color)
               }
-              if (
-                source.activitiesOnly &&
-                source.url.startsWith(
-                  "https://learnit.itu.dk/calendar/export_execute.php"
-                )
-              ) {
-                source.eventDataTransform = (input: EventInput) => {
+              source.eventDataTransform = (input: EventInput) => {
+                if (
+                  isDateInputOutsideSlot(
+                    input.start,
+                    input.end,
+                    settings.slotMinTime,
+                    settings.slotMaxTime
+                  )
+                ) {
+                  input.allDay = true
+                }
+                if (
+                  source.activitiesOnly &&
+                  source.url.startsWith(
+                    "https://learnit.itu.dk/calendar/export_execute.php"
+                  )
+                ) {
                   if (
                     input.title.includes("Lecture") ||
-                    input.title.includes("Exercise")||
+                    input.title.includes("Exercise") ||
                     input.title.includes("Other")
                   ) {
                     return false
@@ -119,7 +152,8 @@ const CalendarView = () => {
           firstDay={1} // Monday
           weekNumbers={true}
           weekends={settings.showWeekends}
-          allDaySlot={false}
+          allDaySlot={settings.slotMinTime === "00:00:00" && settings.slotMaxTime === "23:59:59" ? false : undefined}
+          allDayText=""
           scrollTime={"08:00:00"}
           eventClick={(info) => {
             info.jsEvent.preventDefault() // don't let the browser navigate

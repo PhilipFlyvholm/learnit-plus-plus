@@ -18,8 +18,6 @@ export const config: PlasmoCSConfig = {
 export const getRootContainer = () =>
   new Promise((resolve) => {
     const checkInterval = setInterval(() => {
-      console.log("Checking for root container")
-
       const rootContainerParent = document.querySelector(
         `#block-region-content`
       )

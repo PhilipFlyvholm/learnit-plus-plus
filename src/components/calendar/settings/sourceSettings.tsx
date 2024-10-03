@@ -96,6 +96,13 @@ type CalendarSourceInputProps = {
   buttonText: "Add" | "Save"
   onUpdate?: () => void
 }
+
+//https://coolors.co/09146d-bb3030-0b7a75-1a1f16-008f4f
+const COLORS = ["#09146D", "#BB3030", "#0B7A75", "#1A1F16", "#008F4F"]
+const getDefaultColor = (sources: EventSource[]) => {
+  return COLORS[sources.length - (1 % COLORS.length)]
+}
+
 const CalendarSourceInput = ({
   settings,
   setSettings,
@@ -103,7 +110,7 @@ const CalendarSourceInput = ({
     id: "",
     url: "",
     format: "ics",
-    color: DEFAULT_COLOR
+    color: getDefaultColor(settings.icalSources)
   },
   buttonText,
   onUpdate = () => {}
@@ -233,7 +240,12 @@ const CalendarSourceInput = ({
               ...settings,
               icalSources: sources
             })
-            setSource({ id: "", url: "", format: "ics", color: DEFAULT_COLOR })
+            setSource({
+              id: "",
+              url: "",
+              format: "ics",
+              color: getDefaultColor(sources)
+            })
             onUpdate()
           }}>
           {buttonText}
