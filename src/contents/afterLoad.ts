@@ -4,7 +4,6 @@ export const config: PlasmoCSConfig = {
 
 import svgIcons from "~/utils/svgIcons";
 import { addCollapseAllButton, removeChervonIfNoChildren } from "~/features/collapseAll";
-import { addIFrameToTimeEdit } from "~/timeedit/TimeEdit";
 import { injectAnalog } from "~/analog/inject";
 import { addStudentConcileEvents } from "~/studentcouncil/eventSection";
 import type { PlasmoCSConfig } from "plasmo";
@@ -20,10 +19,10 @@ import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
   replaceLogo();
   addDarkModeToggle();
   addCollapseAllButton();
+  addGithubLink();
   removeChervonIfNoChildren();
   injectAnalog();
   if (isFrontPage()) {
-    addIFrameToTimeEdit();
     addStudentConcileEvents();
     makeNewToolsCard();
   }
@@ -35,7 +34,7 @@ import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
 })();
 
 function isFrontPage() {
-  const url = window.location.href;
+  const url = window.location.href.split("?")[0];
   return url.endsWith("/my/");
 }
 
@@ -87,6 +86,16 @@ function addDarkModeToggle() {
       chrome.storage.local.set({ "darkMode": false });
     }
   });
+}
+function addGithubLink() {
+  const userMenu = document.querySelector("#usernavigation");
+  if (!userMenu) return;
+  const githubLink = document.createElement("a");
+  githubLink.href = "https://github.com/PhilipFlyvholm/learnit-plus-plus"
+  githubLink.className = "nav-link";
+  //Add github icon
+  githubLink.innerHTML = svgIcons.github;
+  userMenu.prepend(githubLink);
 }
 
 function replaceLogo() {

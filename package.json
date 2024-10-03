@@ -1,7 +1,7 @@
 {
   "name": "learnit-plus-plus",
   "displayName": "LearnIT++",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Improved design and functionality of the LearnIT page for IT-University Of Copenhagen",
   "author": "https://github.com/PhilipFlyvholm/learnit-plus-plus/graphs/contributors",
   "repository": {
@@ -24,17 +24,23 @@
     "test": "plasmo test"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/icalendar": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
     "@plasmohq/messaging": "^0.6.2",
+    "@plasmohq/storage": "^1.12.0",
+    "ical.js": "1.4.0",
     "plasmo": "0.89.2",
-    "ical.js": "^2.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.3.1",
-    "@types/chrome": "0.0.270",
-    "@types/node": "22.5.4",
-    "@types/react": "18.3.5",
+    "@types/chrome": "0.0.272",
+    "@types/node": "22.7.4",
+    "@types/react": "18.3.10",
     "@types/react-dom": "18.3.0",
     "prettier": "3.3.3",
     "typescript": "5.6.2"

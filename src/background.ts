@@ -13,10 +13,7 @@ let settings: {
 function updateSettings() {
   chrome.storage.local.get(["darkMode", "theme"], (res) => {
     if (res.darkMode !== undefined) settings.darkMode = res.darkMode
-    if (res.theme !== undefined) {
-      settings.theme = getTheme(res.theme)
-    }
-    if (settings.theme == null) settings.theme = getTheme()
+    settings.theme = getTheme(res.theme)
   })
 }
 

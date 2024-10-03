@@ -1,0 +1,43 @@
+a.fc-event {
+    overflow: hidden;
+}
+
+.calendarRoot .form-group, .calendarRoot p{
+    margin: 0;
+}
+
+.calendarRoot .form-container, .calendarRoot .source-container, .calendarRoot .flex{
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.calendarRoot .form-container, .calendarRoot .source-container{
+    flex-direction: row;
+    justify-content: space-between;
+}
+.calendarRoot .form-container{
+    width: 100%;
+}
+
+.calendarRoot ul {
+    margin: 0;
+    list-style: none;
+}
+
+.calendarRoot .custom-color-input{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    border: none;
+}
+
+.calendarRoot .custom-color-input-label{
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    border-radius: 100%;
+    margin: 0;
+}

@@ -1,5 +1,5 @@
 //https://learnit.itu.dk/user/edit.php
-import { themes, defaultTheme } from "~/styles/main";
+import { themes } from "~/styles/main";
 
 export default function injectThemeSelection(){
     chrome.storage.local.get(["theme"], (result) => {
