@@ -38,7 +38,7 @@ const CurrentSource = ({
 
   return (
     <li className="card my-1">
-      <div className="card-body source-container">
+      <div className="source-container p-2">
         {isEditing ? (
           <CalendarSourceInput
             settings={settings}
@@ -100,7 +100,7 @@ type CalendarSourceInputProps = {
 //https://coolors.co/09146d-bb3030-0b7a75-1a1f16-008f4f
 const COLORS = ["#09146D", "#BB3030", "#0B7A75", "#1A1F16", "#008F4F"]
 const getDefaultColor = (sources: EventSource[]) => {
-  return COLORS[sources.length - (1 % COLORS.length)]
+  return COLORS[(sources.length - 1) % COLORS.length]
 }
 
 const CalendarSourceInput = ({

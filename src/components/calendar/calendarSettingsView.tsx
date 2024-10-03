@@ -93,7 +93,8 @@ const CalendarSettingsView = () => {
       {settings && (
         <div>
           <h2>Calendar Settings</h2>
-          <p>Here you can change the settings for the calendar (<a href="https://github.com/PhilipFlyvholm/learnit-plus-plus/wiki/The-Calendar-Component" target="_blank">Calendar documentation</a>)</p>
+          <p>Here you can customize the calendar</p>
+          <a href="https://github.com/PhilipFlyvholm/learnit-plus-plus/wiki/The-Calendar-Component" target="_blank">Guide for setup</a>
           <br />
           <form>
             {errors.size > 0 && <p className="red">{errors.values().toArray()[0]}</p>}

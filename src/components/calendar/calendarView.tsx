@@ -11,7 +11,8 @@ import { formatEvent } from "./EventFormatter"
 const studentCouncilEvents = {
   url: "https://studentcouncil.dk/subscribe",
   format: "ics",
-  id: "studentcouncil"
+  id: "studentcouncil",
+  color: "#EE4444",
 }
 
 function renderEventContent(eventInfo: EventContentArg) {
