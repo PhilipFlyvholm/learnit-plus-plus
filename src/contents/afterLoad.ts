@@ -16,6 +16,7 @@ import { replaceResourceTags } from "~features/newWindowATags";
   console.log("LearnIT++ enabled");
   replaceLogo();
   addDarkModeToggle();
+  addGithubLink();
   addCollapseAllButton();
   removeChervonIfNoChildren();
   injectAnalog();
@@ -83,6 +84,18 @@ function addDarkModeToggle() {
       chrome.storage.local.set({ "darkMode": false });
     }
   });
+}
+function addGithubLink() {
+  const userMenu = document.querySelector("#usernavigation");
+  if (!userMenu) return;
+  const githubLink = document.createElement("a");
+  githubLink.href = "https://github.com/PhilipFlyvholm/learnit-plus-plus"
+  githubLink.className = "nav-link";
+  //Add github icon
+  const githubIcon = document.createElement("i");
+  githubIcon.innerHTML = svgIcons.github;
+  githubLink.appendChild(githubIcon);
+  userMenu.appendChild(githubLink);
 }
 
 function replaceLogo() {

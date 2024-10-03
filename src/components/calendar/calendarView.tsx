@@ -1,5 +1,4 @@
 import type { DateInput, EventContentArg, EventInput } from "@fullcalendar/core"
-import { C } from "@fullcalendar/core/internal-common"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import iCalendarPlugin from "@fullcalendar/icalendar"
 import FullCalendar from "@fullcalendar/react"
