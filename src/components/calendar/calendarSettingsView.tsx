@@ -99,7 +99,7 @@ const CalendarSettingsView = () => {
           <form>
             {errors.size > 0 && <p className="red">{errors.values().toArray()[0]}</p>}
             <SourceSettings />
-            <div className="form-container mb-1">
+            <div className="form-container pb-2">
               <TextInput
                 label="Slot start time"
                 value={slotMinTime}
