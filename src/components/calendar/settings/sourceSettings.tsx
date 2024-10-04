@@ -259,7 +259,7 @@ const SourceSettings = () => {
   const [settings, setSettings] = useCalendarSettings()
 
   return (
-    <div className="my-2">
+    <div className="py-2">
       <p className="mt-1 mb-2">Add iCal Source</p>
       <CalendarSourceInput
         settings={settings}

@@ -177,6 +177,7 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
                 ? false
                 : undefined
             }
+            height={"auto"}
             allDayText=""
             scrollTime={"08:00:00"}
             eventClick={(info) => {
