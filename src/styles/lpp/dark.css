@@ -159,6 +159,11 @@ html.dark .secondary-navigation {
   background-color: inherit;
 }
 
+html.dark body.path-mod-quiz .gradedattempt, body.path-mod-quiz table tbody tr.gradedattempt>td{
+  border-color: var(--card-border-color) !important;
+  background-color: inherit !important;
+}
+
 /* Link focus fix */
 html.dark .aalink.focus,
 html.dark a.focus.autolink,
@@ -308,4 +313,16 @@ html.dark #organizer_main_cointainer span.countdown_critical {
 /* Dropdown menu */
 html.dark .dropdown-item:not(.active) {
   color: var(--button-noticed-bg-color);
+}
+
+/* Grading specific */
+html.dark .que .info{
+  background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+}
+
+html.dark .que .formulation {
+  color: var(--card-title-fg-color);
+  background-color: var(--card-bg-color);
+  border-color: var(--card-border-color);
 }
