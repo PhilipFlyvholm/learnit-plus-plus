@@ -4,10 +4,9 @@
 
 **Welcome to LearnIt++ Extension!**
 
-| ![learnit++ lightmode](./preview-images/plus-light.png) | ![learnit++ darkmode](./preview-images/plus-dark.png) |
+| ![learnit++ light mode](assets/images/preview-images/plus-light.png) | ![learnit++ dark mode](assets/images/preview-images/plus-dark.png) |
 | --- | --- |
-| ![hacker mode](./preview-images/hacker.png) | ![retro lightmode](./preview-images/retro-light.png)
-
+| ![hacker mode](assets/images/preview-images/hacker.png) | ![retro light mode](assets/images/preview-images/retro.png) |
 
 ## Description
 
@@ -54,12 +53,21 @@ For contributing please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## How to build
 
+## Development
+
 > [!NOTE]
-> We use Bun instead of Node. If you prefer using Node, please avoid committing the package-lock.json file.
+> We use Bun instead of Node. If you prefer using Node we don't guarantee that building will work, but just replace `bun` with `npm run` in the commands.
 
 1. Run `bun i` if it is the first time building
-2. Run `bun package:chrome` to generate a zip in the `build` folder for chrome (Use `bun package:firefox` for firefox)
-3. Done
+2. Run `bun dev` to start the development server
+3. Open [https://learnit.itu.dk/my/](https://learnit.itu.dk/my/) and start making cool stuff 🪄
+
+## Production
+
+1. Use `bun build` to build the extension and make a local build in the `build/` folder
+2. Use `bun package:chrome` to generate a zip in the `build/` folder for chrome
+3. Use `bun package:firefox` for a Firefox zip package
+4. Done time to distribute 🎉
 
 ## Support
 

@@ -17,7 +17,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [Fork the Repository](#fork-the-repository)
 - [Setting Up the Development Environment](#setting-up-the-development-environment)
 - [Making Changes](#making-changes)
-- [Styleguides](#styleguides)
+- [Style guides](#style-guides)
 
 ## I Have a Question
 
@@ -110,9 +110,9 @@ To contribute to LearnIT++ Extension, fork the [GitHub repository](https://githu
 
 1. Clone your forked repository:
 
- ```bash
- git clone https://github.com/YourUsername/learnit-plus-plus.git
- ```
+```bash
+git clone https://github.com/YourUsername/learnit-plus-plus.git
+```
 
 2. Change into the project directory:
 
@@ -123,13 +123,13 @@ cd learnit-plus-plus
 3. Install dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
 4. Run the development server:
 
 ```bash
-npm run dev
+bun dev
 ```
 
 5. This command will enable auto-reloading for the extension.
@@ -139,7 +139,7 @@ npm run dev
 Create a new branch for your changes:
 
 ```bash
-git checkout -b feature-branch
+git checkout -b <feature-branch>
 ```
 
 Make your changes and test them locally.
@@ -164,20 +164,22 @@ To build the extension for deployment, follow these steps:
 Run the package command:
 
 ```bash
-npm run package
+bun package
 ```
 
-For Firefox, use:
+It builds for both Chrome and Firefox. If you only want to build for either Chrome or Firefox, you can use the following commands:
 
 ```bash
-npm run package:firefox
+bun package:chrome
+
+bun package:firefox
 ```
 
-This will generate a zip file in the build folder.
+This will generate a zip file in the `build/` folder.
 
-## Styleguides
+## Style guides
 
-We use prettier to ensure the styleguide
+We use prettier to ensure the style guide
 
 <!-- omit in toc -->
 ## Attribution
