@@ -312,3 +312,23 @@ html .secondary-navigation {
   --fc-today-bg-color: rgba(255, 220, 40, 0.15);
   --fc-now-indicator-color: red;
 }
+
+/* Questionnaire */
+html .qn-answer input[type="radio"] {
+  margin: unset;
+  vertical-align: middle;
+}
+
+html #page-mod-questionnaire-complete td.raterow:hover,
+html #page-mod-questionnaire-preview td.raterow:hover {
+  /* border: -1px solid var(--link-focus-color); */
+  border: unset;
+  outline: 1px solid var(--button-noticed-bg-color);
+}
+
+html div.buttons, html input[type="submit"] {
+  background-color: var(--page-bg-color);
+  color: var(--button-noticed-bg-color);
+  border: unset;
+  padding-left: 1rem;
+}
