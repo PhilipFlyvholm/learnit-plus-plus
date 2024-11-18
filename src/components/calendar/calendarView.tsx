@@ -165,7 +165,19 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
                 }
                 return source
               }),
-              settings.showStudentCouncil && studentCouncilEvents
+              settings.showStudentCouncil && studentCouncilEvents,
+              settings.showScrollbar && {
+                format: "json",
+                events: [
+                  {
+                    title: "Scrollbar",
+                    start: '2024-11-17T12:30:00',
+                    end: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                  }
+                ],
+                color: "#fff319cc",
+              }
             ]}
             eventContent={renderEventContent}
             firstDay={1} // Monday

@@ -37,9 +37,9 @@ const Formatters = {
 }
 export const formatEvent = (event: EventImpl): string[] => {
   const source = event.source
-  if (source.url.includes("timeedit")) {
+  if (source.url && source.url.includes("timeedit")) {
     return Formatters.timeedit(event)
-  } else {
-    return [event.title]
   }
+
+  return [event.title]
 }

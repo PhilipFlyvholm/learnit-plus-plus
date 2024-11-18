@@ -164,6 +164,13 @@ const CalendarSettingsView = () => {
                   handleBooleanSetting("showStudentCouncil", e.target.checked)
                 }
               />
+              <CheckboxInput
+                label="Show scrollbar events"
+                checked={settings.showScrollbar}
+                onChange={(e) =>
+                  handleBooleanSetting("showScrollbar", e.target.checked)
+                }
+              />
               <p className="mt-2 mb-0">Calendar initial view</p>
               <div style={{ display: "flex", gap: ".5rem" }}>
                 <RadioInput

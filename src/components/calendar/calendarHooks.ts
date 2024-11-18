@@ -17,6 +17,7 @@ export type EventSource = {
 export type Settings = {
   icalSources: EventSource[]
   showStudentCouncil: boolean
+  showScrollbar: boolean
   showWeekends: boolean
   initialview: "dayGridMonth" | "timeGridWeek" | "timeGridDay",
   fromLocalStorage: boolean,
@@ -27,6 +28,7 @@ export type Settings = {
 const defaultCalendarSettings: Settings = {
   icalSources: [],
   showStudentCouncil: true,
+  showScrollbar: true,
   showWeekends: false,
   initialview: "timeGridWeek",
   fromLocalStorage: false,
