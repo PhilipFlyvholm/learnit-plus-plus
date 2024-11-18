@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react"
 
 import { useCalendarSettings } from "./calendarHooks"
 import { formatEvent } from "./EventFormatter"
+import { getScrollbarEvents } from "~scrollbark/partyLoader"
 
 const studentCouncilEvents = {
   url: "https://studentcouncil.dk/subscribe",
@@ -167,16 +168,11 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
               }),
               settings.showStudentCouncil && studentCouncilEvents,
               settings.showScrollbar && {
-                format: "json",
-                events: [
-                  {
-                    title: "Scrollbar",
-                    start: '2024-11-17T12:30:00',
-                    end: new Date(Date.now() + 1000 * 60 * 60 * 24),
-                    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                  }
-                ],
+                events: async function(info, successCallback, failureCallback) {
+                  successCallback(await getScrollbarEvents())
+                },
                 color: "#fff319cc",
+                textColor: getConstrastColor("#fff319cc"),
               }
             ]}
             eventContent={renderEventContent}
