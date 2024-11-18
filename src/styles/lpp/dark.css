@@ -46,7 +46,7 @@ html.dark {
   --link-focus-color: #1954ff;
 }
 
-html.dark .fc{
+html.dark .fc {
   --fc-border-color: #3f3f3f;
   --fc-non-business-color: hsla(0, 0%, 18%, 0.3);
 }
@@ -159,7 +159,8 @@ html.dark .secondary-navigation {
   background-color: inherit;
 }
 
-html.dark body.path-mod-quiz .gradedattempt, body.path-mod-quiz table tbody tr.gradedattempt>td{
+html.dark body.path-mod-quiz .gradedattempt,
+body.path-mod-quiz table tbody tr.gradedattempt > td {
   border-color: var(--card-border-color) !important;
   background-color: inherit !important;
 }
@@ -272,13 +273,16 @@ html.dark .grade-report-user .user-grade .baggb {
   background: var(--popupmenu-bg-color);
 }
 
-
-html.dark .path-grade-report-user .user-grade .column-itemname .itemicon, html.dark .grade-report-user .user-grade .column-itemname .itemicon {
+html.dark .path-grade-report-user .user-grade .column-itemname .itemicon,
+html.dark .grade-report-user .user-grade .column-itemname .itemicon {
   filter: invert(1);
 }
 
 /* My courses page */
-html.dark .block_myoverview [data-display="list"] .list-group-item:nth-of-type(odd){
+html.dark
+  .block_myoverview
+  [data-display="list"]
+  .list-group-item:nth-of-type(odd) {
   background: var(--card-bg-color-alt);
 }
 
@@ -316,13 +320,33 @@ html.dark .dropdown-item:not(.active) {
 }
 
 /* Grading specific */
-html.dark .que .info{
+html.dark .que .info {
   background-color: var(--card-bg-color);
-    border: 1px solid var(--card-border-color);
+  border: 1px solid var(--card-border-color);
 }
 
 html.dark .que .formulation {
   color: var(--card-title-fg-color);
   background-color: var(--card-bg-color);
   border-color: var(--card-border-color);
+}
+
+/* Questionair specific */
+html.dark .qn-container {
+  color: var(--page-fg-color);
+}
+
+html.dark .qn-question {
+  background-color: var(--card-bg-color);
+  border-color: var(--card-border-color);
+}
+
+html.dark #page-mod-questionnaire-complete td.raterow,
+html.dark #page-mod-questionnaire-preview td.raterow,
+html.dark #page-mod-questionnaire-complete tr.raterow:hover,
+html.dark #page-mod-questionnaire-preview tr.raterow:hover,
+html.dark #page-mod-questionnaire-complete td.notanswered,
+html.dark #page-mod-questionnaire-preview td.notanswered {
+  background-color: var(--card-bg-color);
+  border: inherit;
 }
