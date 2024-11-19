@@ -31,6 +31,8 @@
     "@fullcalendar/timegrid": "^6.1.15",
     "@plasmohq/messaging": "^0.6.2",
     "@plasmohq/storage": "^1.12.0",
+    "caniuse-lite": "^1.0.30001680",
+    "firebase-firestore-lite": "^1.0.3",
     "ical.js": "1.4.0",
     "plasmo": "0.89.2",
     "react": "18.3.1",

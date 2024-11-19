@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react"
 
 import { useCalendarSettings } from "./calendarHooks"
 import { formatEvent } from "./EventFormatter"
+import { getScrollbarEvents } from "~scrollbark/partyLoader"
 
 const studentCouncilEvents = {
   url: "https://studentcouncil.dk/subscribe",
@@ -165,7 +166,14 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
                 }
                 return source
               }),
-              settings.showStudentCouncil && studentCouncilEvents
+              settings.showStudentCouncil && studentCouncilEvents,
+              settings.showScrollbar && {
+                events: async function(info, successCallback, failureCallback) {
+                  successCallback(await getScrollbarEvents())
+                },
+                color: "#fff319cc",
+                textColor: getConstrastColor("#fff319cc"),
+              }
             ]}
             eventContent={renderEventContent}
             firstDay={1} // Monday
