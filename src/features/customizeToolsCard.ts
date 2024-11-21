@@ -4,8 +4,7 @@ type Tools = {
   title: string;
 };
 
-export async function makeNewToolsCard() {
-  const toolsType = document.getElementById('instance-118819-header');
+export async function makeNewToolsCard() {  
   // @ts-ignore
   const toolsCard: HTMLElement = document.getElementsByClassName('tool_container')[0];
   if (!toolsCard) return;
@@ -15,7 +14,8 @@ export async function makeNewToolsCard() {
   toolsCard.style.padding = '0';
   toolsCard.style.gap = '0.7rem';
   
-  if (toolsType.innerText === 'Teacher Tools') { // 'Teacher Tools'
+  const toolsType = document.getElementById('instance-118820-header');
+  if (toolsType && toolsType.innerText === 'Teacher Tools') { // 'Teacher Tools'
     console.log('Replacing teacher tools with study tools');
     toolsType.innerText = 'Study Tools';
     toolsCard.innerHTML = studyTools;
