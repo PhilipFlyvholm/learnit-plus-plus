@@ -5,15 +5,16 @@ import FullCalendar from "@fullcalendar/react"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import { useEffect, useRef, useState } from "react"
 
+import { getScrollbarEvents } from "~scrollbark/partyLoader"
+
 import { useCalendarSettings } from "./calendarHooks"
 import { formatEvent } from "./EventFormatter"
-import { getScrollbarEvents } from "~scrollbark/partyLoader"
 
 const studentCouncilEvents = {
   url: "https://studentcouncil.dk/subscribe",
   format: "ics",
   id: "studentcouncil",
-  color: "#EE4444",
+  color: "#EE4444"
 }
 
 function renderEventContent(eventInfo: EventContentArg) {
@@ -62,7 +63,7 @@ const isDateInputOutsideSlot = (
   return outsideSlot
 }
 
-const CalendarView = ({toggleView}:{toggleView:() => void}) => {
+const CalendarView = ({ toggleView }: { toggleView: () => void }) => {
   const [settings, _setSettings, { isLoading: isLoadingSettings }] =
     useCalendarSettings()
   const calendarRef = useRef<FullCalendar>(null)
@@ -84,9 +85,11 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
   return (
     <>
       {settingsLoaded &&
-        (settings.icalSources.length == 0 ? (
+        (settings.icalSources.length == 0 &&
+        !settings.showScrollbar &&
+        !settings.showStudentCouncil ? (
           <div className="calendar-missing-setup text-center">
-            <h3>Your calendar is not yet setup</h3>
+            <h3>No calendars enabled</h3>
             <p>
               Go the settings view to add calendar subscriptions to your
               calendar
@@ -98,7 +101,9 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
                 Guide for setup
               </a>
             </p>
-            <button className="btn btn-outline-secondary my-2" onClick={toggleView}>
+            <button
+              className="btn btn-outline-secondary my-2"
+              onClick={toggleView}>
               Open settings
             </button>
           </div>
@@ -168,11 +173,15 @@ const CalendarView = ({toggleView}:{toggleView:() => void}) => {
               }),
               settings.showStudentCouncil && studentCouncilEvents,
               settings.showScrollbar && {
-                events: async function(info, successCallback, failureCallback) {
+                events: async function (
+                  info,
+                  successCallback,
+                  failureCallback
+                ) {
                   successCallback(await getScrollbarEvents())
                 },
                 color: "#fff319cc",
-                textColor: getConstrastColor("#fff319cc"),
+                textColor: getConstrastColor("#fff319cc")
               }
             ]}
             eventContent={renderEventContent}
