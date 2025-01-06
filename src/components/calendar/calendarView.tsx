@@ -5,7 +5,7 @@ import FullCalendar from "@fullcalendar/react"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import { useEffect, useRef, useState } from "react"
 
-import { getScrollbarEvents } from "~scrollbark/partyLoader"
+import { getScrollbarEvents } from "~scrollbar/partyLoader"
 
 import { useCalendarSettings } from "./calendarHooks"
 import { formatEvent } from "./EventFormatter"
