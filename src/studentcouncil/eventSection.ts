@@ -69,16 +69,9 @@ function getEventDom(event: EventData) {
   const divTextTruncate = document.createElement("div")
   divTextTruncate.className = "w-100"
 
-  const header = document.createElement("a")
-  const url = new URL(
-    event.url.includes("http") ? event.url : "https://" + event.url
-  )
-  header.setAttribute("href", url.href)
-  header.setAttribute("target", "_blank")
-  const headerText = document.createElement("h5")
-  headerText.className = "coursename mr-2"
-  headerText.textContent = event.summary
-  header.appendChild(headerText)
+  const header = document.createElement("h5")
+  header.className = "coursename mr-2"
+  header.textContent = event.summary
 
   const divMuted = document.createElement("div")
   divMuted.className = "text-muted muted d-flex mb-1 justify-content-between"
@@ -95,7 +88,7 @@ function getEventDom(event: EventData) {
   })
   const dateString = `${weekDay}, ${date.getDate()}. ${month}. ${time}`
 
-  p.textContent = `${dateString} | ${daysLeftString(date)}${event.location.trim() && ` | ${event.location}`}`
+  p.textContent = `${dateString} | ${daysLeftString(date)}`
   const expandedText = document.createElement("div")
   expandedText.className = "expandedText hide-content"
   const description = document.createElement("p")

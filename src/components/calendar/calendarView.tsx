@@ -11,7 +11,7 @@ import { useCalendarSettings } from "./calendarHooks"
 import { formatEvent } from "./EventFormatter"
 
 const studentCouncilEvents = {
-  url: "https://studentcouncil.dk/subscribe",
+  url: "https://studentcouncil.dk/subscribe/all.ics",
   format: "ics",
   id: "studentcouncil",
   color: "#EE4444"
