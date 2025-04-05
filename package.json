@@ -24,27 +24,28 @@
     "test": "plasmo test"
   },
   "dependencies": {
-    "@fullcalendar/core": "^6.1.15",
-    "@fullcalendar/daygrid": "^6.1.15",
-    "@fullcalendar/icalendar": "^6.1.15",
-    "@fullcalendar/react": "^6.1.15",
-    "@fullcalendar/timegrid": "^6.1.15",
-    "@plasmohq/messaging": "^0.6.2",
-    "@plasmohq/storage": "^1.13.0",
-    "firebase-firestore-lite": "^1.0.3",
+    "@fullcalendar/core": "^6.1.17",
+    "@fullcalendar/daygrid": "^6.1.17",
+    "@fullcalendar/icalendar": "^6.1.17",
+    "@fullcalendar/react": "^6.1.17",
+    "@fullcalendar/timegrid": "^6.1.17",
+    "@plasmohq/messaging": "^0.7.1",
+    "@plasmohq/storage": "^1.15.0",
+    "caniuse-lite": "^1.0.30001711",
+    "firebase": "^11.6.0",
     "ical.js": "1.4.0",
-    "plasmo": "0.89.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "plasmo": "0.90.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "4.4.0",
-    "@types/chrome": "0.0.283",
-    "@types/node": "22.9.1",
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
-    "prettier": "3.3.3",
-    "typescript": "5.6.3"
+    "@ianvs/prettier-plugin-sort-imports": "4.4.1",
+    "@types/chrome": "0.0.313",
+    "@types/node": "22.14.0",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
+    "prettier": "3.5.3",
+    "typescript": "5.8.3"
   },
   "manifest": {
     "browser_specific_settings": {
@@ -52,20 +53,41 @@
         "id": "$FIREFOX_EXT_ID"
       }
     },
-    "host_permissions": ["https://learnit.itu.dk/*"],
-    "permissions": ["storage", "scripting", "webNavigation"],
+    "host_permissions": [
+      "https://learnit.itu.dk/*"
+    ],
+    "permissions": [
+      "storage",
+      "scripting",
+      "webNavigation"
+    ],
     "web_accessible_resources": [
       {
-        "resources": ["assets/**/*", "~/styles/customLoad.css"],
-        "matches": ["https://learnit.itu.dk/*"]
+        "resources": [
+          "assets/**/*",
+          "~/styles/customLoad.css"
+        ],
+        "matches": [
+          "https://learnit.itu.dk/*"
+        ]
       }
     ],
     "content_scripts": [
       {
-        "matches": ["https://learnit.itu.dk/*"],
-        "css": ["~/src/styles/customLoad.css"],
+        "matches": [
+          "https://learnit.itu.dk/*"
+        ],
+        "css": [
+          "~/src/styles/customLoad.css"
+        ],
         "run_at": "document_start"
       }
     ]
-  }
+  },
+  "trustedDependencies": [
+    "@firebase/util",
+    "@parcel/watcher",
+    "@swc/core",
+    "protobufjs"
+  ]
 }

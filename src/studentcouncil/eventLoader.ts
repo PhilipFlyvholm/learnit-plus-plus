@@ -1,17 +1,15 @@
 import ICAL from "ical.js"
 
-//webcal://studentcouncil.dk/subscribe
+//webcal://studentcouncil.dk/subscribe/all.ics
 export type EventData = {
   summary: string
   dtstart: string
   dtend: string
-  location: string
   description: string
-  url: string
 }
 console.log("Studentcouncil enabled")
 export async function getEvents() {
-  const response = await fetch("https://studentcouncil.dk/subscribe")
+  const response = await fetch("https://studentcouncil.dk/subscribe/all.ics")
   if (!response.ok) {
     return []
   }
@@ -22,12 +20,11 @@ export async function getEvents() {
   cal.getAllSubcomponents("vevent").forEach((event) => {
     const eventData: EventData = {
       summary: event.getFirstPropertyValue("summary"),
-      url: event.getFirstPropertyValue("url"),
       dtstart: event.getFirstPropertyValue("dtstart"),
       dtend: event.getFirstPropertyValue("dtend"),
-      location: event.getFirstPropertyValue("location"),
       description: event.getFirstPropertyValue("description")
     }
+
     //Only push if the event is in the future
     if (new Date(eventData.dtend) < new Date()) return
     events.push(eventData)
