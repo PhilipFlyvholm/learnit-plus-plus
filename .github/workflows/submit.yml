@@ -4,13 +4,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
 
       - uses: oven-sh/setup-bun@v2
 
-      - name: Build and package the extension into a zip artifact 
+      - name: Build and package the extension into a zip artifact
         run: |
           bun install --frozen-lockfile
           bun package:chrome 
@@ -18,7 +18,7 @@ jobs:
         # env:
         #   FIREFOX_EXT_ID: ${{ secrets.FIREFOX_EXT_ID }}
       - name: Browser Platform Publish
-        uses: PlasmoHQ/bpp@v3
+        uses: PlasmoHQ/bpp@v3.8.0
         with:
           keys: ${{ secrets.SUBMIT_KEYS }}
           chrome-file: build/chrome-mv3-prod.zip
