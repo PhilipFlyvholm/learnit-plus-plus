@@ -332,3 +332,15 @@ html div.buttons, html input[type="submit"] {
   border: unset;
   padding-left: 1rem;
 }
+
+/* Messages */
+
+/* 
+Remove message border and tail
+The border was added was added by weird moodle css
+*/
+html .message-app .message .tail,
+html #page-mod-questionnaire-complete div.message:has(.tail) , 
+html #page-mod-questionnaire-preview div.message:has(.tail) {
+  border: none;
+}

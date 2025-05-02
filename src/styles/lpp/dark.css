@@ -52,9 +52,9 @@ html.dark {
   --drawer-block-hover-fg-color: black;
   --drawer-block-dimmed-fg-color: #6a737b;
   --drawer-block-active-fg-color: #fff;
-  --card-blend: normal;
-  --message-bg: #1d2125;
-  --message-fg: #dee2e6;
+  --message-send-bg: var(--lpp-gray-500);
+  --message-received-bg: var(--lpp-gray-blue-750);
+  --message-fg: var(--page-fg-color);
   --link-focus-color: var(--lpp-blue-darker);
 
   --card-blend: normal;
@@ -197,34 +197,42 @@ html.dark .activityinstance > a:focus {
   box-shadow: none;
 }
 
+/* Messages */
+
 html.dark .message-app .message.send,
-html.dark .message-app .message.received {
-  background-color: var(--message-bg);
+html.dark #page-mod-questionnaire-complete .message.send,
+html.dark #page-mod-questionnaire-complete .message.tail.send {
+  background-color: var(--message-send-bg);
+  color: var(--message-fg);
+}
+
+html.dark .message-app .message.received,
+html.dark #page-mod-questionnaire-complete .message.received,
+html.dark #page-mod-questionnaire-complete .message.tail.received {
+  background-color: var(--message-received-bg);
   color: var(--message-fg);
 }
 
 html.dark .message-app .message.send .time,
-html.dark .message-app .message.received .time {
+html.dark .message-app .message.received .time,
+html.dark #page-mod-questionnaire-complete .message .time,
+html.dark #page-mod-questionnaire-complete .message.tail .time {
   color: var(--message-fg);
-}
-
-html.dark .message-app .message.send .tail,
-html.dark .message-app .message.received .tail {
-  border-bottom-color: var(--message-bg);
 }
 
 html.dark .message-app .day {
   color: var(--message-fg);
 }
 
-html.dark .list-group-item-action:hover,
-html.dark .list-group-item-action:focus {
+html.dark .message-app .list-group-item-action:hover,
+html.dark .message-app .list-group-item-action:focus {
   color: var(--message-fg);
-  background-color: var(--message-bg);
+  filter: brightness(0.8);
+  background-color: var(--lpp-gray-700);
 }
 
 html.dark .hsuforum-thread {
-  background-color: var(--message-bg);
+  background-color: var(--message-send-bg);
 }
 
 html.dark .hsuforum-textarea {
