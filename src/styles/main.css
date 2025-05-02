@@ -344,3 +344,24 @@ html #page-mod-questionnaire-complete div.message:has(.tail) ,
 html #page-mod-questionnaire-preview div.message:has(.tail) {
   border: none;
 }
+
+/* Textarea fix resizing and spacing  */
+html textarea {
+  resize: both;
+  min-height: 5rem;
+  min-width: 15rem;
+  padding: 0.5rem;
+}
+
+/* Disabled radio buttons */
+
+html input[type="radio"]:checked,
+html input[type="radio"]:checked:focus { 
+  appearance: none;
+  background-color: var(--button-noticed-bg-color);
+  border: 1px solid var(--button-noticed-bg-color);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px var(--page-bg-color);
+}
