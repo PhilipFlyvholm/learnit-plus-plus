@@ -1,49 +1,63 @@
 html.dark {
+  --lpp-blue: #0198f0;
+  --lpp-blue-darker: #1954ff;
+  --lpp-black: #000000;
+  --lpp-gray-900: #090b0c;
+  --lpp-gray-850: #111111;
+  --lpp-gray-700: #161616;
+  --lpp-gray-600: #1f1f1f;
+  --lpp-gray-500: #222222;
+  --lpp-gray-400: #333333;
+  --lpp-gray-blue-750: #14171a;
+  --lpp-gray-blue-400: #495057;
+  --lpp-gray-blue-300: #6a737b;
+
   --backdrop-bg-color: black;
-  --page-border-color: #161616;
-  --page-bg-color: #222222;
+  --page-border-color: var(--lpp-gray-700);
+  --page-bg-color: var(--lpp-gray-500);
   --page-fg-color: #fff;
-  --card-header-bg-color: #1f1f1f;
-  --card-header-bg-color-alt: #000000;
-  --card-bg-color: #1f1f1f;
-  --card-bg-color-alt: #000;
+  --page-fg-color-alt: rgba(255, 255, 255, 0.8);
+  --card-header-bg-color: var(--lpp-gray-600);
+  --card-header-bg-color-alt: black;
+  --card-bg-color: var(--lpp-gray-600);
+  --card-bg-color-alt: black;
   --card-border-color: #333;
-  --card-blend: multiply;
-  --card-sub-bg-color: #427bab0d;
+  --card-sub-bg-color: #427bab0d; /* 0d is alpha */
   --card-sub-border-color: #ddd;
   --button-noticed-bg-color: #0198f0;
   --button-unnoticed-fg-color: #dfe5eb;
-  --button-unnoticed-bg-color: #090b0c;
+  --button-unnoticed-bg-color: var(--lpp-gray-900);
   --button-unnoticed-hover-bg-color: #b8c1ca;
-  --field-bg-color: #090b0c;
+  --field-bg-color: var(--lpp-gray-900);
   --field-bg-color-alt: black;
-  --field-border-color: #090b0c;
-  --field-group-border-color: #090b0c;
+  --field-border-color: var(--lpp-gray-900);
+  --field-group-border-color: var(--lpp-gray-900);
   --pagination-bg-color: var(--card-bg-color);
   --pagination-border-color: var(--card-border-color);
-  --popupmenu-bg-color: #121212;
+  --popupmenu-bg-color: var(--lpp-gray-850);
   --popupmenu-fg-color: #fff;
   --popupmenu-shadow: #14171a;
   --popupmenu-hover-fg-color: #fff;
   --popupmenu-hover-bg-color: #0198f0;
   --popupmenu-active-bg-color: #373f46;
   --popupmenu-active-fg-color: #eee;
-  --page-fg-color-alt: rgba(255, 255, 255, 0.8);
-  --drawer-btn-bg-color: #111111;
+  --drawer-btn-bg-color: var(--lpp-gray-850);
   --drawer-btn-fg-color: #fff;
-  --drawer-menu-bg-color: #161616;
+  --drawer-menu-bg-color: var(--lpp-gray-700);
   --drawer-menu-card-bg-color: #fff;
-  --drawer-menu-card-bg-color-alt: #232323;
+  --drawer-menu-card-bg-color-alt: var(--lpp-gray-500);
   --drawer-menu-card-fg-color: #495057;
-  --drawer-block-bg-color: #161616;
+  --drawer-block-bg-color: var(--lpp-gray-700);
   --drawer-block-fg-color: #fff;
-  --drawer-block-hover-fg-color: #000;
+  --drawer-block-hover-fg-color: black;
   --drawer-block-dimmed-fg-color: #6a737b;
   --drawer-block-active-fg-color: #fff;
   --card-blend: normal;
   --message-bg: #1d2125;
   --message-fg: #dee2e6;
-  --link-focus-color: #1954ff;
+  --link-focus-color: var(--lpp-blue-darker);
+
+  --card-blend: normal;
 }
 
 html.dark .fc {
@@ -60,7 +74,7 @@ html.dark .block_recentlyaccesseditems a.dashboard-card small {
 }
 
 html.dark .activityiconcontainer {
-  background-color: #161616;
+  background-color: var(--lpp-gray-700);
 }
 
 html.dark #usernavigation #searchform-navbar i {
@@ -85,7 +99,7 @@ html.dark .path-mod-assign td.submissionnotgraded,
 }
 
 html.dark .generaltable {
-  background-color: #161616;
+  background-color: var(--lpp-gray-700);
 }
 
 html.dark .fileuploadsubmission img {
