@@ -333,6 +333,12 @@ html div.buttons, html input[type="submit"] {
   padding-left: 1rem;
 }
 
+html #page-mod-questionnaire-complete .message {
+  background-color: var(--page-bg-color);
+  border-color: var(--button-noticed-bg-color);
+  border-radius: 5px;
+}
+
 /* Messages */
 
 /* 
