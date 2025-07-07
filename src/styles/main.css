@@ -321,7 +321,6 @@ html .qn-answer input[type="radio"] {
 
 html #page-mod-questionnaire-complete td.raterow:hover,
 html #page-mod-questionnaire-preview td.raterow:hover {
-  /* border: -1px solid var(--link-focus-color); */
   border: unset;
   outline: 1px solid var(--button-noticed-bg-color);
 }
@@ -371,3 +370,14 @@ html input[type="radio"]:checked:focus {
   border-radius: 50%;
   box-shadow: inset 0 0 0 2px var(--page-bg-color);
 }
+
+/* Fix description icons */
+html .activityiconcontainer.content img.activityicon.nofilter {
+  filter: unset;
+}
+
+/* Fix target blank icon on resources */
+html .stretched-link::after {
+  position: unset;
+}
+

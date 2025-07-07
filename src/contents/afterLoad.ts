@@ -29,6 +29,7 @@ import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
   fixMessageCtrl();
   injectThemeSelection();
   replaceResourceTags();
+  addTargetBlankToLinks();
   process.env.NODE_ENV === "development" && addDebugButton();
   document.documentElement.classList.add("loaded");
 })();
@@ -125,4 +126,14 @@ function fixMessageCtrl(){
       button?.click();
     }
   });
+}
+
+function addTargetBlankToLinks(){
+  const links = document.querySelectorAll<HTMLAnchorElement>(".description-inner a");
+  links.forEach((link) => {
+    if (link.href && link.href.startsWith("http") && !link.target) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
+  })
 }

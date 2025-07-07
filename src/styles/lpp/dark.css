@@ -388,3 +388,7 @@ html.dark #page-mod-questionnaire-preview tr.raterow:hover {
   background-color: var(--page-bg-color);
 }
 
+/* Course filter icon alpha channel */
+html.dark .block_myoverview div.dropdown ul.dropdown-menu li a.dropdown-item::before {
+  color: rgba(255, 255, 255, 0.4);
+}
