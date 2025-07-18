@@ -129,11 +129,16 @@ function fixMessageCtrl(){
 }
 
 function addTargetBlankToLinks(){
-  const links = document.querySelectorAll<HTMLAnchorElement>(".description-inner a");
-  links.forEach((link) => {
-    if (link.href && link.href.startsWith("http") && !link.target) {
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    }
-  })
+  chrome.storage.local.get(["moreTargetBlank"], (result) => {
+    if (!result.moreTargetBlank || result.moreTargetBlank === "off") return;
+
+    const links = document.querySelectorAll<HTMLAnchorElement>(".description-inner a");
+    links.forEach((link) => {
+      if (link.href && link.href.startsWith("http") && !link.target
+        && (result.moreTargetBlank === "all" || link.href.includes("learnit.itu.dk") === false)) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+    });
+  });
 }

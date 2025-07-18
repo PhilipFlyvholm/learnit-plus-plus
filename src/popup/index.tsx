@@ -10,9 +10,10 @@ function IndexPopup() {
   const [settings, setSettings] = useState({
     theme: defaultTheme,
     darkMode: false,
+    moreTargetBlank: "off"
   });
   useEffect(() => {
-    chrome.storage.local.get(["theme", "darkMode"], (result) => {
+    chrome.storage.local.get(["theme", "darkMode", "moreTargetBlank"], (result) => {
       setSettings({ ...settings, ...result });
     });
   }, []);
@@ -68,6 +69,22 @@ function IndexPopup() {
           </label>
         </div>
       )}
+      <div className="nice-form-group">
+        <label htmlFor="moreTargetBlank">Open links in new tab:</label>
+        <select
+          name="moreTargetBlank"
+          id="moreTargetBlank"
+          value={settings.moreTargetBlank}
+          onChange={(e) => update("moreTargetBlank", e.currentTarget.value)}
+        >
+          <option value="off">Off</option>
+          <option value="external">External links only</option>
+          <option value="all">All links</option>
+        </select>
+      </div>
+      <div className="nice-form-group flex" style={{ justifyContent: "space-between" }}>
+        <button onClick={() => update("reset", true)}>Reset to default</button>
+      </div>
     </div>
   );
 }
