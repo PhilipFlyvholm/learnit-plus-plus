@@ -12,6 +12,7 @@ import { addDebugButton } from "~features/clearLocalStorage";
 import { makeNewToolsCard } from "~features/customizeToolsCard";
 import { replaceResourceTags } from "~features/newWindowATags";
 import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
+import { initializeModularDashboard } from "~/dashboard";
 
 (function () {
   console.log("LearnIT++ enabled");
@@ -23,8 +24,13 @@ import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
   removeChervonIfNoChildren();
   injectAnalog();
   if (isFrontPage()) {
-    addStudentConcileEvents();
-    makeNewToolsCard();
+    // Initialize modular dashboard instead of individual components
+    initializeModularDashboard().catch(error => {
+      console.error("Failed to initialize modular dashboard:", error);
+      // Fallback to original approach if modular dashboard fails
+      addStudentConcileEvents();
+      makeNewToolsCard();
+    });
   }
   fixMessageCtrl();
   injectThemeSelection();
