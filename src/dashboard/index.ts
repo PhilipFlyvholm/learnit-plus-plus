@@ -4,8 +4,10 @@ import {
   createToolsCardModule,
   createCalendarModule
 } from './modules';
+import { DashboardSettingsPanel } from './components/settingsPanel';
 
 let dashboardInstance: ModularDashboard | null = null;
+let settingsPanel: DashboardSettingsPanel | null = null;
 
 const dashboardCss = `
 .modular-dashboard {
@@ -138,6 +140,46 @@ export async function initializeModularDashboard(): Promise<void> {
 
   // Render modules
   await dashboardInstance.renderModules();
+
+  // Add settings button to navigation
+  addDashboardSettingsButton();
+
+  // Register example modules for demonstration (can be removed in production)
+  if (process.env.NODE_ENV === "development") {
+    try {
+      const { registerExampleModules } = await import('./examples/customModules');
+      await registerExampleModules();
+    } catch (error) {
+      console.warn('Failed to load example modules:', error);
+    }
+  }
+}
+
+function addDashboardSettingsButton(): void {
+  const userMenu = document.querySelector("#usernavigation");
+  if (!userMenu) return;
+
+  const settingsButton = document.createElement("div");
+  settingsButton.id = "dashboardSettingsToggle";
+  settingsButton.className = "nav-link";
+  settingsButton.title = "Dashboard Settings";
+  settingsButton.style.cursor = "pointer";
+
+  const settingsIcon = document.createElement("i");
+  settingsIcon.innerHTML = "⚙️";
+  settingsIcon.style.fontSize = "16px";
+
+  settingsButton.appendChild(settingsIcon);
+  settingsButton.appendChild(document.createTextNode(" Dashboard"));
+
+  settingsButton.addEventListener("click", () => {
+    if (!settingsPanel) {
+      settingsPanel = new DashboardSettingsPanel();
+    }
+    settingsPanel.togglePanel();
+  });
+
+  userMenu.appendChild(settingsButton);
 }
 
 export function getDashboardInstance(): ModularDashboard | null {
