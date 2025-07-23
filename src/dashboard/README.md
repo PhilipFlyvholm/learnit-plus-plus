@@ -1,16 +1,18 @@
-# Modular Dashboard System
+# Modular Dashboard System (React-Based)
 
-The LearnIT++ extension now features a modular dashboard system that allows users to customize their dashboard experience with drag-and-drop functionality.
+The LearnIT++ extension now features a **React-based** modular dashboard system that allows users to customize their dashboard experience with drag-and-drop functionality.
 
-## Features
+## 🎯 Key Features
 
+- **React Components**: Built with modern React for better maintainability
 - **Drag and Drop**: Reorder modules by dragging them to new positions
 - **Module Toggle**: Hide/show modules using the dashboard settings panel
 - **Persistent Settings**: User preferences are saved and restored across sessions
-- **Extensible**: Other student organizations can create custom modules
+- **Extensible**: Student organizations can create custom React modules
 - **Responsive**: Hover controls appear when you hover over modules
+- **TypeScript**: Full type safety with React components
 
-## Using the Dashboard
+## 🚀 Using the Dashboard
 
 ### Basic Usage
 
@@ -23,44 +25,70 @@ The LearnIT++ extension now features a modular dashboard system that allows user
 ### Default Modules
 
 - **Student Council Events**: Shows upcoming events from the student council
-- **Study Tools**: Quick links to important ITU resources
+- **Study Tools**: Quick links to important ITU resources  
 - **Calendar**: Integration with TimeEdit calendar (if available)
 
-## For Developers: Creating Custom Modules
+## 👩‍💻 For Developers: Creating Custom React Modules
 
-Student organizations can create custom modules by implementing the `DashboardModule` interface:
+Student organizations can now create custom modules using **React components**:
+
+### React Module Example
 
 ```typescript
-import { addCustomModule } from '~/dashboard';
+import React from 'react';
 
-// Create your module component
-function createMyModule() {
-  const section = document.createElement("section");
-  section.className = "block_my_module block card mb-3";
-  section.setAttribute("role", "complementary");
+// Create your React module component
+export const MyCustomModule: React.FC = () => {
+  return (
+    <section 
+      className="block_my_module block card mb-3"
+      role="complementary"
+    >
+      <div className="card-body p-3">
+        <h5 className="card-title d-inline">My Custom Module</h5>
+        <div className="card-text">
+          <p>Your module content here...</p>
+          <button className="btn btn-primary">Custom Action</button>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-  const div = document.createElement("div");
-  div.className = "card-body p-3";
+// Register your module in dashboardRoot.tsx
+// Add to the moduleMap in DashboardRoot component:
+moduleMap.set('my-custom-module', {
+  id: 'my-custom-module',
+  name: 'My Custom Module',
+  component: <MyCustomModule />,
+  enabled: true,
+  order: 3
+});
+```
 
-  const header = document.createElement("h5");
-  header.className = "card-title d-inline";
-  header.textContent = "My Custom Module";
+### Benefits of React Modules
 
-  const content = document.createElement("div");
-  content.innerHTML = "Your module content here...";
+- **Component Reusability**: Share components across modules
+- **State Management**: Use React hooks for local state
+- **Event Handling**: Clean event handling with React patterns
+- **TypeScript Support**: Full type safety and IntelliSense
+- **Developer Experience**: Hot reloading and better debugging
 
-  div.appendChild(header);
-  div.appendChild(content);
-  section.appendChild(div);
+### Migration from Legacy Modules
 
-  return section;
-}
+If you have existing HTML-based modules, they're still supported but deprecated:
 
-// Register the module
-await addCustomModule(
-  'my-custom-module',      // Unique module ID
-  'My Custom Module',      // Display name
-  createMyModule          // Component factory function
+```typescript
+// ❌ Deprecated: HTML-based modules
+await addCustomModule('my-module', 'My Module', () => {
+  const div = document.createElement('div');
+  // ... HTML creation
+  return div;
+});
+
+// ✅ Recommended: React-based modules
+export const MyModule: React.FC = () => (
+  <div>My module content</div>
 );
 ```
 
@@ -68,23 +96,26 @@ await addCustomModule(
 
 ```typescript
 interface DashboardModule {
-  id: string;                                    // Unique identifier
-  name: string;                                  // Display name
-  component: HTMLElement | (() => HTMLElement); // Component or factory
-  enabled: boolean;                              // Initial visibility state
-  order: number;                                 // Initial position
+  id: string;                                          // Unique identifier
+  name: string;                                        // Display name
+  component: ReactElement | HTMLElement |             // React component or HTML
+    (() => ReactElement | Promise<ReactElement>) |    // Component factory
+    (() => HTMLElement);                               // Legacy HTML factory
+  enabled: boolean;                                    // Initial visibility state
+  order: number;                                       // Initial position
 }
 ```
 
 ### Best Practices
 
-1. **Unique IDs**: Use descriptive, unique module IDs (e.g., `student-union-events`)
-2. **Consistent Styling**: Follow the existing card design pattern
-3. **Error Handling**: Wrap module creation in try-catch blocks
-4. **Performance**: Keep modules lightweight and avoid heavy computations in constructors
-5. **Accessibility**: Include proper ARIA attributes and semantic HTML
+1. **Use React**: Create new modules as React components for better maintainability
+2. **Unique IDs**: Use descriptive, unique module IDs (e.g., `student-union-events`)
+3. **Consistent Styling**: Follow the existing card design pattern
+4. **Error Handling**: Use React error boundaries for robust error handling
+5. **Performance**: Use React.memo() and useMemo() for optimization
+6. **Accessibility**: Include proper ARIA attributes and semantic JSX
 
-## Technical Details
+## 🔧 Technical Details
 
 ### Storage
 
