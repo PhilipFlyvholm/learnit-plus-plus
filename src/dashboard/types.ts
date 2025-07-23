@@ -1,7 +1,9 @@
+import type { ReactElement } from 'react';
+
 export interface DashboardModule {
   id: string;
   name: string;
-  component: HTMLElement | (() => HTMLElement);
+  component: ReactElement | HTMLElement | (() => ReactElement | Promise<ReactElement>) | (() => HTMLElement);
   enabled: boolean;
   order: number;
 }

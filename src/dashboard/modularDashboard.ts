@@ -75,11 +75,36 @@ export class ModularDashboard {
     for (const module of sortedModules) {
       const moduleWrapper = this.createModuleWrapper(module);
       const moduleItem = moduleWrapper.querySelector('.dashboard-module-item')!;
-      const component = typeof module.component === 'function' 
-        ? module.component() 
-        : module.component;
       
-      moduleItem.appendChild(component);
+      if (typeof module.component === 'function') {
+        const component = module.component();
+        if (component instanceof Promise) {
+          // Handle async components
+          component.then((resolvedComponent) => {
+            if (resolvedComponent instanceof HTMLElement) {
+              moduleItem.appendChild(resolvedComponent);
+            } else {
+              // This is a React element, we can't directly append it to DOM
+              console.warn('React elements not supported in legacy dashboard. Use dashboardRoot.tsx instead.');
+            }
+          });
+        } else {
+          if (component instanceof HTMLElement) {
+            moduleItem.appendChild(component);
+          } else {
+            // This is a React element, we can't directly append it to DOM
+            console.warn('React elements not supported in legacy dashboard. Use dashboardRoot.tsx instead.');
+          }
+        }
+      } else {
+        if (module.component instanceof HTMLElement) {
+          moduleItem.appendChild(module.component);
+        } else {
+          // This is a React element, we can't directly append it to DOM
+          console.warn('React elements not supported in legacy dashboard. Use dashboardRoot.tsx instead.');
+        }
+      }
+      
       this.container.appendChild(moduleWrapper);
     }
 

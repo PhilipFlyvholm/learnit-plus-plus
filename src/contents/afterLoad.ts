@@ -14,7 +14,7 @@ import { replaceResourceTags } from "~features/newWindowATags";
 import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
 import { initializeModularDashboard } from "~/dashboard";
 
-(function () {
+(async function () {
   console.log("LearnIT++ enabled");
   autoRedirectLoginPage();
   replaceLogo();
@@ -24,13 +24,17 @@ import { initializeModularDashboard } from "~/dashboard";
   removeChervonIfNoChildren();
   injectAnalog();
   if (isFrontPage()) {
-    // Initialize modular dashboard instead of individual components
-    initializeModularDashboard().catch(error => {
-      console.error("Failed to initialize modular dashboard:", error);
+    // The React modular dashboard is now handled by dashboardRoot.tsx as a Plasmo content script
+    // No need to initialize it here - just provide fallback if needed
+    try {
+      // Just inject the CSS for consistency
+      await initializeModularDashboard();
+    } catch (error) {
+      console.error("Failed to initialize modular dashboard CSS:", error);
       // Fallback to original approach if modular dashboard fails
       addStudentConcileEvents();
       makeNewToolsCard();
-    });
+    }
   }
   fixMessageCtrl();
   injectThemeSelection();
