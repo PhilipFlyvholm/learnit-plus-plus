@@ -29,7 +29,6 @@ export const getRootContainer = () =>
         const rootContainer = document.createElement("div");
         rootContainer.id = "modular-dashboard-root";
         rootContainer.className = "modular-dashboard";
-        // Insert before existing content
         rootContainerParent.insertBefore(rootContainer, rootContainerParent.firstChild);
         resolve(rootContainer);
       }
@@ -40,11 +39,11 @@ const DashboardRoot: React.FC = () => {
   const [modules] = useState(() => {
     const moduleMap = new Map<string, DashboardModule>();
     
-    // Register React modules
+    // Register React modules as function components
     moduleMap.set('student-council-events', {
       id: 'student-council-events',
       name: 'Student Council Events',
-      component: <StudentCouncilEventsModule />,
+      component: StudentCouncilEventsModule,
       enabled: true,
       order: 0
     });
@@ -52,7 +51,7 @@ const DashboardRoot: React.FC = () => {
     moduleMap.set('tools-card', {
       id: 'tools-card',
       name: 'Study Tools',
-      component: <ToolsCardModule />,
+      component: ToolsCardModule,
       enabled: true,
       order: 1
     });
@@ -60,7 +59,7 @@ const DashboardRoot: React.FC = () => {
     moduleMap.set('calendar', {
       id: 'calendar',
       name: 'Calendar',
-      component: <CalendarModule />,
+      component: CalendarModule,
       enabled: true,
       order: 2
     });
@@ -71,29 +70,11 @@ const DashboardRoot: React.FC = () => {
   const [configManager] = useState(() => new DashboardConfigManager());
   const [showSettings, setShowSettings] = useState(false);
 
-  useEffect(() => {
-    // Initialize config manager
-    configManager.loadConfig();
-
-    // Add dashboard settings button to navigation
-    const addSettingsButton = () => {
-      const userNav = document.querySelector('#usernavigation');
-      if (!userNav || document.querySelector('#dashboard-settings-btn')) return;
-      
-      const settingsBtn = document.createElement('a');
-      settingsBtn.id = 'dashboard-settings-btn';
-      settingsBtn.className = 'nav-link';
-      settingsBtn.style.cursor = 'pointer';
-      settingsBtn.textContent = 'Dashboard ⚙️';
-      settingsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        setShowSettings(prev => !prev);
-      });
-      
-      userNav.appendChild(settingsBtn);
-    };
-
-    addSettingsButton();
+  const getEnabledModules = useCallback(() => {
+    const config = configManager.getConfig();
+    return Object.keys(config.modules).filter(
+      moduleId => config.modules[moduleId]?.enabled !== false
+    );
   }, [configManager]);
 
   const handleToggleModule = useCallback(async (moduleId: string) => {
@@ -102,28 +83,21 @@ const DashboardRoot: React.FC = () => {
     await configManager.updateModuleEnabled(moduleId, !currentEnabled);
   }, [configManager]);
 
-  const getEnabledModules = useCallback(() => {
-    const config = configManager.getConfig();
-    return Object.entries(config.modules)
-      .filter(([_, moduleConfig]) => moduleConfig.enabled)
-      .map(([id, _]) => id);
-  }, [configManager]);
-
   return (
-    <>
+    <div>
       <ModularDashboard modules={modules} />
-      <DashboardSettingsPanel
-        modules={modules}
-        isVisible={showSettings}
-        onClose={() => setShowSettings(false)}
-        onToggleModule={handleToggleModule}
-        getEnabledModules={getEnabledModules}
-      />
-    </>
+      {showSettings && (
+        <DashboardSettingsPanel
+          modules={modules}
+          isVisible={showSettings}
+          onClose={() => setShowSettings(false)}
+          onToggleModule={handleToggleModule}
+          getEnabledModules={getEnabledModules}
+        />
+      )}
+    </div>
   );
 };
-
-export const getShadowHostId = () => "plasmo-inline-modular-dashboard";
 
 export const render: PlasmoRender<PlasmoCSUIJSXContainer> = async ({
   createRootContainer

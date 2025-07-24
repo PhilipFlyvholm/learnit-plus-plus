@@ -1,9 +1,9 @@
-import type { ReactElement } from 'react';
+import type { FC } from 'react';
 
 export interface DashboardModule {
   id: string;
   name: string;
-  component: ReactElement | HTMLElement | (() => ReactElement | Promise<ReactElement>) | (() => HTMLElement);
+  component: FC;
   enabled: boolean;
   order: number;
 }
