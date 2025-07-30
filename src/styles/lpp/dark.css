@@ -124,7 +124,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background: #292929 !important;
 }
 
-/* Calender hover fix */
+/* Calendar hover fix */
 html.dark .maincalendar .calendarmonth .clickable:hover {
   background-color: #292929;
 }

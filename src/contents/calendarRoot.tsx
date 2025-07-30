@@ -14,7 +14,7 @@ export const config: PlasmoCSConfig = {
   matches: ["https://learnit.itu.dk/my*"]
 }
 
-// getRootContainer looks for the #block-region-content element and when found creates a new div element which we will use as "root"
+// getRootContainer looks for the #block-region-content element and when found creates a new section element which we will use as "root"
 export const getRootContainer = () =>
   new Promise((resolve) => {
     const checkInterval = setInterval(() => {
@@ -33,7 +33,7 @@ export const getRootContainer = () =>
     }, 137)
   })
 
-const CalenderRoot = () => {
+const CalendarRoot = () => {
   const [currentView, setCurrentView] = useState<"calendar" | "settings">(
     "calendar"
   )
@@ -53,13 +53,13 @@ const CalenderRoot = () => {
 }
 
 // Use this to optimize unmount lookups
-export const getShadowHostId = () => "plasmo-inline-calender"
+export const getShadowHostId = () => "plasmo-inline-calendar"
 
 export const render: PlasmoRender<PlasmoCSUIJSXContainer> = async ({
   createRootContainer
 }) => {
   const rootContainer = await createRootContainer()
   const root = createRoot(rootContainer)
-  root.render(<CalenderRoot />)
+  root.render(<CalendarRoot />)
 }
-export default CalenderRoot
+export default CalendarRoot
