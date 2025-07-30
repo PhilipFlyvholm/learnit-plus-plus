@@ -42,11 +42,13 @@ const CalendarRoot = () => {
   }
   return (
     <>
-      <style>{styleText}</style>
-      <div className="card-body p-3 calendarRoot">
-        <CalendarHeader toggleView={toggleView} />
-        {currentView === "calendar" && <CalendarView toggleView={toggleView} />}
-        {currentView === "settings" && <CalendarSettingsView />}
+      <div className="card-body p-3">
+        <style>{styleText}</style>
+        <div className="calendarRoot">
+          <CalendarHeader toggleView={toggleView} />
+          {currentView === "calendar" && <CalendarView toggleView={toggleView} />}
+          {currentView === "settings" && <CalendarSettingsView />}
+        </div>
       </div>
     </>
   )
