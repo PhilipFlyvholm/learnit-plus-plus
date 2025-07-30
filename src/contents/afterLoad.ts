@@ -12,6 +12,7 @@ import { addDebugButton } from "~features/clearLocalStorage";
 import { makeNewToolsCard } from "~features/customizeToolsCard";
 import { replaceResourceTags } from "~features/newWindowATags";
 import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
+import { initializeDashboardSwappy } from "~components/dashboard/dragAndDrop";
 
 (function () {
   console.log("LearnIT++ enabled");
@@ -25,6 +26,11 @@ import { autoRedirectLoginPage } from "~features/autoRedirectLoginPage";
   if (isFrontPage()) {
     addStudentConcileEvents();
     makeNewToolsCard();
+
+    // Initialize Swappy after dashboard elements are loaded
+    setTimeout(() => {
+      initializeDashboardSwappy()
+    }, 500) // Small delay to ensure all elements are rendered
   }
   fixMessageCtrl();
   injectThemeSelection();
