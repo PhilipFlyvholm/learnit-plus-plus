@@ -30,7 +30,7 @@ import { initializeDashboardSwappy } from "~components/dashboard/dragAndDrop";
     // Initialize Swappy after dashboard elements are loaded
     setTimeout(() => {
       initializeDashboardSwappy()
-    }, 500) // Small delay to ensure all elements are rendered
+    }, 1000) // Small delay to ensure all elements are rendered | TODO: Find a better way to ensure elements are loaded
   }
   fixMessageCtrl();
   injectThemeSelection();

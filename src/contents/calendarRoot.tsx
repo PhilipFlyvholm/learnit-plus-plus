@@ -14,22 +14,36 @@ export const config: PlasmoCSConfig = {
   matches: ["https://learnit.itu.dk/my*"]
 }
 
-// getRootContainer looks for the #block-region-content element and when found creates a new section element which we will use as "root"
+// getRootContainer finds/creates the exact element that will be dragged by Swapy
+// so the React root is mounted on the draggable item itself.
 export const getRootContainer = () =>
-  new Promise((resolve) => {
+  new Promise<HTMLElement>((resolve) => {
     const checkInterval = setInterval(() => {
-      const rootContainerParent = document.querySelector(
-        `#block-region-content`
-      )
-      if (rootContainerParent) {
-        clearInterval(checkInterval)
-        const rootContainer = document.createElement("section")
-        rootContainer.className = "block_timeedit block card mb-3"
-        rootContainer.setAttribute("role", "complementary")
-        rootContainer.setAttribute("data-block", "cohortspecifichtml")
-        rootContainerParent.appendChild(rootContainer)
-        resolve(rootContainer)
+      const region = document.querySelector(`#block-region-content`)
+      if (!region) return
+
+      // Find or create our block section
+      let section = region.querySelector<HTMLElement>("section.block_timeedit")
+      if (!section) {
+        section = document.createElement("section")
+        section.className = "block_timeedit block card mb-3"
+        section.setAttribute("role", "complementary")
+        section.setAttribute("data-block", "cohortspecifichtml")
+        region.appendChild(section)
       }
+
+      // Ensure the draggable item exists and is uniquely identifiable
+      let item = section.querySelector<HTMLElement>(".card-body.p-3")
+      if (!item) {
+        item = document.createElement("div")
+        item.className = "card-body p-3"
+        section.appendChild(item)
+      }
+      // Mark as Swapy item with the stable id used in dragAndDrop.ts
+      item.setAttribute("data-swapy-item", "block_timeedit")
+
+      clearInterval(checkInterval)
+      resolve(item)
     }, 137)
   })
 
@@ -42,13 +56,12 @@ const CalendarRoot = () => {
   }
   return (
     <>
-      <div className="card-body p-3">
-        <style>{styleText}</style>
-        <div className="calendarRoot">
-          <CalendarHeader toggleView={toggleView} />
-          {currentView === "calendar" && <CalendarView toggleView={toggleView} />}
-          {currentView === "settings" && <CalendarSettingsView />}
-        </div>
+      {/* React root is on the draggable item, no extra wrapper needed */}
+      <style>{styleText}</style>
+      <div className="calendarRoot">
+        <CalendarHeader toggleView={toggleView} />
+        {currentView === "calendar" && <CalendarView toggleView={toggleView} />}
+        {currentView === "settings" && <CalendarSettingsView />}
       </div>
     </>
   )
