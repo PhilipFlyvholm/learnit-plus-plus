@@ -1,9 +1,12 @@
-import "./index.css";
-import "./nice-forms/nice-forms.css";
-import "./nice-forms/nice-forms-theme.css";
-import { themes, defaultTheme, DarkModeState } from "~/styles/main";
-import { useState, useEffect } from "react";
+import "./index.css"
+import "./nice-forms/nice-forms.css"
+import "./nice-forms/nice-forms-theme.css"
+
+import { useEffect, useState } from "react"
+
 import { sendToBackground } from "@plasmohq/messaging"
+
+import { DarkModeState, defaultTheme, themes } from "~/styles/main"
 
 function IndexPopup() {
   //@ts-ignore
@@ -12,39 +15,45 @@ function IndexPopup() {
     darkMode: false,
     moreTargetBlank: "off",
     customCSS: ""
-  });
-  useEffect(() => {
-    chrome.storage.local.get(["theme", "darkMode", "moreTargetBlank", "customCSS"], (result) => {
-      setSettings({ ...settings, ...result });
-    });
-  }, []);
+  })
 
+  const [openAdvanced, setOpenAdvanced] = useState(false)
+  const [openDev, setOpenDev] = useState(false)
+
+  useEffect(() => {
+    chrome.storage.local.get(
+      ["theme", "darkMode", "moreTargetBlank", "customCSS"],
+      (result) => {
+        setSettings({ ...settings, ...result })
+      }
+    )
+  }, [])
 
   function update(key: string, value: string | boolean) {
     sendToBackground({
       name: "awaiken",
       body: {
         input: "Hello from content script"
-      },
+      }
     }).then((response) => {
       console.log(response)
     })
     chrome.storage.local.set({ [key]: value }, () => {
-      setSettings({ ...settings, [key]: value });
-    });
+      setSettings({ ...settings, [key]: value })
+    })
   }
 
   function restoreDefault(key: string, backupKeyPostfix: string = "-backup") {
-    chrome.storage.local.get([key+backupKeyPostfix], (result) => {
-      const defaultValue = result[key+backupKeyPostfix];
+    chrome.storage.local.get([key + backupKeyPostfix], (result) => {
+      const defaultValue = result[key + backupKeyPostfix]
       if (defaultValue !== undefined) {
         chrome.storage.local.set({ [key]: defaultValue }, () => {
-          setSettings({ ...settings, [key]: defaultValue });
-        });
+          setSettings({ ...settings, [key]: defaultValue })
+        })
       } else {
-        console.warn(`No backup found for key: ${key}`);
+        console.warn(`No backup found for key: ${key}`)
       }
-    });
+    })
   }
 
   return (
@@ -59,8 +68,7 @@ function IndexPopup() {
           name="themes"
           id="themes"
           value={settings.theme}
-          onChange={(e) => update("theme", e.currentTarget.value)}
-        >
+          onChange={(e) => update("theme", e.currentTarget.value)}>
           {Object.keys(themes).map((theme) => (
             <option key={theme} value={theme}>
               {theme}
@@ -89,43 +97,142 @@ function IndexPopup() {
           name="moreTargetBlank"
           id="moreTargetBlank"
           value={settings.moreTargetBlank}
-          onChange={(e) => update("moreTargetBlank", e.currentTarget.value)}
-        >
+          onChange={(e) => update("moreTargetBlank", e.currentTarget.value)}>
           <option value="off">Off</option>
           <option value="external">External links only</option>
           <option value="all">All links</option>
         </select>
       </div>
-      <div>
+
+      {/* Toggle button for Advanced Settings */}
+      <div style={{ marginTop: 12 }}>
+        <button
+          onClick={() => setOpenAdvanced((v) => !v)}
+          aria-expanded={openAdvanced}
+          aria-controls="advanced-settings">
+          <span>
+            {openAdvanced ? "Hide advanced settings" : "Show advanced settings"}
+          </span>
+          {/* open closed arrow */}
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            aria-hidden
+            focusable="false"
+            style={{
+              transform: openAdvanced ? "rotate(90deg)" : "rotate(0deg)",
+              transition: "transform 0.18s ease",
+              marginLeft: 8,
+              display: "inline-block"
+            }}>
+            <path
+              d="M8 5l8 7-8 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        id="advanced-settings"
+        style={{ display: openAdvanced ? "block" : "none", marginTop: 12 }}>
         <h3>Advanced Settings</h3>
         <div className="nice-form-group">
           <label htmlFor="customCSS">Custom CSS:</label>
           <textarea
             id="customCSS"
+            
             value={settings.customCSS}
             onChange={(e) => update("customCSS", e.currentTarget.value)}
           />
         </div>
-        <div className="nice-form-group flex" style={{ justifyContent: "space-between" }}>
-          <button onClick={() => restoreDefault("dashboardLayout") /* this is enough to reset, but we need to use the update sate here, and then have a listener in the content code so the layout will change */}>Reset dashboard layout</button> 
+        <div
+          className="nice-form-group flex"
+          style={{ justifyContent: "space-between" }}>
+          <button
+            onClick={
+              () =>
+                restoreDefault(
+                  "dashboardLayout"
+                ) /* this is enough to reset, but we need to use the update sate here, and then have a listener in the content code so the layout will change */
+            }>
+            Reset dashboard layout
+          </button>
         </div>
       </div>
+
       {process.env.NODE_ENV === "development" && (
         <div style={{ marginTop: "20px", color: "red" }}>
-          <h4>Development functions:</h4>
-          <div className="nice-form-group flex" style={{ justifyContent: "space-between" }}>
-            <label htmlFor="clearStorage">Clear background script storage:</label>
-            <button onDoubleClick={() => chrome.storage.local.clear(() => alert("Storage cleared"))}>
-              Double click to clear
+          {/* Toggle button for Development functions */}
+          <div style={{ marginBottom: 8 }}>
+            <button
+              onClick={() => setOpenDev((v) => !v)}
+              aria-expanded={openDev}
+              aria-controls="dev-settings">
+              <span>
+                {openDev
+                  ? "Hide development functions"
+                  : "Show development functions"}
+              </span>
+              {/* open closed arrow */}
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                aria-hidden
+                focusable="false"
+                style={{
+                  transform: openDev ? "rotate(90deg)" : "rotate(0deg)",
+                  transition: "transform 0.18s ease",
+                  marginLeft: 8,
+                  display: "inline-block"
+                }}>
+                <path
+                  d="M8 5l8 7-8 7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
+          </div>
+
+          <div
+            id="dev-settings"
+            style={{ display: openDev ? "block" : "none" }}>
+            <h4>Development functions:</h4>
+            <div
+              className="nice-form-group flex"
+              style={{ justifyContent: "space-between" }}>
+              <label htmlFor="clearStorage">
+                Clear background script storage:
+              </label>
+              <button
+                onDoubleClick={() =>
+                  chrome.storage.local.clear(() => alert("Storage cleared"))
+                }>
+                Double click to clear
+              </button>
+            </div>
           </div>
         </div>
       )}
+
       <div style={{ marginTop: "20px", fontSize: "12px", color: "#666" }}>
-        Made with ❤️ by <a href="localhost.itu.dk" target="_blank" rel="noreferrer">localhost and TA Flyvholm</a>
+        Made with ❤️ by{" "}
+        <a href="localhost.itu.dk" target="_blank" rel="noreferrer">
+          localhost and TA Flyvholm
+        </a>
       </div>
     </div>
-  );
+  )
 }
 
 export default IndexPopup
