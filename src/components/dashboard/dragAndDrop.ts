@@ -49,6 +49,10 @@ export function initializeDashboardSwappy() {
   // Load saved layout and apply before enabling interactions
   loadLayout().then((saved) => {
     const effectiveMap = saved ?? buildDefaultMap(blockRegion)
+    if (!saved) {
+      // save something we can backup to
+      chrome.storage.local.set({ dashboardLayoutBackup: effectiveMap })
+    }
     applyLayoutFromMap(blockRegion, effectiveMap)
 
     // Initialize Swapy
@@ -56,7 +60,7 @@ export function initializeDashboardSwappy() {
       animation: "dynamic",
       swapMode: "drop",
       autoScrollOnDrag: true,
-      dragOnHold: true
+      dragOnHold: true,
       // If supported, prefer full control:
       // manualSwap: true
     })

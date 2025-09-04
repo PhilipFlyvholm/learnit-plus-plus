@@ -11,7 +11,8 @@ import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://learnit.itu.dk/my*"]
+  matches: ["https://learnit.itu.dk/my*"],
+  run_at: "document_end",
 }
 
 // getRootContainer finds/creates the exact element that will be dragged by Swapy

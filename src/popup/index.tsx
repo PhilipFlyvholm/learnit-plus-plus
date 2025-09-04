@@ -10,10 +10,11 @@ function IndexPopup() {
   const [settings, setSettings] = useState({
     theme: defaultTheme,
     darkMode: false,
-    moreTargetBlank: "off"
+    moreTargetBlank: "off",
+    customCSS: ""
   });
   useEffect(() => {
-    chrome.storage.local.get(["theme", "darkMode", "moreTargetBlank"], (result) => {
+    chrome.storage.local.get(["theme", "darkMode", "moreTargetBlank", "customCSS"], (result) => {
       setSettings({ ...settings, ...result });
     });
   }, []);
@@ -30,6 +31,19 @@ function IndexPopup() {
     })
     chrome.storage.local.set({ [key]: value }, () => {
       setSettings({ ...settings, [key]: value });
+    });
+  }
+
+  function restoreDefault(key: string, backupKeyPostfix: string = "-backup") {
+    chrome.storage.local.get([key+backupKeyPostfix], (result) => {
+      const defaultValue = result[key+backupKeyPostfix];
+      if (defaultValue !== undefined) {
+        chrome.storage.local.set({ [key]: defaultValue }, () => {
+          setSettings({ ...settings, [key]: defaultValue });
+        });
+      } else {
+        console.warn(`No backup found for key: ${key}`);
+      }
     });
   }
 
@@ -82,8 +96,33 @@ function IndexPopup() {
           <option value="all">All links</option>
         </select>
       </div>
-      <div className="nice-form-group flex" style={{ justifyContent: "space-between" }}>
-        <button onClick={() => update("reset", true)}>Reset to default</button>
+      <div>
+        <h3>Advanced Settings</h3>
+        <div className="nice-form-group">
+          <label htmlFor="customCSS">Custom CSS:</label>
+          <textarea
+            id="customCSS"
+            value={settings.customCSS}
+            onChange={(e) => update("customCSS", e.currentTarget.value)}
+          />
+        </div>
+        <div className="nice-form-group flex" style={{ justifyContent: "space-between" }}>
+          <button onClick={() => restoreDefault("dashboardLayout") /* this is enough to reset, but we need to use the update sate here, and then have a listener in the content code so the layout will change */}>Reset dashboard layout</button> 
+        </div>
+      </div>
+      {process.env.NODE_ENV === "development" && (
+        <div style={{ marginTop: "20px", color: "red" }}>
+          <h4>Development functions:</h4>
+          <div className="nice-form-group flex" style={{ justifyContent: "space-between" }}>
+            <label htmlFor="clearStorage">Clear background script storage:</label>
+            <button onDoubleClick={() => chrome.storage.local.clear(() => alert("Storage cleared"))}>
+              Double click to clear
+            </button>
+          </div>
+        </div>
+      )}
+      <div style={{ marginTop: "20px", fontSize: "12px", color: "#666" }}>
+        Made with ❤️ by <a href="localhost.itu.dk" target="_blank" rel="noreferrer">localhost and TA Flyvholm</a>
       </div>
     </div>
   );
