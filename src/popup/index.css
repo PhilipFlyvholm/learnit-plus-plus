@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -14,7 +18,71 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
+/* Popup-specific CSS variables (light defaults). Dark theme pages override these
+   when the extension needs to show dark UI; keeping them here keeps popup styling
+   self-contained. */
+:root {
+  --lpp-blue: #0198f0;
+  --lpp-blue-darker: #1954ff;
+  --lpp-black: #000000;
+  --lpp-gray-900: #090b0c;
+  --lpp-gray-850: #111111;
+  --lpp-gray-700: #161616;
+  --lpp-gray-600: #1f1f1f;
+  --lpp-gray-500: #222222;
+  --lpp-gray-400: #333333;
+  --lpp-gray-blue-750: #14171a;
+  --lpp-gray-blue-400: #495057;
+  --lpp-gray-blue-300: #6a737b;
+
+  --backdrop-bg-color: black;
+  --page-border-color: var(--lpp-gray-700);
+  --page-bg-color: var(--lpp-gray-500);
+  --page-fg-color: #fff;
+  --page-fg-color-alt: rgba(255, 255, 255, 0.8);
+  --card-header-bg-color: var(--lpp-gray-600);
+  --card-header-bg-color-alt: black;
+  --card-bg-color: var(--lpp-gray-600);
+  --card-bg-color-alt: black;
+  --card-border-color: #333;
+  --card-sub-bg-color: #427bab0d;
+  --card-sub-border-color: #ddd;
+  --button-noticed-bg-color: #0198f0;
+  --button-unnoticed-fg-color: #dfe5eb;
+  --button-unnoticed-bg-color: var(--lpp-gray-900);
+  --button-unnoticed-hover-bg-color: #b8c1ca;
+  --switch-orb-bg-color: var(--page-fg-color);
+  --field-bg-color: var(--lpp-gray-900);
+  --field-bg-color-alt: black;
+  --field-border-color: var(--lpp-gray-900);
+  --field-group-border-color: var(--lpp-gray-900);
+  --pagination-bg-color: var(--card-bg-color);
+  --pagination-border-color: var(--card-border-color);
+  --popupmenu-bg-color: var(--lpp-gray-850);
+  --popupmenu-fg-color: #fff;
+  --popupmenu-shadow: #14171a;
+  --popupmenu-hover-fg-color: #fff;
+  --popupmenu-hover-bg-color: #0198f0;
+  --popupmenu-active-bg-color: #373f46;
+  --popupmenu-active-fg-color: #eee;
+  --link-focus-color: var(--lpp-blue-darker);
+  --card-blend: normal;
+}
+
+/* Ensure the popup switch and orb are visible and consistent in the popup only. */
+.popup-root button[role="switch"] {
+  border-color: var(--page-border-color, var(--card-border-color)) !important;
+  background-color: var(--field-bg-color) !important;
+}
+.popup-root button[role="switch"] span {
+  background: var(--switch-orb-bg-color, #fff) !important;
+}
+.popup-root button[role="switch"][aria-checked="true"] {
+  background-color: var(--button-noticed-bg-color) !important;
+  border-color: transparent !important;
+}
+
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
@@ -61,4 +129,4 @@ button:focus-visible {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-}
+} */

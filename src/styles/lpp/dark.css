@@ -245,7 +245,8 @@ html.dark .login-container {
 }
 
 html.dark body.pagelayout-login.loginbackgroundimage1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(https://learnit.itu.dk/pluginfile.php/1/theme_boost_union/loginbackgroundimage/0/itu-bygning-blue-compressed%281%29.jpg);
 }
 
@@ -389,6 +390,11 @@ html.dark #page-mod-questionnaire-preview tr.raterow:hover {
 }
 
 /* Course filter icon alpha channel */
-html.dark .block_myoverview div.dropdown ul.dropdown-menu li a.dropdown-item::before {
+html.dark
+  .block_myoverview
+  div.dropdown
+  ul.dropdown-menu
+  li
+  a.dropdown-item::before {
   color: rgba(255, 255, 255, 0.4);
 }

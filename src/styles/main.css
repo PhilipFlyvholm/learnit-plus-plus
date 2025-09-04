@@ -283,7 +283,7 @@ html .secondary-navigation {
   Full-calendar default settings
   Use :root .fc selector to increase specificity over style tag included by fullcalendar
 */
-:root .fc{
+:root .fc {
   --fc-small-font-size: 0.85em;
   --fc-page-bg-color: var(--page-bg-color);
   --fc-neutral-bg-color: hsla(0, 0%, 82%, 0.3);
@@ -294,7 +294,9 @@ html .secondary-navigation {
   --fc-button-border-color: var(--button-unnoticed-bg-color);
   --fc-button-hover-bg-color: var(--button-unnoticed-hover-bg-color);
   --fc-button-hover-border-color: var(--button-unnoticed-hover-bg-color);
-  --fc-button-active-bg-color: rgb(from var(--button-unnoticed-bg-color) h s calc(l + 5%));
+  --fc-button-active-bg-color: rgb(
+    from var(--button-unnoticed-bg-color) h s calc(l + 5%)
+  );
   --fc-button-active-border-color: black; /* rgb(from var(--button-unnoticed-bg-color) h s calc(l + 5%));*/
   --fc-event-bg-color: #3788d8;
   --fc-event-border-color: #3788d8;
@@ -325,7 +327,8 @@ html #page-mod-questionnaire-preview td.raterow:hover {
   outline: 1px solid var(--button-noticed-bg-color);
 }
 
-html div.buttons, html input[type="submit"] {
+html div.buttons,
+html input[type="submit"] {
   background-color: var(--page-bg-color);
   color: var(--button-noticed-bg-color);
   border: unset;
@@ -345,7 +348,7 @@ Remove message border and tail
 The border was added was added by weird moodle css
 */
 html .message-app .message .tail,
-html #page-mod-questionnaire-complete div.message:has(.tail) , 
+html #page-mod-questionnaire-complete div.message:has(.tail),
 html #page-mod-questionnaire-preview div.message:has(.tail) {
   border: none;
 }
@@ -361,7 +364,7 @@ html textarea {
 /* Disabled radio buttons */
 
 html input[type="radio"]:checked,
-html input[type="radio"]:checked:focus { 
+html input[type="radio"]:checked:focus {
   appearance: none;
   background-color: var(--button-noticed-bg-color);
   border: 1px solid var(--button-noticed-bg-color);
@@ -380,4 +383,3 @@ html .activityiconcontainer.content img.activityicon.nofilter {
 html .stretched-link::after {
   position: unset;
 }
-
