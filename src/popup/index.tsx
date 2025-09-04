@@ -51,7 +51,7 @@ export default function IndexPopup() {
     try {
       sendToBackground({
         name: "awaiken",
-        body: { input: "Hello from popup" }
+        body: { id: 123 } // Dummy body to keep the function call valid
       }).catch((err) => console.debug("bg message failed:", err))
     } catch {}
     try {
@@ -76,10 +76,16 @@ export default function IndexPopup() {
               console.warn("storage.set error", chrome.runtime.lastError)
             }
             console.log("Restored: " + key);
-            
           })
         } else {
           console.error("No backup found for " + key)
+          console.log("Removes " + key + " from storage instead.")
+          chrome.storage.local.remove([key], () => {
+            if (chrome.runtime?.lastError) {
+              console.warn("storage.remove error", chrome.runtime.lastError)
+            }
+            console.log("Removed: " + key);
+          })
         }
       })
     } catch (e) {
@@ -545,7 +551,8 @@ function Button(props: {
 }
 
 function DangerZone(props: { onResetDashboard: () => void }) {
-  
+  const [confirmOpen, setConfirmOpen] = useState(false)
+
   return (
     <div
       className="
@@ -561,18 +568,28 @@ function DangerZone(props: { onResetDashboard: () => void }) {
       </p>
       <Button
         kind="ghost"
-        onClick={() => {
-          <MessageModal
-            open={true}
-            title="Reset dashboard layout"
-            actions={[
-              { label: "Cancel", onClick: () => {} , kind: "ghost"},
-              { label: "Reset", onClick: () => props.onResetDashboard(), kind: "primary" }
-            ]}
-          />
-        }}>
+        onClick={() => setConfirmOpen(true) }>
         Reset dashboard layout
       </Button>
+      <MessageModal
+        open={confirmOpen}
+        title="Reset dashboard layout"
+        onClose={() => setConfirmOpen(false)}
+        children={
+          <p className="text-sm text-[var(--page-fg-color-alt)]">
+            Are you sure you want to reset the dashboard layout? This action
+            cannot be undone.
+          </p>
+        }
+        actions={[
+          { label: "Cancel", onClick: () => setConfirmOpen(false) , kind: "ghost"},
+          { label: "Reset", onClick: () => { 
+              props.onResetDashboard();
+              setConfirmOpen(false); 
+            }, kind: "primary"
+          }
+        ]}
+      />
     </div>
   )
 }
