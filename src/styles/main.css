@@ -54,43 +54,43 @@ div .dashboard-card-deck.one-row:has(a + a) {
 }
 
 /* reorder dashboard cards */
-aside#block-region-content {
+#block-region-content {
   display: flex;
   flex-flow: column;
 }
 
 /* Timeline card */
-aside#block-region-content section.block_timeline {
+#block-region-content section.block_timeline {
   grid-area: timeline;
 }
 
 /* Recently accessed items card */
-aside#block-region-content section.block_recentlyaccesseditems {
+#block-region-content section.block_recentlyaccesseditems {
   grid-area: recent;
 }
 
 /* Starred courses card */
-aside#block-region-content section.block_starredcourses {
+#block-region-content section.block_starredcourses {
   grid-area: courses;
 }
 
 /* Upcoming events card */
-aside#block-region-content section.block_calendar_upcoming {
+#block-region-content section.block_calendar_upcoming {
   grid-area: events;
 }
 
 /* TimeEdit */
-aside#block-region-content section.block_timeedit {
+#block-region-content section.block_timeedit {
   grid-area: timeedit;
 }
 
 /* Student councile events */
-aside#block-region-content section.block_sc {
+#block-region-content section.block_sc {
   grid-area: sc;
 }
 
 /* Study tools card */
-aside#block-region-content section.block_cohortspecifichtml {
+#block-region-content section.block_cohortspecifichtml {
   grid-area: tools;
 }
 
